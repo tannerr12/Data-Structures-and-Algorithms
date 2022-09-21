@@ -57,7 +57,7 @@ class Solution:
             return head
        
         
-        return head if left > 1 else ehead if ehead else prev
+        return head if left > 1 else prev
         
         
         
