@@ -43,8 +43,6 @@ class Solution:
                 res.append(temp)
             
             
-        while res and int(res[0]) < low:
-            res.popleft()
         return res
             
             
