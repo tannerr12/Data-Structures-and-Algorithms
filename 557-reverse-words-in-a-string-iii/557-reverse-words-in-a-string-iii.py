@@ -3,8 +3,7 @@ class Solution:
         
         
         arr = s.split(' ')
-        
-        print(arr)
+
         
         
         for j in range(len(arr)):
@@ -19,9 +18,8 @@ class Solution:
             
             arr[j] = word
              
-            print(word)
+
         
-        
-        print(arr)
+
         
         return ' '.join(arr)
