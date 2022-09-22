@@ -13,9 +13,6 @@ class Solution:
         
         
         node.val = node.next.val
-        t = node.next.next
-        
-        node.next.next = None
-        node.next = t
+        node.next = node.next.next
         
         
