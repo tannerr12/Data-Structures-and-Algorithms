@@ -12,10 +12,10 @@ class Solution:
         """
         
         
-        temp = node.next
+        node.val = node.next.val
         t = node.next.next
         
         node.next.next = None
         node.next = t
-        node.val = temp.val
+        
         
