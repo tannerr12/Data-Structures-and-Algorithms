@@ -3,7 +3,7 @@ class Solution:
         
         q = deque()
         arr = s.split(' ')
-        print(arr)
+  
         
         
         for i in range(len(arr)):
