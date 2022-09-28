@@ -30,8 +30,7 @@ class Solution:
             if s[i] == '|':
                 prev = i
             memoy[i] = prev
-        print(memox)
-        print(memoy)
+
         for x,y in queries:
             cx = memox[x]
             cy = memoy[y]
