@@ -36,9 +36,9 @@ class Solution:
             cy = memoy[y]
             
             if cy >= x and cx <= y and cx in barMap and cy in barMap:
-                if barMap[cx] - barMap[cy] < 0:
-                    res.append(0)
-                    continue
+               # if barMap[cx] - barMap[cy] < 0:
+                #    res.append(0)
+                #    continue
                 res.append(barMap[cx] - barMap[cy])
              
             else:
