@@ -10,7 +10,7 @@ class Solution:
             a = find(a)
             b = find(b)
                     
-            parent[b] = a
+            parent[a] = b
             
         
         def find(a):
