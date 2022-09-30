@@ -5,28 +5,31 @@ class Solution:
         if len(nums) < 3:
             return 0
         
-        dp = collections.defaultdict(int)
-        def dfs(i):
-            
+        #dp = collections.defaultdict(int)
+        s = 0
+        def dfs(i,prev):
+            nonlocal s
             if i >= len(nums):
                 return
 
             if nums[i] - nums[i-1] == nums[i - 1] - nums[i - 2]:
-                dp[i] = dp[i - 1] + 1
+                prev = prev + 1
+                s += prev
             else:
-                dp[i] = 0
+                prev = 0
+                
             
             
-            dfs(i+1)
+            dfs(i+1,prev)
 
                 
            
                 
         
         #for i in range(len(nums)):
-        dfs(2)
+        dfs(2,0)
         
-        #print(dp)
         
-        return sum(dp.values())
+        
+        return s
         
