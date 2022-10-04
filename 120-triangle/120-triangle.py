@@ -1,8 +1,6 @@
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        
-        
-        res = float('inf')
+
         
         
         dp = {}
@@ -28,13 +26,9 @@ class Solution:
             
             
             
-            
-            
-        for i in range(len(triangle[0])):
-            
-            
-             res = min(res,dfs(0,i))
+
+        return dfs(0,0)
                 
         
         
-        return res
+        
