@@ -1,23 +1,23 @@
 class Solution:
     def findLonelyPixel(self, picture: List[List[str]]) -> int:
         
-        rdp = collections.defaultdict(list)
+        rdp = collections.defaultdict(int)
         
-        cdp = collections.defaultdict(list)
+        cdp = collections.defaultdict(int)
         res = 0
         for r in range(len(picture)):
             for c in range(len(picture[0])):
                 
                 if picture[r][c] == 'B':
-                    rdp[r].append('B')
-                    cdp[c].append('B')
+                    rdp[r] +=1
+                    cdp[c] +=1
                     
         
         
         for r in range(len(picture)):
             for c in range(len(picture[0])):
                 if picture[r][c] == 'B':
-                    if len(rdp[r]) == 1 and len(cdp[c]) == 1:
+                    if rdp[r] == 1 and cdp[c] == 1:
                         res +=1
         
         return res
