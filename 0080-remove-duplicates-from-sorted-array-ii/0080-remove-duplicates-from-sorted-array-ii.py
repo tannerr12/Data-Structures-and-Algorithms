@@ -2,20 +2,26 @@ class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         
         
-        h = collections.defaultdict(int)
+        count = 0
         offset = 0
+        prev = nums[0]
         for i in range(len(nums)):
             
+            if i > 0 and nums[i] != prev:
+                count = 0
+            count +=1
             
-            h[nums[i]]+= 1
-            
-            if h[nums[i]] > 2:
+            if count > 2:
+                prev = nums[i]
                 nums[i] = None
                 offset +=1
             
             else:
+                prev = nums[i]
                 nums[i - offset] = nums[i]
-                
+              
+            
+            
         
         
         print(nums)
