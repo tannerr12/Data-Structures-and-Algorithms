@@ -3,8 +3,8 @@ class Solution:
 
         
         
-        res = ''
-        while num != 0:
+            res = ''
+       
             if num >= 1000:
                 for i in range(num // 1000):
                     res += 'M'
@@ -64,6 +64,6 @@ class Solution:
                 num = 0
             
             
-        return res
+            return res
             
                 
