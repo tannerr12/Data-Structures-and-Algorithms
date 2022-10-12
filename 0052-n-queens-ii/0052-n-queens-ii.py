@@ -6,9 +6,7 @@ class Solution:
         diagc = set()
         row = set()
         col = set()
-        
-        
-        
+
         def backtrack(r,c, num):
           
             if r >= n or num == 0:
@@ -17,7 +15,6 @@ class Solution:
                 else:
               
                     return 1
-            
             m = 0
             if r - c not in diagr and r + c not in diagc and r not in row and c not in col:
                 diagr.add(r-c)
@@ -26,11 +23,11 @@ class Solution:
                 col.add(c)
                 tempC = c
                 tempR = r
-                if c + 1 >= n:
-                    tempC = -1
-                    tempR +=1
+                #if c + 1 >= n:
+                 #   tempC = -1
+                 #   tempR +=1
                 
-                m += backtrack(tempR, tempC+1, num -1)
+                m += backtrack(tempR +1, 0, num -1)
                
              
                 diagr.remove(r-c)
