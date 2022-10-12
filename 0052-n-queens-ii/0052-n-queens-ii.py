@@ -1,22 +1,21 @@
 class Solution:
     def totalNQueens(self, n: int) -> int:
         
-        res = 0
+   
         diagr = set()
         diagc = set()
         row = set()
         col = set()
-        #result = []
         
-        #@cache
+        
+        
         def backtrack(r,c, num):
-            nonlocal res
+          
             if r >= n or num == 0:
                 if num != 0:
                     return 0
                 else:
-                    #res +=1
-                    #result.append(tempres.copy())
+              
                     return 1
             
             m = 0
@@ -30,10 +29,10 @@ class Solution:
                 if c + 1 >= n:
                     tempC = -1
                     tempR +=1
-                #tempres.append((r,c))
+                
                 m += backtrack(tempR, tempC+1, num -1)
                
-                #tempres.pop()
+             
                 diagr.remove(r-c)
                 diagc.remove(r+c)
                 row.remove(r)
@@ -46,5 +45,3 @@ class Solution:
                 
             return m
         return backtrack(0,0,n)    
-       # print(result)
-        #return res
