@@ -5,25 +5,22 @@
 #         self.next = next
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        
-        h = collections.defaultdict(int)
+   
         
         dhead = head
         
-        while dhead:
-            
-            h[dhead.val] += 1
-            dhead = dhead.next
-            
-        
+
         dhead = ListNode(-101)
         dhead.next = head
         tdhead = dhead
         while dhead:
             
             thead = dhead.next
-            while thead and h[thead.val] >= 2:
+            prev = -101
+            while thead and (thead.next and thead.val == thead.next.val or thead.val == prev):
+                prev = thead.val
                 thead = thead.next
+                
             
             dhead.next = thead
             dhead = dhead.next
