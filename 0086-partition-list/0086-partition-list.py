@@ -28,12 +28,10 @@ class Solution:
         
         for i in range(len(arrL) -1):
             node = arrL[i]
-            
             node.next = arrL[i+1]
             
         for i in range(len(arrR) -1):
             node = arrR[i]
-            
             node.next = arrR[i+1]
         
         if len(arrR) > 0:
