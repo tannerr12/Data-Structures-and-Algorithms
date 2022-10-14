@@ -14,21 +14,3 @@ class Solution:
         return res
         
         
-        def dfs(i,currS):
-            
-            
-            if i >= len(currentState):
-                res.append(currS)
-            
-            
-            
-            
-            
-            #win flip
-            if currentState[i] == '+' and currentState[i+1] == '+':
-                
-                
-                return 0
-            
-            
-            #lose Flip
