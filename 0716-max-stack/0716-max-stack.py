@@ -1,14 +1,9 @@
-class Node:
-    def __init__(self):
-        self.prev = None
-        self.next = None
-        self.val = float('inf')
+
         
 class MaxStack:
 
     def __init__(self):
         self.h = {}
-        self.stack = []
         self.count = 0
         self.heap = []
         self.removed = set()
@@ -16,7 +11,6 @@ class MaxStack:
 
     def push(self, x: int) -> None:
         self.count +=1
-        #print(self.count)
         self.h[self.count] = x
         heapq.heappush(self.heap, (-x,-self.count))
         
