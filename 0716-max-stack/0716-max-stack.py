@@ -7,7 +7,7 @@ class Node:
 class MaxStack:
 
     def __init__(self):
-        self.h = OrderedDict()
+        self.h = {}
         self.stack = []
         self.count = 0
         self.heap = []
