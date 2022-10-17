@@ -1,10 +1,6 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        h= collections.defaultdict(int)
-        for i in range(len(s)):
-            
-            h[s[i]] +=1
-            
+        h = Counter(s)
         
         
         for i in range(len(s)):
