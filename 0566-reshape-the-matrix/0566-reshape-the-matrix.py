@@ -7,15 +7,24 @@ class Solution:
         tres = []
         res = []
         
-
+        tc = c 
+        tr = r
         for i in range(len(mat)):
             for j in range(len(mat[0])):
                  tres.append(mat[i][j])
                     
-       
-    
-        for i in range(0,len(tres), c):
-            res.append(tres[i:i+c])
         
-        return res
+        temp = []
+        for i in range(len(tres)):
+            temp.append(tres[i])
+            
+            tc -=1
+            
+            if tc <= 0:
+                res.append(temp.copy())
+                temp = []
+                tc = c
+                tr -=1
+        
+        return res if len(res) > 0 and (r > 1 or c > 1) else [tres]
             
