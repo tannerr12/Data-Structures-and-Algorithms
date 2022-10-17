@@ -1,13 +1,15 @@
 class Solution:
     def checkIfPangram(self, sentence: str) -> bool:
         
-        h = Counter(sentence)
+        h = set(sentence)
         
-        alpha = 'abcdefghijklmnopqrstuvwxyz'
+        return len(h) == 26
         
-        for i in range(len(alpha)):
+       
+        
+        for i in range(26):
             
-            if alpha[i] not in h:
+            if chr(ord('a') + i) not in h:
                 return False
         
         
