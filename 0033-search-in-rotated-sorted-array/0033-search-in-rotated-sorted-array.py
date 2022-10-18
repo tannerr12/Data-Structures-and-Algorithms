@@ -8,9 +8,7 @@ class Solution:
         while l <= r:
            
             curr = (l+r)//2
-            if nums[0] < nums[-1]:
-                pivot = 0
-                break
+
             if (curr < len(nums) -1 and nums[curr] > nums[curr +1]):
                 pivot = curr +1
                 break
