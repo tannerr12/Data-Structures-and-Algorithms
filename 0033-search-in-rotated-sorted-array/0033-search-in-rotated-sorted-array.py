@@ -22,8 +22,7 @@ class Solution:
             
         
         newArr = nums[pivot:] + nums[0:pivot]
-        print(newArr)
-        print(nums)
+
         l,r = 0,len(nums) -1
         
         
