@@ -2,7 +2,7 @@ class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         
         
-        words.sort()
+        
         h = Counter(words)
         
         
