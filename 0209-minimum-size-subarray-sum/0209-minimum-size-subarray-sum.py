@@ -5,13 +5,10 @@ class Solution:
         res = float('inf')
         l = 0
         total = 0
-        for i in range(len(nums)):
-            
-            val = nums[i]
+        for i,val in enumerate(nums):
             
             total += val
-            
-           
+
             while total >= target:
                 res = min(i+1 - l, res)
                 total -= nums[l]
