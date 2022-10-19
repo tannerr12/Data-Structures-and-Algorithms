@@ -2,9 +2,9 @@ class Solution:
     def rangeBitwiseAnd(self, left: int, right: int) -> int:
         
         res = left
-        if left > 10000 and right - left > 1000:
+        if left > 10000 and right - left > 10:
             left = left //10
-        if right > 10000 and right - left > 1000:
+        if right > 10000 and right - left > 10:
             right = right //10
         
         for i in range(left,right +1):
