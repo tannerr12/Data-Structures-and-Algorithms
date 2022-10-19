@@ -11,11 +11,11 @@ class Solution:
             
             total += val
             
-            if total >= target:
-                while total >= target:
-                    res = min(i+1 - l, res)
-                    total -= nums[l]
-                    l+=1
+           
+            while total >= target:
+                res = min(i+1 - l, res)
+                total -= nums[l]
+                l+=1
                     
                     
         
