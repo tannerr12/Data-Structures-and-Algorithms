@@ -1,6 +1,8 @@
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         
+        
+        words.sort()
         h = Counter(words)
         
         
@@ -19,18 +21,10 @@ class Solution:
         while k != 0:
             x,y = heapq.heappop(arr)
             
-            res.append((x*-1,y))
+            res.append(y)
             k-=1
         
-        sorted(res, key=lambda x: (-x[0], x[1]))
-        print(res)
+       
+       
         
-        finalRes = []
-        
-        for x,y in res:
-            
-            finalRes.append(y)
-            
-        
-        
-        return finalRes
+        return res
