@@ -8,21 +8,16 @@ class Solution:
         
         if head is None:
             return head
-        dhead = head
         arr = []
-        while dhead:
-            arr.append((dhead.val, dhead))
+        while head:
+            arr.append((head.val, head))
+            head = head.next
             
-            dhead = dhead.next
-            
-        
-        
+
         arr =sorted(arr, key=lambda x : x[0])
         
         for i in range(len(arr) -1):
-            x,y = arr[i]
-            
-            y.next =arr[i+1][1]
+            arr[i][1].next = arr[i+1][1]
         
         
         
