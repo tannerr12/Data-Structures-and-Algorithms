@@ -3,15 +3,28 @@ class Solution:
         
         
         
-        i  = 1
+        l,r = 0,num
         
-        target = 1
         
-        while target <= num:
-            target = i * i
+        while l <= r:
             
-            if target == num:
+            
+            curr = (l+r) //2 
+            
+            
+            if curr * curr == num:
                 return True
-            i +=1
+            
+            elif curr * curr > num:
+                r = curr -1
+                
+            else:
+                
+                l= curr + 1
+                
+        
+        
+        
         
         return False
+                
