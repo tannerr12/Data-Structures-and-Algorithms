@@ -3,7 +3,7 @@ class Solution:
         
         
         
-        l,r = 0,num
+        l,r = 0,(num // 2) +1
         
         
         while l <= r:
