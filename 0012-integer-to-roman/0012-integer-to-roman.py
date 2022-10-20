@@ -1,8 +1,6 @@
 class Solution:
     def intToRoman(self, num: int) -> str:
 
-        
-        
             res = ''
        
             if num >= 1000:
