@@ -1,16 +1,20 @@
 class Solution:
     def rangeBitwiseAnd(self, left: int, right: int) -> int:
         
-        res = left
-        if left > 1000 and right - left > 10:
-            left = left // (10 * len(str(left)) - 1)
-        if right > 1000 and right - left > 10:
-            right = right //(10 * len(str(right)) - 1)
+
+        shift = 0
         
-        for i in range(left,right +1):
-            res &= i
-            if res == 0:
-                break
+        
+        
+        while right > left:
             
-        return res
             
+            right = right >> 1
+            
+            left = left >> 1
+            
+            shift +=1
+            
+        
+        
+        return right << shift
