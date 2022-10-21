@@ -6,7 +6,7 @@ class Solution:
         h= {}
         
         res = 0
-        tempRes= 0
+        
         
         l = 0
         i = 0
@@ -16,16 +16,12 @@ class Solution:
                 
                 
                 if s[i] in h:
-                   # tempRes +=1
+                  
                     h[s[i]] +=1
                 else:
                    
-                  #  tempRes+=1
                     h[s[i]] = 1
                     
-                        
-            
-                
                 res = max(res,i+1 - l)
                 i+=1
                 
