@@ -1,16 +1,16 @@
 class Solution:
     def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
-        pep = people.copy()
         
-        heapq.heapify(pep)
+        
+        heapq.heapify(people)
         
         h  = {}
         res = []
         temp = []
-        #addedKeys = set()
-        while pep:
+     
+        while people:
             
-            height, p = heapq.heappop(pep)
+            height, p = heapq.heappop(people)
             if height not in h:
                 h[height] = 0
             if h[height] != p:
@@ -18,7 +18,7 @@ class Solution:
             
             else:
                 res.append([height,p])
-               #addedKeys.add(height)
+               
                 
                 for key in h:
                     if key <= height:
@@ -28,6 +28,6 @@ class Solution:
                 while temp:
 
                     x,y = temp.pop()
-                    heapq.heappush(pep,[x,y])
+                    heapq.heappush(people,[x,y])
         return res
         
