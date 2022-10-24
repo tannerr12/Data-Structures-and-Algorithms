@@ -48,21 +48,21 @@ class Solution:
  
             elif l >= 0 and r < len(arr):
                 if abs(arr[l] - x) <= abs(arr[r] - x):
-                    res.append(arr[l])
+                    #res.append(arr[l])
                     l -=1
                 
                 else:
-                    res.append(arr[r])
+                    #res.append(arr[r])
                     r+=1
                 
                 k-=1
             elif l >= 0:
-                res.append(arr[l])
+                #res.append(arr[l])
                 l-=1
                 k-=1
                 
             elif r < len(arr):
-                res.append(arr[r])
+                #res.append(arr[r])
                 r +=1
                 k-=1
                 
@@ -70,7 +70,17 @@ class Solution:
                 break
                 
         
-        res.sort()
+        if l != idx:
+            l+=1
+        
+        
+            while l != idx +1:
+                res.append(arr[l])
+                l+=1
+
+        for i in range(idx+1,r):
+            res.append(arr[i])
+        
         return res
                 
             
