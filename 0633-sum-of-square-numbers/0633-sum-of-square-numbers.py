@@ -2,23 +2,22 @@ class Solution:
     def judgeSquareSum(self, c: int) -> bool:
         
         
-        p = []
+        p = set()
        
         val = 0
         while val ** 2  <= c:
             
-            p.append(val ** 2)
+            p.add(val ** 2)
             val+=1
             
         
-        ps = set(p)
-        #print(p)
+
         
         
-        for i in range(len(p)):
-            
-            
-            if  c - p[i] in ps:
+        
+        for v in p:
+
+            if  c - v in p:
                 return True
         
         return False
