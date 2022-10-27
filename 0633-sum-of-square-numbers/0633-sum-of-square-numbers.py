@@ -8,16 +8,10 @@ class Solution:
         while val ** 2  <= c:
             
             p.add(val ** 2)
+            if c - val **2 in p:
+                return True
             val+=1
             
         
 
         
-        
-        
-        for v in p:
-
-            if  c - v in p:
-                return True
-        
-        return False
