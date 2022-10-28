@@ -3,32 +3,32 @@ class Solution:
         res = []
         
         memo = {}
-        def backtrack(i,temp,size,prev):
+        def backtrack(i,temp):
             
             
-            if (temp) in memo:
+            if (str(temp)) in memo:
                 return 
-            if size > 1:
+            if len(temp) > 1:
             
-                res.append(temp.split(','))
+                res.append(temp.copy())
                # return 
             
             
             
-            memo[(temp)] = True
+            memo[str(temp)] = True
             for i in range(i,len(nums)):
 
-                if len(temp) == 0:
+                if len(temp) == 0 or temp[-1] <= nums[i]:
                     
-                    backtrack(i+1, str(nums[i]), size +1,nums[i])
                     
-                elif prev <= nums[i]:
-                     backtrack(i+1, temp + ',' + str(nums[i]), size +1,nums[i])
+                    temp.append(nums[i])
+                    backtrack(i+1, temp)
+                    temp.pop()
+               
 
 
-                #backtrack(i+1,temp)
                 
-        backtrack(0,'',0,0)
+        backtrack(0,[])
         
         return res
             
