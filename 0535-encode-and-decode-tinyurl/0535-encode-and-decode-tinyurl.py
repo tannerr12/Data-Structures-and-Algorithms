@@ -7,7 +7,9 @@ class Codec:
         self.database = {}
         self.id = 0
         self.database[self.id] = longUrl
-        return prefix + str(self.id)
+        current = prefix + str(self.id)
+        self.id+=1
+        return current
         
         
 
