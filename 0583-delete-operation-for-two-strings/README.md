@@ -5,16 +5,16 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> word1 = "sea", word2 = "eat"
+<pre style="position: relative;"><strong>Input:</strong> word1 = "sea", word2 = "eat"
 <strong>Output:</strong> 2
 <strong>Explanation:</strong> You need one step to make "sea" to "ea" and another step to make "eat" to "ea".
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> word1 = "leetcode", word2 = "etco"
+<pre style="position: relative;"><strong>Input:</strong> word1 = "leetcode", word2 = "etco"
 <strong>Output:</strong> 4
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
