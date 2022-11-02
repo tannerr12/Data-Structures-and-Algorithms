@@ -2,18 +2,10 @@ class Solution:
     def minMutation(self, start: str, end: str, bank: List[str]) -> int:
         
         adj = collections.defaultdict(set)
-        
-        
+
         bank.append(start)
-       # bank.sort()
         h = {}
         
-     #   for i in range(len(bank)):
-            
-     #       h[bank[i]] = Counter(bank[i])
-        
-        
-     #   print(h)
         for i in range(len(bank)):
             
             for j in range(len(bank)):
@@ -34,10 +26,10 @@ class Solution:
                     adj[bank[i]].add(bank[j])
         
         
-       # print(adj)
-        
         seen = set()
+        
         c = float('inf')
+        
         def dfs(i,count):
             nonlocal c
             
