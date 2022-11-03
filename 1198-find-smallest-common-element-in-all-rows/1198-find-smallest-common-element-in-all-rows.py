@@ -2,7 +2,7 @@ class Solution:
     def smallestCommonElement(self, mat: List[List[int]]) -> int:
         
         h = defaultdict(int)
-        
+        res = float('inf')
         
         
         for r in range(len(mat)):
@@ -10,19 +10,10 @@ class Solution:
             for c in range(len(mat[r])):
                 
                 h[mat[r][c]] +=1
-                
+                if h[mat[r][c]] == len(mat):
+                    res = min(res,mat[r][c])
         
         
         
-        heap = []
         
-        for key,val in h.items():
-            if val == len(mat):
-                
-                heapq.heappush(heap,key)
-                
-                
-        
-        
-        
-        return heapq.heappop(heap) if len(heap) > 0 else -1
+        return res if res != float('inf') else -1
