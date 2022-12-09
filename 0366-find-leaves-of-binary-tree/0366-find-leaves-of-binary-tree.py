@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
-        dp = [[] for i in range(100)]
+        dp = defaultdict(list)
         #print(dp)
         def dfs(root):
             
@@ -25,11 +25,6 @@ class Solution:
         
         dfs(root)
         
-        res = []
-        for i in range(len(dp)):
-            if len(dp[i]) > 0:
-                res.append(dp[i])
-            else:
-                break
-        return res
+
+        return dp.values()
             
