@@ -11,17 +11,15 @@ class Solution:
 
 
         def dfs(root,s,l):
-       
-            
+
             if root is None:
                 return 0
             
             res = max(abs(root.val - s), abs(root.val - l))
-            
             s = min(s,root.val)
             l = max(l,root.val)
-            res = max(res,dfs(root.left,s,l))
-            res = max(res,dfs(root.right,s,l))
+            res = max(res,dfs(root.left,s,l),dfs(root.right,s,l))
+            
             
             return res
             
