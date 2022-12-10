@@ -6,38 +6,31 @@
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
-        dhead = head
-        if head and head.next:
-            head = head.next
+        
+        dummy = ListNode(-1)
+        dummy.next = head
+        prev,start = dummy,head
         
         
-        
-        front = []
-        start = True
-        
-        while dhead:
-                
-                front.append((dhead.next, dhead))
-                tnext = dhead.next
-                td = dhead
-                dhead.next = None
-                dhead = tnext
-                if dhead is None:
-                    break
-                snxt = dhead.next
-                dhead.next = td
-                dhead = snxt
-                
-
-
-        #print(front)
-        
-        for i in range(len(front)-1):
+        while start and start.next:
             
-            if front[i+1][0]:
-                front[i][1].next = front[i+1][0]
-            else:
-                front[i][1].next = front[i+1][1]
+            #next set 
+            nset = start.next.next
+            first = start
+            second = start.next
+            
+            
+            second.next = start
+            first.next = nset
+            prev.next = second
+            
+            prev = first
+            
+            start = nset
+        
+        
+        return dummy.next
+            
+            
             
         
-        return head
