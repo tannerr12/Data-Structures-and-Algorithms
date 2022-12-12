@@ -10,21 +10,18 @@ class Solution:
         def dfs(root):
             
             if root is None:
-                return root
+                return False
 
-            dfs(root.left)
-            dfs(root.right)
-            
-            if root.left and root.left.val == -1:
+            if dfs(root.left):
                 root.left = None
-            if root.right and root.right.val == -1:
+            if dfs(root.right):
                 root.right = None
-            
+
             if root.right is None and root.left is None and root.val == target:
-                root.val = -1
+                return True
         
         
         dfs(root)
         
-        return root if root.val != -1 else None
+        return root if root.left != None or root.right != None or root.val != target else None
             
