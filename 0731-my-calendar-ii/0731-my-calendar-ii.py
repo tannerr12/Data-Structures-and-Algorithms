@@ -24,6 +24,10 @@ class MyCalendarTwo:
                 
                 self.h[start] -=1
                 self.h[end] +=1
+                if self.h[start] == 0:
+                    del self.h[start]
+                if self.h[end] == 0:
+                    del self.h[end]
                 return False
             
             
