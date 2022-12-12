@@ -11,12 +11,7 @@ class Solution:
             
             if root is None:
                 return root
-            
-            
-            if root.left is None and root.right is None and root.val == target:
-                root.val = -1
-            
-            
+
             dfs(root.left)
             dfs(root.right)
             
