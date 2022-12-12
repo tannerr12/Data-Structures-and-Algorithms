@@ -36,20 +36,25 @@ class segTree:
         
         recalc()
         """
+from sortedcontainers import SortedList
 class MyCalendar:
 
     def __init__(self):
-        self.arr = []
+        self.arr = SortedList()
 
     def book(self, start: int, end: int) -> bool:
         
         res, val = self.binarySearch(start,end)
+    
         if res:
-            self.arr.insert(val, [start,end])
+            self.arr.add([start,end])
+            
             return res
         else:
             return res
-    
+        
+        
+        
     
     def binarySearch(self, start,end):
         
@@ -62,7 +67,7 @@ class MyCalendar:
             s,e = self.arr[curr][0], self.arr[curr][1]
             if (s <= start and end <= e) or (end >= e and start < e) or (start <= s and end > s):
                 return (False, None)
-            elif end < e:
+            elif start > s:
                 l = curr +1
             else:
                 r = curr -1
