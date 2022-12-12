@@ -1,36 +1,27 @@
+from sortedcontainers import SortedList
 class MyCalendarTwo:
 
     def __init__(self):
-        self.h = {}
+        self.h = SortedList()
+        
 
     def book(self, start: int, end: int) -> bool:
-        if start not in self.h:
-            self.h[start] = 1
-        else:
-            self.h[start]+=1
         
-        if end not in self.h:
-            self.h[end] = -1
-        else:
-            self.h[end] -=1
+        st = self.h.copy()
+        st.add([start, 1])
+        st.add([end,-1])
         s = 0
         
-        #print(self.h)
-        for key,val in sorted(self.h.items()):
+        for key,val in st:
             
             s+=val # +1 if we meet an event 
             
             if s >= 3:
-                
-                self.h[start] -=1
-                self.h[end] +=1
-                if self.h[start] == 0:
-                    del self.h[start]
-                if self.h[end] == 0:
-                    del self.h[end]
                 return False
             
-            
+        
+        self.h.add([start,1])
+        self.h.add([end,-1])
         
         return True
 
