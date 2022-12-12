@@ -2,14 +2,14 @@ from sortedcontainers import SortedList
 class MyCalendarTwo:
 
     def __init__(self):
-        self.arr = []
+        self.arr = SortedList()
         self.double = SortedList()
     def book(self, start: int, end: int) -> bool:
         #print(self.double)
         res = self.binSearchDouble(start,end)
         if not res:
             return False
-        l = self.binSearch(start,end)
+        #l = self.binSearch(start,end)
         
         for i in range(len(self.arr)):
             s,e = self.arr[i]
@@ -30,7 +30,7 @@ class MyCalendarTwo:
                 self.double.add([start,e])
         
         #print(self.double)
-        self.arr.insert(l,[start,end])
+        self.arr.add([start,end])
         return True
         
         
