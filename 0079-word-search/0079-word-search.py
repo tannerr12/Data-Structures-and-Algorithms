@@ -1,62 +1,69 @@
+class Trie:
+    
+    def __init__(self,c):
+        
+        self.char = c
+        self.adj = {}
+        self.end = False
+
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         
-        wordWidth = len(word) -1
-        boardH = len(board) -1
-        boardW = len(board[0]) -1
-       
-        if (boardH +1) * (boardW +1) < len(word):
-            return False
-        
-        letterArr = [0] * 26
-        for col in range(len(board)):
-            
-            for row in range(len(board[col])):
-                char = board[col][row]
-                if char.isupper():
-                    letterArr[ord(char) - ord("A")] += 1
-                else:
-                    letterArr[ord(char) - ord("a")] += 1
-
-                        
-        for char in word:
-                if char.isupper():
+        count = Counter(word)
+        for r in range(len(board)):
+            for c in range(len(board[0])): 
+                if board[r][c] in count:
+                    count[board[r][c]] -=1
                     
-                    if letterArr[ord(char) - ord("A")] ==  0: 
-                        return False
-                    else: letterArr[ord(char) - ord("A")] -= 1
-                else:
-                    if letterArr[ord(char) - ord("a")] == 0: 
-                        return False
-                    else: letterArr[ord(char) - ord("a")] -=1
-                        
-                        
-        def backtrack(r,c,wi,visited):
+        if max(count.values()) > 0:
+            return False
+                
+        h = Trie('')
+        t = h
+        for w in word:
+            t.adj[w] = Trie(w)
+            t = t.adj[w]
+        
+        
+        t.end = True
+        seen = set()
+        def dfs(r,c,trie):
             
-            if r > len(board) -1 or r < 0 or c > len(board[0]) -1 or c < 0 or board[r][c] != word[wi] or visited[str(r) + "," + str(c)] or wi > wordWidth:
+            if r < 0 or c < 0 or r >= len(board) or c >= len(board[0]) or (r,c) in seen:
+                return False
+
+            if board[r][c] in trie.adj:
+                trie = trie.adj[board[r][c]]
+                if trie.end == True:
+                    return True
+            else:
                 return False
             
-            if board[r][c] == word[len(word) -1] and wi == len(word) -1:
-                return True
-            visited[str(r) + "," + str(c)] = True
-            res = (backtrack(r+1,c,wi+1,visited) or
-            backtrack(r-1,c,wi+1,visited) or 
-            backtrack(r,c+1,wi+1,visited) or 
-            backtrack(r,c-1,wi+1,visited))
-            visited[str(r) + "," + str(c)] = False
+            seen.add((r,c))            
+            #4 direcitions
+
+            res = dfs(r+1,c,trie) or dfs(r-1,c,trie) or dfs(r,c+1,trie) or dfs(r,c-1,trie)
+            
+            seen.remove((r,c))
             
             return res
             
         
         for r in range(len(board)):
-            
             for c in range(len(board[0])):
                 
                 if board[r][c] == word[0]:
-                    if backtrack(r,c,0,collections.defaultdict(bool)):
+                    
+                    if dfs(r,c,h):
                         return True
+                    
         
         
         return False
-                                   
+            
+            
+            
+    
+        
+        
         
