@@ -3,23 +3,20 @@ class Solution:
         
         h = Counter(arr)
         
-        heap = []
-        
+        a = []
         for key,val in h.items():
+            a.append(val)
             
-            heapq.heappush(heap, (-val,key))
-            
-        
-        
-        
+        a.sort(reverse=True)
+    
         size = len(arr)
         res = 0
+        c = 0
         while size > len(arr) //2:
             
-            v, k = heapq.heappop(heap)
-            
             res +=1
-            size += v
+            size -= a[c]
+            c+=1
         
         
         return res
