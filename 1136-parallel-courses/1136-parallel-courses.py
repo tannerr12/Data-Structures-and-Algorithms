@@ -1,43 +1,52 @@
 class Solution:
     def minimumSemesters(self, n: int, relations: List[List[int]]) -> int:
-
-        adj = defaultdict(list)
-        indegree = defaultdict(int)
         
-
+        
+        
+        adj = defaultdict(set)
+        pre = defaultdict(set)
+        s = [i+1 for i in range(n)]
+        s = set(s)
         for x,y in relations:
-
-            adj[x].append(y)
-            indegree[y] +=1
+            adj[y].add(x)
+            pre[x].add(y)
+            if x in s:
+                s.remove(x)
+            if y in adj[x]:
+                return -1
+            
+        #print(s)
+        leaf = []
         
-        #perform bfs
+        for key,val in adj.items():
+            if len(val) == 0:
+                leaf.append(key)
+            
+        
+        if len(leaf) == 0:
+            return -1
+        
         q = deque()
-
-        for i in range(1, n+1):
-            if i not in indegree:
-                q.append(i)
+        
+        seen = set()
+        for val in s:
+            q.append(val)
+            seen.add(val)
+        
         
         level = 0
-        seen2 = set()
         while q:
             
             for i in range(len(q)):
-                node = q.popleft()
-              
-                seen2.add(node)
-                for x in adj[node]:
+                v = q.popleft()
+                
+                for a in adj[v]:
+                    pre[a].remove(v)
                     
-                    indegree[x] -=1
-                    if indegree[x] == 0:
-                        q.append(x)
-                
+                    if a not in seen and len(pre[a]) == 0:            
+                        seen.add(a)
+                        q.append(a)
             
-            level +=1
                 
-
-
-        if len(seen2) == n:
-            return level 
-        return -1
-
-
+            level +=1
+        return level
