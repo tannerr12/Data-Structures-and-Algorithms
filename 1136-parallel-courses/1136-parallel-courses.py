@@ -3,12 +3,12 @@ class Solution:
         
         
         
-        adj = defaultdict(set)
+        adj = defaultdict(list)
         pre = defaultdict(set)
         s = [i+1 for i in range(n)]
         s = set(s)
         for x,y in relations:
-            adj[y].add(x)
+            adj[y].append(x)
             pre[x].add(y)
             if x in s:
                 s.remove(x)
