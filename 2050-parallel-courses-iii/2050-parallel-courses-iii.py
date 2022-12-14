@@ -13,27 +13,25 @@ class Solution:
             indegree[y]+=1
 
         q = []
-        seen = set()
+
         for i in range(1, n +1):
             
             if indegree[i] == 0:
                 heapq.heappush(q,(time[i-1], i))
-                seen.add(i)
+          
         
         
         while q:
                 
             t, node = heapq.heappop(q)
-            #maxTime[node-1] = max(maxTime[node-1], t)
-            
-                
+
             for x in adj[node]:
                     
                 indegree[x] -=1
                 maxTime[x-1] = max(maxTime[x-1], time[x-1] + maxTime[node-1])
-                if indegree[x] == 0 and x not in seen:
+                if indegree[x] == 0:
                     heapq.heappush(q, (maxTime[x-1], x))
-                    seen.add(x)
+                    #seen.add(x)
             
 
         
