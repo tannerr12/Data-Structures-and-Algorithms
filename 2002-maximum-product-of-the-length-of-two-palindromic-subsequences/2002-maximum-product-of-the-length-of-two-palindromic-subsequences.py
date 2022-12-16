@@ -14,29 +14,30 @@ class Solution:
             
             return True
                 
-        @cache
-        def dfs(i,l,r):
-            
-            if i >= len(s):
-                if isPalindrone(l) and isPalindrone(r):
-                    return len(l) * len(r)
-                return 0
-                        
-            res = 0
-            
-  
-            #left
-            res = max(res,dfs(i+1, l+s[i], r))
-            #right
-            res = max(res,dfs(i+1, l,r+s[i]))
-
-            #None
-            res = max(res, dfs(i+1,l,r))
+        
+        N = len(s)
+        h= {}
+        for mask in range(1, 1 << N):
+            subset = ''
+            for i in range(N):
                 
-            return res
+                if mask & (1 << i) >= 1:
+                    subset+= s[i]
+                
+            
+            if len(subset) > 0 and subset == subset[::-1]:
+                h[mask] = len(subset)
         
         
+        #print(h)
+        res = 0
+        for h1 in h.keys():
+            for h2 in h.keys():
+                if h1 & h2 == 0:
+                    res = max(res,h[h1] * h[h2])
         
-        return dfs(0,'','')
+        return res
+                
+                    
                 
         
