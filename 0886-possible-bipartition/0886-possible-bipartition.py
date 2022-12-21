@@ -2,13 +2,12 @@ class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
         
         
-        npossible= defaultdict(set)
+        
         adj = defaultdict(list)
         seen = set()
         colordct = {}
         for x,y in dislikes:
-            npossible[x].add(y)
-            npossible[y].add(x)
+            
             
             adj[x].append(y)
             adj[y].append(x)
