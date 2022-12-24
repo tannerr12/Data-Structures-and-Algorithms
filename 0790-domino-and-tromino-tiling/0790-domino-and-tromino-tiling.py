@@ -24,6 +24,7 @@ class Solution:
                     #L shape bottom right
                     res += dfs(i+1, True, False)
                 if state3 and state4:
+                    #2 horizontal tiles
                     res += dfs(i+1, False,False)
             
             if state1 and not state2:
@@ -51,5 +52,5 @@ class Solution:
             return res
         
         
-        res = dfs(0,True, True)
-        return res % (10 ** 9 + 7)
+        
+        return dfs(0,True, True) % (10 ** 9 + 7)
