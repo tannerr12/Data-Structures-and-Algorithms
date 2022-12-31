@@ -12,8 +12,8 @@ class Solution:
                     start = [r,c]
                     
         #memo = {}
-        @cache
-        def dfs(r,c,count,s):
+       # @cache
+        def dfs(r,c,count):
             
             if r >= len(grid) or r < 0 or c >= len(grid[0]) or c < 0 or grid[r][c] == -1:
                 return 0
@@ -28,11 +28,11 @@ class Solution:
             res = 0
             v = grid[r][c]
             grid[r][c] = -1
-            s = str(grid)
-            res += dfs(r+1,c,count -1,s)
-            res += dfs(r-1,c,count -1,s)
-            res += dfs(r,c+1,count -1,s)
-            res += dfs(r,c -1, count -1,s)
+           # s = str(grid)
+            res += dfs(r+1,c,count -1)
+            res += dfs(r-1,c,count -1)
+            res += dfs(r,c+1,count -1)
+            res += dfs(r,c -1, count -1)
             grid[r][c] = v
             
             return res
@@ -40,4 +40,4 @@ class Solution:
         
         
         
-        return dfs(start[0], start[1], countzero, '')
+        return dfs(start[0], start[1], countzero)
