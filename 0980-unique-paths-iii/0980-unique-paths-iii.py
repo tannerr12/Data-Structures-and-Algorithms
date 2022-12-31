@@ -28,10 +28,10 @@ class Solution:
             res = 0
             v = grid[r][c]
             grid[r][c] = -1
-            res += dfs(r+1,c,count -1,s + str(r) + ', ' + str(c))
-            res += dfs(r-1,c,count -1,s + str(r) + ', ' + str(c))
-            res += dfs(r,c+1,count -1,s + str(r) + ', ' + str(c))
-            res += dfs(r,c -1, count -1,s + str(r) + ', ' + str(c))
+            res += dfs(r+1,c,count -1,s +'d')
+            res += dfs(r-1,c,count -1,s + 'u')
+            res += dfs(r,c+1,count -1,s + 'r')
+            res += dfs(r,c -1, count -1,s + 'l')
             grid[r][c] = v
             
             return res
