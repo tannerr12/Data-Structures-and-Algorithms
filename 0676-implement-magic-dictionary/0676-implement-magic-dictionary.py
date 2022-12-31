@@ -11,7 +11,6 @@ class MagicDictionary:
 
     def __init__(self):
         self.t = Trie('')
-        self.alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     def buildDict(self, dictionary: List[str]) -> None:
         temp = self.t
         for word in dictionary:
