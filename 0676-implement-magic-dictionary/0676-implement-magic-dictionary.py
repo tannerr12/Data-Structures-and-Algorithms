@@ -28,10 +28,8 @@ class MagicDictionary:
         
         
 
-    @cache
     def dfs(self, i,skipped,word,t):
         if i >= len(word):
-            #print(t.end)
             return t.end and skipped
         
         res = False
@@ -43,8 +41,6 @@ class MagicDictionary:
             t = temp
         #skip character
         if not skipped:
-            #print(t.adj)
-            #print(t.char)
             for w in t.adj:
                 if w == word[i]:
                     continue
