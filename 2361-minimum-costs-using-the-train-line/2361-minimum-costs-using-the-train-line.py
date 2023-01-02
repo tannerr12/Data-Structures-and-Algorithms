@@ -29,13 +29,13 @@ class Solution:
             
             if (num,ty) in seen:
                 continue
-            #if ty == 'r':
+            
             seen.add((num,ty))
             if ty == 'r' and num > 0:
                 dp[num-1] = min(dp[num-1], weight)
             
             for x,y,z in adj[(ty,num)]:
-                if (x,y) in seen:
+                if (y,x) in seen:
                     continue
                 heappush(heap, [weight+z,y,x])
         
