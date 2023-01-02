@@ -1,6 +1,27 @@
 class Solution:
     def minimumCosts(self, regular: List[int], express: List[int], expressCost: int) -> List[int]:
         
+        
+        n = len(regular)
+        
+        dp1 = [0] * n 
+        dp2 = [0] * n
+        #base cases
+        dp1[0] = regular[0]
+        
+        dp2[0] = express[0] + expressCost
+        
+        res = [min(dp1[0], dp2[0])]
+        
+        for i in range(1,n):
+            dp1[i] = min(dp1[i -1] + regular[i], dp2[i-1] + regular[i])
+            dp2[i] = min(dp2[i-1] + express[i], dp1[i-1] + expressCost + express[i])
+            res.append(min(dp1[i], dp2[i]))
+            
+        
+        
+        return res
+        """ 
         n = len(regular)
         adj = defaultdict(list)
         for i in range(len(regular)):
@@ -42,7 +63,7 @@ class Solution:
         
         
         return dp
-        
+        """
         
         
             
