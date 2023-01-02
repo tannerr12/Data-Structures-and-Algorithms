@@ -4,19 +4,22 @@ class Solution:
         
         n = len(regular)
         
-        dp1 = [0] * n 
-        dp2 = [0] * n
+        #dp1 = [0] * n 
+        #dp2 = [0] * n
         #base cases
-        dp1[0] = regular[0]
+        dp1Prev = regular[0]
         
-        dp2[0] = express[0] + expressCost
+        dp2Prev = express[0] + expressCost
         
-        res = [min(dp1[0], dp2[0])]
+        res = [min(dp1Prev, dp2Prev)]
         
         for i in range(1,n):
-            dp1[i] = min(dp1[i -1] + regular[i], dp2[i-1] + regular[i])
-            dp2[i] = min(dp2[i-1] + express[i], dp1[i-1] + expressCost + express[i])
-            res.append(min(dp1[i], dp2[i]))
+            #left option is just straight
+            dp1 = min(dp1Prev + regular[i], dp2Prev + regular[i])
+            dp2 = min(dp2Prev + express[i], dp1Prev + expressCost + express[i])
+            res.append(min(dp1, dp2))
+            dp1Prev = dp1
+            dp2Prev = dp2
             
         
         
