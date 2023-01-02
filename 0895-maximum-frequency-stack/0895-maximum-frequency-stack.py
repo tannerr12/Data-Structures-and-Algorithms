@@ -1,21 +1,33 @@
 class FreqStack:
 
     def __init__(self):
-        self.heap = []
-        self.h = defaultdict(int)
-        self.idx = 0
+        self.freq = collections.Counter()
+        self.group = collections.defaultdict(list)
+        self.maxfreq = 0
     def push(self, val: int) -> None:
         
-        self.h[val] +=1
-        heappush(self.heap,[-self.h[val], -self.idx, val])
-        self.idx +=1
+        f = self.freq[val] + 1
+        self.freq[val] = f
+        if f > self.maxfreq:
+            self.maxfreq = f
+        self.group[f].append(val)
+        #print(self.freq)
+        #print(self.maxfreq)
+        #print(self.group)
         
 
     def pop(self) -> int:
         
-        x,y,z = heappop(self.heap)
-        self.h[z] -=1
-        return z
+        x = self.group[self.maxfreq].pop()
+        self.freq[x] -= 1
+        if not self.group[self.maxfreq]:
+            self.maxfreq -= 1
+        #print(x)
+        #print(self.freq)
+        
+        #print(self.maxfreq)
+        #print(self.group)
+        return x
 
 
 # Your FreqStack object will be instantiated and called as such:
