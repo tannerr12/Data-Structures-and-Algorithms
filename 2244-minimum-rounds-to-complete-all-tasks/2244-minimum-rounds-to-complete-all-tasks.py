@@ -6,10 +6,8 @@ class Solution:
         for key,val in h.items():
             if val < 2:
                 return -1
-            x = val / 3
-            
-            if x % 1 == 0:
-                res += int(x)
+            if val % 3 == 0:
+                res += val // 3
             else:
                 res += val // 3 + 1
         return res
