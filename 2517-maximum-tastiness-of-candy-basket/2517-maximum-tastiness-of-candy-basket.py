@@ -12,7 +12,10 @@ class Solution:
             for i in range(1,len(price)):
                 
                 if price[i] - lastP >= val:
+                    
                     count+=1
+                    if count >= k:
+                        return True
                     lastP = price[i]
                 
                 
