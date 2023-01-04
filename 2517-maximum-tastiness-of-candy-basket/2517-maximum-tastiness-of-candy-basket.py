@@ -23,19 +23,21 @@ class Solution:
         
         
         l,r = 0, price[-1] - price[0]
+        res = 0
         while l <= r:
             
             curr = (l+r) // 2
             
             if check(curr):
                 l=curr+1
+                res = max(res,curr)
             
             else:
                 r = curr -1
                 
         
         
-        return l -1
+        return res
                 
             
                 
