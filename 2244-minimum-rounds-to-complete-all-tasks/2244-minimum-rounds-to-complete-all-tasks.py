@@ -1,34 +1,33 @@
 class Solution:
     def minimumRounds(self, tasks: List[int]) -> int:
-        tasks.sort()
+        #tasks.sort()
+        h = Counter(tasks)
         
-        @cache
-        def dfs(i):
+        res = 0
+        for key,val in h.items():
+            if val < 2:
+                return -1
+            x = val / 3
             
-            if i >= len(tasks):
-                return 0
-            
-            
-            res = float('inf')
-            #take 3 
-            if i + 2 < len(tasks) and tasks[i] == tasks[i+1] == tasks[i+2]:
-                res = min(res,dfs(i+3) + 1)
-            
-            #take 2
-            if i + 1 < len(tasks) and tasks[i] == tasks[i+1]:
-                res = min(res,dfs(i+2) +1) 
-            
+            if x % 1 == 0:
+                res += int(x)
+            else:
+                l = 0
+                while val > 0:
+                    if val % 3 != 0:
+                        val -=2
+                        l +=1
+                    
+                    else:
+                        l+= val // 3
+                        break
+                res +=l
         
+        return res
+                        
+                
+                
             
-            
-            return res
-        
-        val = dfs(0)
-        
-        if val == float('inf'):
-            return -1
-        else:
-            return val
             
                 
             
