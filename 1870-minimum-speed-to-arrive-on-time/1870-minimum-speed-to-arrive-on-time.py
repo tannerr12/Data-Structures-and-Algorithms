@@ -3,8 +3,7 @@ class Solution:
         
         
         def isGood(val):
-            if val == 0:
-                return False
+   
             h = 0
             for i in range(len(dist)):
                 
@@ -23,7 +22,7 @@ class Solution:
             
             mid = (l+r)//2
             
-            if isGood(mid) and mid !=0:
+            if mid != 0 and isGood(mid):
                 res = mid
                 r = mid -1
             else:
