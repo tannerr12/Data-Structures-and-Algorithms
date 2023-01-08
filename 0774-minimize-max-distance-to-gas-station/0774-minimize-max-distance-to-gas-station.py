@@ -26,14 +26,14 @@ class Solution:
         l,r = 0, max(arr)
 
         res = 0
-        while l<=r:
+        while r - l > 1e-6:
             mid = (l+r)/2
             
             if isGood(mid):
                 res = mid
-                r = mid - 0.00000001
+                r = mid 
             else:
-                l = mid + 0.00000001
+                l = mid 
                 
         return res
         
