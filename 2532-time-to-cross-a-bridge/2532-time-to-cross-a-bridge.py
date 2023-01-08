@@ -37,11 +37,6 @@ class Solution:
                 t = min(x,y)
         
         return t
-                
-                
-            
-            
-        return res
-            
+
         
         
