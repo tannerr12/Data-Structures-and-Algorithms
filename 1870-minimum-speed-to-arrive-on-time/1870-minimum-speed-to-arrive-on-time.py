@@ -17,7 +17,7 @@ class Solution:
             
             return h <= hour
         
-        l,r = 0, 10**9
+        l,r = 0, max(dist) * 100
         res = -1
         while l <= r:
             
