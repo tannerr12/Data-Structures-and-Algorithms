@@ -1,25 +1,16 @@
 class Solution:
     def maxRunTime(self, n: int, batteries: List[int]) -> int:
-        batteries.sort()
-        #s = sum(batteries)
-        right = sum(batteries[-n:])
-        left = sum(batteries[:n-1])
-        #print(right)
-        #print(left)
-        #v = sum(batteries)
+
         def isGood(val):
 
             target = val * n
-            right = 0
-            for i in range(len(batteries) - n, len(batteries)):
-                right += min(batteries[i], val)
             s = 0
-            for i in range(len(batteries) - n):
+            for i in range(len(batteries)):
                 
                 s+= min(batteries[i], val)
             
             
-            return s + right >= target
+            return s >= target
             
             
                 
