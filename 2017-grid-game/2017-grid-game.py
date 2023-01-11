@@ -8,12 +8,6 @@ class Solution:
             postfixU.append(postfixU[-1] + grid[0][-(i +1)])
             prefixL.append(prefixL[-1] + grid[1][i])
         
-        
-        #print(prefixL)
-        #print(postfixU)
-        
-        player1 = 0
-        player2 = 0
         gap = 0
         res = float('inf')
         for i in range(len(grid[0])):
@@ -23,9 +17,4 @@ class Solution:
                 res = min(res, v2)
 
                 
-        
-        
-        #print(player1)
-        #print(player2)
-        
         return res
