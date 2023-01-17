@@ -2,35 +2,23 @@ class Solution:
     def equalSubstring(self, s: str, t: str, maxCost: int) -> int:
         
         
-        prefixs = [0]
+   
         
-        prefixt = [0]
-        
-        for i in range(len(s)):
-            
-            prefixs.append( (ord(s[i]) - ord('a')))
-            prefixt.append( (ord(t[i]) - ord('a')))
-        
-        
-        #print(prefixs)
-        #print(prefixt)
-        
-        l = 1
-        
+        l = 0
         res = 0
         total = 0
-        for i in range(1,len(prefixs)):
+        for i in range(len(s)):
             
-            total += abs(prefixs[i] - prefixt[i])
+            total += abs((ord(s[i]) - ord('a')) - (ord(t[i]) - ord('a')))
             
             while total > maxCost:
                 
                 res = max(res, (i - l))
-                total -= abs(prefixs[l] - prefixt[l])
+                total -= abs((ord(s[l]) - ord('a')) - (ord(t[l]) - ord('a')))
                 l+=1
         
         
         
-        res = max(res, len(prefixs) - l)
+        res = max(res, len(s) - l)
         return res
             
