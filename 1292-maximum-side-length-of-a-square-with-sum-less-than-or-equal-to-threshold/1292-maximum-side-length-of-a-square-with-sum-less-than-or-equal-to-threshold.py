@@ -10,7 +10,7 @@ class Solution:
         
         
         #print(grid)
-        print(grid)
+        #print(grid)
         def isGood(val):
             
             for i in range(len(mat)- (val-1)):
