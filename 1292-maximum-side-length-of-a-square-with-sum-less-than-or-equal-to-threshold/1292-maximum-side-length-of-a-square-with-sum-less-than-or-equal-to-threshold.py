@@ -1,37 +1,22 @@
 class Solution:
     def maxSideLength(self, mat: List[List[int]], threshold: int) -> int:
-        grid = []
+        grid = [[0 for j in range(len(mat[0]) +1)] for i in range(len(mat) +1)]
+        
         start = 0
-        for i in range(len(mat)):
-            ls = []
-            ls.append(mat[i][0] + 0)
-            for j in range(1,len(mat[0])):
-                ls.append(mat[i][j] + ls[-1])
-            
-            grid.append(ls)
-            
-            #start = ls[-1]
+        for i in range(len(grid) -2,-1,-1):
+            for j in range(len(grid[0]) -2,-1,-1):
+                grid[i][j] = mat[i][j] + grid[i+1][j] + grid[i][j+1] - grid[i+1][j+1]
+                
         
         
         #print(grid)
-       
+        print(grid)
         def isGood(val):
             
             for i in range(len(mat)- (val-1)):
                 for j in range(len(mat[0])-(val-1)):
-                    if val == 1:
-                        if mat[i][j] <= 1:
-                            return True
-                    else: 
-                        total = 0
-                        for k in range(val):
-                            if j == 0:
-                                total += grid[i+k][j + (val-1)]
-                            else:
-                                total += grid[i+k][j + (val-1)] - grid[i+k][j-1]
-
-                        if total <= threshold:
-                            return True
+                    if (grid[i][j] - grid[i + val][j] - grid[i][j + val]) + grid[i+val][j+val] <= threshold:
+                        return True
                 
             
             return False
