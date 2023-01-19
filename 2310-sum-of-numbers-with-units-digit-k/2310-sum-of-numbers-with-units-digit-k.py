@@ -9,8 +9,7 @@ class Solution:
             
             res =float('inf')
             for i in range(k,val+1,10):
-                if val >= i:
-                    res = min(res,dfs(val - i) +1)
+                res = min(res,dfs(val - i) +1)
 
             
             return res
