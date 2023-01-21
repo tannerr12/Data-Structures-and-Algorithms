@@ -2,7 +2,7 @@ class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
         
         arr = set()
-        memo = {}
+        memo = set()
         
         def backtrack(i,cur,full,count):
             
@@ -14,10 +14,7 @@ class Solution:
                 arr.add(full)
                 return 
             
-            if full in memo:
-                return 
-            
-            memo[full] = True
+
             
             
             #add dot 
