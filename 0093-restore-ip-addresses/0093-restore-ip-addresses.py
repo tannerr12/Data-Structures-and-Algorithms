@@ -2,8 +2,7 @@ class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
         
         arr = set()
-        memo = set()
-        
+
         def backtrack(i,cur,full,count):
             
             if count > 4:
@@ -15,8 +14,6 @@ class Solution:
                 return 
             
 
-            
-            
             #add dot 
             if cur != -1:
                 
