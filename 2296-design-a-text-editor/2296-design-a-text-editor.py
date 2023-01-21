@@ -12,11 +12,8 @@ class TextEditor:
 
         count = min(self.cursor,k)
         start = max(self.cursor - k,0)
-
-            
         self.text = self.text[:start] + self.text[self.cursor:]
         self.cursor = start
-
         return count
 
     def cursorLeft(self, k: int) -> str:
