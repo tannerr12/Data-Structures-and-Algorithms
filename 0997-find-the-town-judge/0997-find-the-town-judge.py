@@ -4,7 +4,7 @@ class Solution:
         
         
         adj = defaultdict(set)
-        leaf = []
+        leaf = -1
         for x,y in trust:
             adj[x].add(y)
         
@@ -12,28 +12,25 @@ class Solution:
         for i in range(1,n+1):
             
             if i not in adj:
-                leaf.append(i)
+                if leaf != -1:
+                    return -1
                 
-        
-        
-#print(leaf)
-        if len(leaf) > 1:
-            return -1
-        
-        for l in leaf:
-            judge = True
-            for i in range(1,n+1):
+                leaf = i
                 
-                if i == l:
-                    continue
+                
+    
+        
+        judge = True
+        for i in range(1,n+1):
+                
+            if i == leaf:
+                continue
                     
-                if l  not in adj[i]:
-                    judge = False
-                    break
+            if leaf not in adj[i]:
+                judge = False
+                break
                 
-            if judge:
-                return l
         
         
-        return -1
+        return -1 if not judge else leaf
         
