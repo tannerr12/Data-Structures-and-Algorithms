@@ -1,6 +1,6 @@
 
 from sortedcontainers import SortedList
-
+#difference between my solution that timed out and this one is less binary searching only one is used where I had left,right and left again
 class CountIntervals:
 
     #binary search and update range
