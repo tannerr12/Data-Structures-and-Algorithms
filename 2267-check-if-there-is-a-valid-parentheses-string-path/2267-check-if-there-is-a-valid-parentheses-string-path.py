@@ -3,35 +3,32 @@ class Solution:
         m,n = len(grid), len(grid[0])
 
         @cache
-        def dfs(r,c,s):
+        def dfs(r,c,count):
             
             if r >= m or c >= n:
                 return False
             
-            
-            p = grid[r][c]
-            if p == ')' and len(s) == 0:
-                return False
-            if p == ')' and len(s) > 0 and s[-1] == '(':
-                s = s[:-1]
-            
+            if grid[r][c] == ')':
+                count -=1
             else:
-                s += p
-                
-
+                count +=1
+            
+            if count < 0:
+                return False
+            
             if r == m-1 and c == n-1:
                 
-                return len(s) == 0
+                return count == 0
             
             res = False    
             #go right
-            res = res or dfs(r+1,c,s)
+            res = res or dfs(r+1,c,count)
             #go down
-            res = res or dfs(r,c+1,s)
+            res = res or dfs(r,c+1,count)
             
             return res
         
-        return dfs(0,0,'')
+        return dfs(0,0,0)
     
             
             
