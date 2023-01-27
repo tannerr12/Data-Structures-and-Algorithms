@@ -1,21 +1,7 @@
 class Solution:
     def hasValidPath(self, grid: List[List[str]]) -> bool:
         m,n = len(grid), len(grid[0])
-        
-        def checkPar(st):
-            
-            stack = []
-            
-            for p in st:
-                if p == ')' and not stack:
-                    return False
-                if p == ')' and stack and stack[-1] == '(':
-                    stack.pop()
-                else:
-                    stack.append(p)
-            return len(stack) == 0
-                
-        
+
         @cache
         def dfs(r,c,s):
             
@@ -32,13 +18,11 @@ class Solution:
             else:
                 s += p
                 
-            
-            
+
             if r == m-1 and c == n-1:
                 
                 return len(s) == 0
             
-
             res = False    
             #go right
             res = res or dfs(r+1,c,s)
