@@ -75,7 +75,7 @@ class Solution:
         #if we can search right if not search left
         
         l = 0 
-        r = 90000
+        r = 10000
         res = -1
         while l <= r:
             
@@ -88,5 +88,5 @@ class Solution:
                 r = mid -1
         
         
-        return res if res != 90000 else 10 ** 9
+        return res if res != 10000 else 10 ** 9
                 
