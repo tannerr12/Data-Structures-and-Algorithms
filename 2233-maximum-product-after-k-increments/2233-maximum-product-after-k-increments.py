@@ -31,14 +31,12 @@ class Solution:
                     diff = dist - k
                     level = k // mult
                     val += level
-                    
                     right = k - (level * mult)
                     heappush(nums,[val+1,right])
                     heappush(nums,[val,mult - right])
                     k=0
                     
             else:
-                   
                     level = k // mult
                     val += level
                     
