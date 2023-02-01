@@ -6,7 +6,7 @@ class Solution:
         
         final = [0,[0]]
         
-        @cache
+       
         def dfs(i,left,total):
             nonlocal res
             nonlocal final
