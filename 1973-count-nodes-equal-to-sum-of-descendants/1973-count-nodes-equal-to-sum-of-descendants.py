@@ -7,23 +7,24 @@
 class Solution:
     def equalToDescendants(self, root: Optional[TreeNode]) -> int:
         
-        res = 0
+    
 
         def dfs(root):
-            nonlocal res
+            
             if root is None:
-                return 0
+                return [0,0]
             
             
-            current = dfs(root.left) + dfs(root.right)
+            cur1, r1 = dfs(root.left)
+            cur2, r2 = dfs(root.right)
             
             
-            if current == root.val:
-                res +=1
+            if cur1 + cur2 == root.val:
+                r1 +=1
             
-            return current + root.val
+            return [cur1 + cur2 + root.val,r1 + r2]
         
         
-        dfs(root)
-        return res
+        return dfs(root)[1]
+    
             
