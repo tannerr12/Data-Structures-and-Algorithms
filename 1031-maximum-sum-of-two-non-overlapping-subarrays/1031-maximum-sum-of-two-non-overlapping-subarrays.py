@@ -23,34 +23,20 @@ class Solution:
                     if j - l2 + 1 ==  min(firstLen, secondLen):
                         res = max(res, curSecond + curFirst)
             
-                
-                curFirst -= nums[l]
-                l+=1
-            
-        curFirst = 0
-        curSecond = 0
-        l = 0
-        l2 = 0
-     
-        for i in range(len(nums)):
-            
-            curFirst += nums[i]
-            
-            if i - l + 1 == min(firstLen, secondLen):
-                l2 = i + 1
+                l2 = 0
                 curSecond=0
-                for j in range(i+1, len(nums)):
+                for j in range(0, l):
                     curSecond += nums[j]
                     
-                    while j - l2 + 1 > max(firstLen, secondLen):
+                    while j - l2 + 1 > min(firstLen, secondLen):
                         curSecond -= nums[l2]
                         l2 +=1
                     
-                    if j - l2 + 1 ==  max(firstLen, secondLen):
+                    if j - l2 + 1 ==  min(firstLen, secondLen):
                         res = max(res, curSecond + curFirst)
             
-                
                 curFirst -= nums[l]
                 l+=1
-            
+        
+        
         return res
