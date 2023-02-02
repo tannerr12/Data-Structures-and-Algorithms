@@ -13,28 +13,30 @@ class Solution:
             if i - l + 1 == max(firstLen, secondLen):
                 l2 = i + 1
                 curSecond=0
-                for j in range(i+1, len(nums)):
-                    curSecond += nums[j]
-                    
-                    while j - l2 + 1 > min(firstLen, secondLen):
-                        curSecond -= nums[l2]
-                        l2 +=1
-                    
-                    if j - l2 + 1 ==  min(firstLen, secondLen):
-                        res = max(res, curSecond + curFirst)
-            
+                if len(nums) - i >= min(firstLen, secondLen):
+                    for j in range(i+1, len(nums)):
+                        curSecond += nums[j]
+
+                        while j - l2 + 1 > min(firstLen, secondLen):
+                            curSecond -= nums[l2]
+                            l2 +=1
+
+                        if j - l2 + 1 ==  min(firstLen, secondLen):
+                            res = max(res, curSecond + curFirst)
+
                 l2 = 0
                 curSecond=0
-                for j in range(0, l):
-                    curSecond += nums[j]
-                    
-                    while j - l2 + 1 > min(firstLen, secondLen):
-                        curSecond -= nums[l2]
-                        l2 +=1
-                    
-                    if j - l2 + 1 ==  min(firstLen, secondLen):
-                        res = max(res, curSecond + curFirst)
-            
+                if l >= min(firstLen, secondLen):
+                    for j in range(0, l):
+                        curSecond += nums[j]
+
+                        while j - l2 + 1 > min(firstLen, secondLen):
+                            curSecond -= nums[l2]
+                            l2 +=1
+
+                        if j - l2 + 1 ==  min(firstLen, secondLen):
+                            res = max(res, curSecond + curFirst)
+
                 curFirst -= nums[l]
                 l+=1
         
