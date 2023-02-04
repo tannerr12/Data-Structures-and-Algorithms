@@ -1,94 +1,31 @@
 class Solution:
     def maximizeWin(self, prizePositions: List[int], k: int) -> int:
-        first = {}
-        last = {}
+        n = len(prizePositions)
+        maxWin = [0] * n  
+    
+    
         
-        def binary(target):
-            l,r = 0, len(prizePositions) -1
+        for i,v in enumerate(prizePositions):
             
-            while l <= r:
-                
-                mid = (l+r) //2
-                
-                if (prizePositions[mid] == target and mid == len(prizePositions) -1):
-                    return mid
-                
-                if  (prizePositions[mid] == target and mid != len(prizePositions) -1 and prizePositions[mid+1] > target):
-                    return mid
-                
-                if (prizePositions[mid] < target and mid == len(prizePositions) -1):
-                    return mid
-                
-                if (prizePositions[mid] < target and mid != len(prizePositions) -1 and prizePositions[mid+1] > target):
-                    return mid
-                    
-                elif prizePositions[mid] > target:
-                    r = mid -1
-                
-                else:
-                    l = mid + 1
+            idx = bisect_right(prizePositions, v + k)
             
-            
-            return l
-        
-        
-        for i,num in enumerate(prizePositions):
-            
-            if num not in first:
-                first[num] = i
-            
-            last[num] = i
+            maxWin[i] = idx - i
             
         
+        for i in range(len(prizePositions)-2,-1,-1):
         
-    #    print(first)
-        #print(last)
-        arr = []
-        for key,val in first.items():
+            maxWin[i] = max(maxWin[i], maxWin[i+1])
             
-            lastK = binary(key + k)
+        
+        res = 0
+        for i,v in enumerate(prizePositions):
             
-            calc = last[prizePositions[lastK]] - val + 1
-            
-            arr.append((val,last[prizePositions[lastK]], calc))
+            idx = bisect_right(prizePositions, v + k)
+            if idx >= n:
+                res = max(res,idx - i)
+            else:
+                res = max(res, (idx - i) + maxWin[idx])
         
         
-        #print(arr)
-        
-        arr = sorted(arr, key=lambda x: (x[2]), reverse=True)
-        
-        #print(arr)
-        ans = 0
-        for j in range(min(100, len(arr))):
-            res = arr[j][2]
-            f = arr[j][0]
-            l = arr[j][1]
-
-            #print(res)
-            #print(arr)
-            extra = 0
-            for i in range(j + 1,len(arr)):
-                val = arr[i][2]
-
-                if arr[i][0] >= f and arr[i][0] <= l and arr[i][1] > l:
-                    val = arr[i][1] - l
-
-                elif arr[i][1] >= f and arr[i][1] <= l and arr[i][0] < f:
-
-                    val = f - arr[i][0]
-
-                elif arr[i][0] >= f and arr[i][1] <= l:
-                    val = 0
-
-                elif arr[i][0] < f and arr[i][1] > l:
-                    val = f - arr[i][0] + arr[i][1] - l
-
-                #print(val)
-                extra = max(extra, val)
-            
-            ans = max(ans,res + extra)
-        
-        
-        return ans
-                
+        return res
             
