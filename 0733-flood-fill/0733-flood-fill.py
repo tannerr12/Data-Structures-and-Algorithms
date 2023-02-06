@@ -7,26 +7,29 @@ class Solution:
         if newColor == start:
             return image
         
-    
-        def dfs(r,c,start):
-            
-            if r >= n or r < 0 or c >= m or c < 0 or image[r][c] != start:
-                return 0
-            
-            image[r][c] = newColor
-            
-            #check 4 directions
-            
-            dfs(r+1,c,start)
-            dfs(r-1,c,start)
-            dfs(r,c+1,start)
-            dfs(r,c-1,start)
-            
-            
-            
         
-        dfs(sr,sc,start)
+        q = deque()
+        
+        q.append((sr,sc))
+        
+        directions = [[1,0], [-1,0], [0,1], [0,-1]]
+        while q:
+            
+            for i in range(len(q)):
+                
+                r, c = q.popleft()
+                
+                image[r][c] = newColor
+                for x,y in directions:
+                    newx, newy = r + x, c + y
+                    
+                    if newx < n and newx >= 0 and newy < m and newy >=0 and image[newx][newy] == start:
+                        q.append((newx, newy))
         
         return image
+                    
+                    
+                    
+                
 
         
