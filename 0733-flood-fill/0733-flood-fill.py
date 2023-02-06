@@ -6,7 +6,8 @@ class Solution:
         start = image[sr][sc]
         if newColor == start:
             return image
-        @cache
+        
+    
         def dfs(r,c,start):
             
             if r >= n or r < 0 or c >= m or c < 0 or image[r][c] != start:
