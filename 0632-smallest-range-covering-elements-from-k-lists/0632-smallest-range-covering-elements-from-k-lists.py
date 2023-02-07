@@ -8,12 +8,9 @@ class Solution:
             for num in nums[i]:
                 arr.append([num, i])
                 
-        
-        
-        
+
         arr.sort()
         
-        #print(arr)
         l = 0
         ans = []
         res = float('inf')
@@ -27,11 +24,10 @@ class Solution:
             
             
             while len(tags) == n:
-                
-                if len(tags) == n:
-                    if arr[i][0] - arr[l][0] < res:
-                        res = arr[i][0] - arr[l][0]
-                        ans = [arr[l][0],arr[i][0]]
+
+                if arr[i][0] - arr[l][0] < res:
+                    res = arr[i][0] - arr[l][0]
+                    ans = [arr[l][0],arr[i][0]]
 
                 v,t = arr[l]
                 tags[t] -=1
@@ -39,11 +35,5 @@ class Solution:
                     del tags[t]
                 l+=1
             
-            
-            if len(tags) == n:
-                if arr[i][0] - arr[l][0] < res:
-                    res = arr[i][0] - arr[l][0]
-                    ans = [arr[l][0],arr[i][0]]
-        
         
         return ans
