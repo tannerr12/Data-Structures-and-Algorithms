@@ -17,7 +17,8 @@ class Solution:
             return v
         
         
-        fib(45)
+        fib(44)
+        
         curr = 0
        
         for i in range(len(res)-1,-1,-1):
