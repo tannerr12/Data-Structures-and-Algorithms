@@ -1,22 +1,16 @@
 class Solution:
     def minDominoRotations(self, tops: List[int], bottoms: List[int]) -> int:
         
-        c = Counter(tops + bottoms)
-        targets = []
-        
-        for key,val in c.items():
-            
-            if val >= len(tops):
-                targets.append(key)
+        targets = [tops[0]]
+        if tops[0] != bottoms[0]:
+            targets.append(bottoms[0])
         
         res = float('inf')
         for i in range(len(targets)):
             goal = targets[i]
-            top = 0
-            bottom = 0
+            top,bottom = 0,0
             skip = False
             for x,y in zip(tops, bottoms):
-                
                 
                 if x != goal and y != goal:
                     skip = True
