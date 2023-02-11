@@ -5,17 +5,30 @@ class Solution:
         """
         
         
-        for i in range(len(nums)):
+        count = [0] * (max(nums) +1)
+        
+        for val in nums:
+            count[val] +=1
+        
+        
+        
+        idx = 0
+        
+        for i,val in enumerate(count):
             
-            m = i
+            count[i] = idx
             
-            for j in range(i+1, len(nums)):
-                
-                if nums[j] < nums[m]:
-                    m = j
-            
-            
-            nums[m],nums[i] = nums[i], nums[m]
+            idx += val
+        
+        print(count)
+        ncopy = [0] * len(nums)
+        for i,val in enumerate(nums):
+            ncopy[count[val]] = val
+            count[val] +=1
+        
+        
+        for i,v in enumerate(ncopy):
+            nums[i] = ncopy[i]
             
             
             
