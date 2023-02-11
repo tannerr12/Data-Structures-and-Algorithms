@@ -1,14 +1,7 @@
 class Solution:
-    def countQuadruples(self, firstString: str, secondString: str) -> int:
-        f = firstString
-        #s = secondString[::-1]
-        s = secondString
+    def countQuadruples(self, f: str, s: str) -> int:
 
-       # l,r = 0,0
-        
-      #  while l < len(firstString) and r >=0:
-        
-        
+
         c1 = Counter()
         c2 = Counter()
         
