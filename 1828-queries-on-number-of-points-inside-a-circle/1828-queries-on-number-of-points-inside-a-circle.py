@@ -1,6 +1,7 @@
 class Solution:
     def countPoints(self, points: List[List[int]], queries: List[List[int]]) -> List[int]:
         res = []
+        i = 0
         for x,y,z in queries:
             
             p = 0
@@ -10,7 +11,8 @@ class Solution:
         
         
             
-            res.append(p)
+            queries[i] = p
+            i+=1
         
         
-        return res
+        return queries
