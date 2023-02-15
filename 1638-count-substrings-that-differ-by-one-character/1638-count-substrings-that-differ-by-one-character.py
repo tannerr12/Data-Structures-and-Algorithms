@@ -4,24 +4,19 @@
 class Solution:
     def countSubstrings(self, s: str, t: str) -> int:
   
-        res =0
-        for i in range(len(s)):
-            for j in range(len(t)):
-                
-                x,y = i, j
-                count = 0
-                while x < len(s) and y < len(t):
-                    
-                    if s[x] != t[y]:
-                        count +=1
-                    if count ==1:
-                        res +=1
-                    if count == 2:
-                        break
-                    
-                    x+=1
-                    y+=1
+        z,o = defaultdict(int), defaultdict(int)
+    
         
-        return res
+        for i in range(len(s)-1,-1,-1):
+            for j in range(len(t) -1, -1, -1):
+                
+                if s[i] == t[j]:
+                    z[i,j] = 1 + z[i+1,j+1]
+                    o[i,j] = o[i+1,j+1]
+                else:
+                    o[i,j] = 1 + z[i+1,j+1]
+        
+        
+        return sum(o.values())
                     
         
