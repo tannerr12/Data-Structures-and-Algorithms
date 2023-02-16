@@ -2,26 +2,21 @@ class Solution:
     def twoEggDrop(self, n: int) -> int:
         #math problem... possible with top down
         
-        dp = [[float('inf') for j in range(n+1)] for i in range(2+1)]
         
-        
-        dp[2][1] = 1
-        dp[2][0] = 0
-        for i in range(n+1):
-            dp[1][i] = i
+        @cache
+        def dp(floor,eggs):
             
-        
-        
-        for i in range(2,len(dp)):
+            if eggs == 1 or floor < 1:
+                return floor
             
-            for j in range(1,n+1):
+            res = float('inf')
+            for tryFloors in range(1, floor +1):
+                # egg broke lets add all of the rest of the floors to solve for 1 egg
+                # of egg did not break lets continue but add 1 drop
+                res = min(res, 1 + max(dp(tryFloors-1,eggs-1), dp(floor - tryFloors, eggs)))
+            
+            return res
+        
+        
+        return dp(n,2)
                 
-                for x in range(1,j):
-                    
-                    dp[i][j] = min(dp[i][j],1+ max(dp[i-1][x-1], dp[i][j-x]))
-        
-        
-        
-                    
-            
-        return dp[2][n]
