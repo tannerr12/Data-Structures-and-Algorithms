@@ -10,13 +10,6 @@ class Solution:
             adj[y].append([x,1])
         
         
-        leaf = []
-        
-        for key,val in adj.items():
-            if len(val) <= 1:
-                leaf.append(key)
-                
-        
    
         res = 0
         def dfs(i,par):
