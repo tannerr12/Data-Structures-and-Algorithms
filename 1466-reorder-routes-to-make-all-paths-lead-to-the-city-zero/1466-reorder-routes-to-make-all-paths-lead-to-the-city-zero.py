@@ -21,10 +21,7 @@ class Solution:
         res = 0
         def dfs(i,par):
             nonlocal res
-            
-            if i not in adj:
-                return 
-            
+
             for key,c in adj[i]:
                 if key == par:
                     continue
