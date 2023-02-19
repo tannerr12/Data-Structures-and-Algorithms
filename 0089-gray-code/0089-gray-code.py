@@ -7,7 +7,10 @@ class Solution:
         seen.add(0)
         @cache
         def dfs(num):
+   
             nonlocal res
+            if res:
+                return 
             if len(cur) == (2**n):
                 #count bits
                 diff = 0
@@ -17,8 +20,6 @@ class Solution:
                 
                 if diff == 1:
                     res = cur.copy()
-                return
-            elif len(cur) == (2**n):
                 return
             
             
