@@ -1,21 +1,7 @@
 class Solution:
     def minOperations(self, n: int) -> int:
-        res = float('inf')
-        count1 = 0
-        for i in range(32):
-            if n & (1 << i) > 0:
-                count1 +=1
-
-
-        res = min(res,count1)
-        #1, 2, 4, 8, 16, 32, 64, 128, 256, 512
-        if res <= 1:
-            return res
-        #1, 2, 4, 8, 16, 32, 64, 128, 256, 512
-        
+        # The idea here is we can either remove all 1 bits individually or we can 
         count = 0
-        #100111
-        #110110
         while n:
             
             i = 0
@@ -39,4 +25,4 @@ class Solution:
         
         
        
-        return min(res,count)
+        return count
