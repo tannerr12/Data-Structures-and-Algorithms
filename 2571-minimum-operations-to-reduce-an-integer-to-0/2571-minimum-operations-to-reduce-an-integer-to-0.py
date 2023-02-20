@@ -1,20 +1,13 @@
 class Solution:
     def minOperations(self, n: int) -> int:
         res = float('inf')
-        count = 0
-        countzero = 0
-        mn = n
-        tcount = 0
+        count1 = 0
         for i in range(32):
-            
-            if mn & (1 << i) > 0:
-                count +=1
-                countzero += tcount
-                tcount = 0
-            else:
-                tcount +=1
+            if n & (1 << i) > 0:
+                count1 +=1
 
-        res = min(res,count,countzero +2)
+
+        res = min(res,count1)
         #1, 2, 4, 8, 16, 32, 64, 128, 256, 512
         if res <= 1:
             return res
