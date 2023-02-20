@@ -1,6 +1,8 @@
 class Solution:
     def minOperations(self, n: int) -> int:
-        # The idea here is we can either remove all 1 bits individually or we can 
+        # The idea here is we can either remove all 1 bits individually which would look like 101010101 where the bits cannot be grouped together 
+        # or we can group the bits together than remove them by removing 1 bit such as 110111  -> 111000 since we add 1 to the bits which flips them all over 
+        # than 111000 - > 1000000 as we do the same thing again
         count = 0
         while n:
             
