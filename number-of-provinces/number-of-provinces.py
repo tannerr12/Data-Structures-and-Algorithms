@@ -4,7 +4,7 @@ class Solution:
         
         parent = [i for i in range(len(isConnected))]
         rank = [1] * len(isConnected)
-        
+        size = len(isConnected)
         
         def find(val):
             
@@ -16,7 +16,7 @@ class Solution:
             return parent[val]
         
         def union(x,y):
-            
+            nonlocal size
             val1 = find(x)
             val2 = find(y)
             
@@ -31,7 +31,7 @@ class Solution:
                 else:
                     parent[val2] = val1
                     rank[val1] +=1
-            
+                size -=1
         
         def Connected(x,y):
             return find(x) == find(y)
@@ -41,8 +41,4 @@ class Solution:
                 if isConnected[i][j] == 1:
                     union(i,j)
         
-        for i in range(len(isConnected)):
-            find(i)
-        #print(parent)
-        
-        return len(set(parent))
+        return size
