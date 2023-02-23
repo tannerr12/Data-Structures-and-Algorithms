@@ -1,7 +1,7 @@
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         
-
+        
         parent = [i for i in range(len(points))]
         rank = [1] * len(points)
         
@@ -34,7 +34,7 @@ class Solution:
                 
                 return True
             return False
-        
+        """
 
         arr = []
         
@@ -48,6 +48,7 @@ class Solution:
         
         arr.sort()
         res = 0
+        #mst must have n-1 edges so we can exit early
         edges = len(points) -1
         for i,e in enumerate(arr):
             if edges == 0:
@@ -57,4 +58,44 @@ class Solution:
                 edges -=1
         
         return res
+        """
+        
+        adj = defaultdict(list)
+        
+        for i in range(len(points)):
+            for j in range(i+1, len(points)):
+                x1,y1 = points[i]
+                x2, y2 = points[j]
+                man = abs(x1 - x2) + abs(y1 - y2)
+                adj[i].append((j, man))
+                adj[j].append((i, man))
+        
+        heap = []
+        res = 0
+        heappush(heap, (0, 0, 0))
+        edges = len(points) -1
+        for x,y in adj[0]:
+            heappush(heap, (y, 0, x))
+        
+        
+        
+        while heap:
             
+            weight, source, dest = heappop(heap)
+            
+            if union(source,dest):
+                res += weight
+                edges -=1
+                if edges == 0:
+                    break
+            else:
+                continue
+            
+            for x,y in adj[dest]:
+                
+                heappush(heap, (y, dest, x))
+        
+        return res
+            
+            
+        
