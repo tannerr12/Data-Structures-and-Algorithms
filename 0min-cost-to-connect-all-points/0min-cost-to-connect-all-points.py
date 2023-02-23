@@ -5,7 +5,7 @@ class Solution:
         parent = [i for i in range(len(points))]
         rank = [1] * len(points)
         
-        
+        """
         def find(val):
             
             if parent[val] == val:
@@ -34,10 +34,10 @@ class Solution:
                 
                 return True
             return False
-        """
+        
 
         arr = []
-        
+        #kruskals algorithm
         for i in range(len(points)):
             for j in range(i+1, len(points)):
                 x1,y1 = points[i]
@@ -59,41 +59,34 @@ class Solution:
         
         return res
         """
-        
-        adj = defaultdict(list)
-        
-        for i in range(len(points)):
-            for j in range(i+1, len(points)):
-                x1,y1 = points[i]
-                x2, y2 = points[j]
-                man = abs(x1 - x2) + abs(y1 - y2)
-                adj[i].append((j, man))
-                adj[j].append((i, man))
-        
+        #prims algoritm
         heap = []
-        res = 0
-        heappush(heap, (0, 0, 0))
         edges = len(points) -1
-        for x,y in adj[0]:
-            heappush(heap, (y, 0, x))
+        visited = [False] * len(points)
+        res = 0
+        for i in range(1,len(points)):
+           
+            x1,y1 = points[i]
+            x2, y2 = points[0]
+            man = abs(x1 - x2) + abs(y1 - y2)
+            heappush(heap, (man,i))
         
+        visited[0] = True
         
-        
-        while heap:
+        while heap and edges > 0:
             
-            weight, source, dest = heappop(heap)
+            weight,dest = heappop(heap)
             
-            if union(source,dest):
+            if not visited[dest]:
                 res += weight
-                edges -=1
-                if edges == 0:
-                    break
-            else:
-                continue
-            
-            for x,y in adj[dest]:
+                visited[dest] = True
                 
-                heappush(heap, (y, dest, x))
+                for j in range(len(points)):
+                    if not visited[j]:
+                        man = abs(points[j][0] - points[dest][0]) + abs(points[j][1] - points[dest][1])
+                        heappush(heap,(man,j))
+                    
+                edges -=1
         
         return res
             
