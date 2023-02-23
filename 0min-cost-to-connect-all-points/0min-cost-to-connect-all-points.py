@@ -48,10 +48,13 @@ class Solution:
         
         arr.sort()
         res = 0
+        edges = len(points) -1
         for i,e in enumerate(arr):
+            if edges == 0:
+                break
             if union(arr[i][1], arr[i][2]):
                 res += arr[i][0]
-        
+                edges -=1
         
         return res
             
