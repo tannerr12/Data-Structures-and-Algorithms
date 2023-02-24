@@ -7,12 +7,12 @@ class Bucket:
 class MyHashSet:
 
     def __init__(self):
-        prime = 100000
-        self.arr = [Bucket(-1)] * 100000  
+        prime = 1000000
+        self.arr = [Bucket(-1)] * 1000000
 
     def add(self, key: int) -> None:
         if not self.contains(key):
-            newKey = key % 100000 
+            newKey = key % 1000000 
             b = self.arr[newKey]
             nxt = b.next
             b.next = Bucket(key)
@@ -20,7 +20,7 @@ class MyHashSet:
         
     def remove(self, key: int) -> None:
       
-        newKey = key % 100000 
+        newKey = key % 1000000 
         b = self.arr[newKey]
         while b.next and b.next.val != key:
             b= b.next
@@ -29,7 +29,7 @@ class MyHashSet:
             b.next = b.next.next
             
     def contains(self, key: int) -> bool:
-        newKey = key % 100000
+        newKey = key % 1000000
         b = self.arr[newKey]
         
         while b:
