@@ -1,10 +1,10 @@
 class MyHashMap:
 
     def __init__(self):
-        self.arr = [[]] * 1000
+        self.arr = [[]] * 2069 
         
     def put(self, key: int, value: int) -> None:
-        newKey = key % 1000
+        newKey = key % 2069 
         if not self.hasKey(key):
            
             self.arr[newKey].append([key,value])
@@ -16,7 +16,7 @@ class MyHashMap:
                     
     
     def get(self, key: int) -> int:
-        newkey = key % 1000
+        newkey = key % 2069 
         #print(self.arr[newkey])
         for k,v in self.arr[newkey]:
             if k == key:
@@ -25,7 +25,7 @@ class MyHashMap:
         
 
     def remove(self, key: int) -> None:
-        newKey = key % 1000
+        newKey = key % 2069 
         
         for i in range(len(self.arr[newKey])):
             if self.arr[newKey][i][0] == key:
@@ -33,7 +33,7 @@ class MyHashMap:
                 return
     
     def hasKey(self, key):
-        newKey = key % 1000
+        newKey = key % 2069 
    
         for k,val in self.arr[newKey]:
             if k == key:
