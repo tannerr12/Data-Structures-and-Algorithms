@@ -19,14 +19,14 @@ class MyHashSet:
             b.next = Bucket(key)
         
     def remove(self, key: int) -> None:
-        if self.contains(key):
-            newKey = key % 769 
-            b = self.arr[newKey]
-            while b.next and b.next.val != key:
-                b= b.next
-            
-            if b.next and b.next.val == key:
-                b.next = b.next.next
+      
+        newKey = key % 769 
+        b = self.arr[newKey]
+        while b.next and b.next.val != key:
+            b= b.next
+
+        if b.next and b.next.val == key:
+            b.next = b.next.next
             
     def contains(self, key: int) -> bool:
         newKey = key % 769
