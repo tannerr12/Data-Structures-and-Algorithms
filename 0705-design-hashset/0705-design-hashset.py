@@ -1,78 +1,45 @@
-
-class MyHashSet(object):
-
-    def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        self.keyRange = 769
-        self.bucketArray = [Bucket() for i in range(self.keyRange)]
-
-    def _hash(self, key):
-        return key % self.keyRange
-
-    def add(self, key):
-        """
-        :type key: int
-        :rtype: None
-        """
-        bucketIndex = self._hash(key)
-        self.bucketArray[bucketIndex].insert(key)
-
-    def remove(self, key):
-        """
-        :type key: int
-        :rtype: None
-        """
-        bucketIndex = self._hash(key)
-        self.bucketArray[bucketIndex].delete(key)
-
-    def contains(self, key):
-        """
-        Returns true if this set contains the specified element
-        :type key: int
-        :rtype: bool
-        """
-        bucketIndex = self._hash(key)
-        return self.bucketArray[bucketIndex].exists(key)
-
-
 class Node:
-    def __init__(self, value, nextNode=None):
-        self.value = value
-        self.next = nextNode
+    def __init__(self,val):
+        self.val = val
+        self.next = None
 
-class Bucket:
+        
+class MyHashSet:
+
     def __init__(self):
-        # a pseudo head
-        self.head = Node(0)
+        prime = 1223
+        self.arr = [Node(-1)] * 1223  
 
-    def insert(self, newValue):
-        # if not existed, add the new element to the head.
-        if not self.exists(newValue):
-            newNode = Node(newValue, self.head.next)
-            # set the new head.
-            self.head.next = newNode
+    def add(self, key: int) -> None:
+        if not self.contains(key):
+            newKey = key % 1223 
+            b = self.arr[newKey]
+            nxt = b.next
+            b.next = Node(key)
+            b.next.next = nxt
+        
+    def remove(self, key: int) -> None:
+      
+        newKey = key % 1223 
+        b = self.arr[newKey]
+        while b.next and b.next.val != key:
+            b= b.next
 
-    def delete(self, value):
-        prev = self.head
-        curr = self.head.next
-        while curr is not None:
-            if curr.value == value:
-                # remove the current node
-                prev.next = curr.next
-                return
-            prev = curr
-            curr = curr.next
-
-    def exists(self, value):
-        curr = self.head.next
-        while curr is not None:
-            if curr.value == value:
-                # value existed already, do nothing
+        if b.next and b.next.val == key:
+            b.next = b.next.next
+            
+    def contains(self, key: int) -> bool:
+        newKey = key % 1223
+        b = self.arr[newKey]
+        
+        while b:
+            if b.val == key:
                 return True
-            curr = curr.next
+            b = b.next
         return False
+
+    
+    
 
 
 # Your MyHashSet object will be instantiated and called as such:
