@@ -14,9 +14,9 @@ class MyHashSet:
         if not self.contains(key):
             newKey = key % 769 
             b = self.arr[newKey]
-            while b.next:
-                b= b.next
+            nxt = b.next
             b.next = Bucket(key)
+            b.next.next = nxt
         
     def remove(self, key: int) -> None:
       
