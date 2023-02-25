@@ -1,6 +1,8 @@
 class Solution:
     def countVowelPermutation(self, n: int) -> int:
-        
+        #simple path finding dfs 
+        #5*N time complexity, I initially thought it had to be a math solution due to the size of N but 
+        #realized after that since vowels is size 5 it passes
         @cache
         def dfs(i,char):
             
