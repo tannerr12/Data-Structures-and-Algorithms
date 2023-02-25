@@ -6,30 +6,30 @@
 #         self.right = right
 class Solution:
     def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
-        
-        seqMap = defaultdict(list)
+        cnt = defaultdict(int)
+        seqMap = {}
+        res = []
         def dfs(root):
             
             if root is None:
-                return 'N'
+                return 0
             
-            seq = ''
-            seq += dfs(root.left)
-            seq += dfs(root.right)
+            seq = (dfs(root.left), root.val, dfs(root.right))
             
-        
-            seq = str(root.val) + ',' + seq
-            seqMap[seq].append(root)
+            if seq not in seqMap:
+                seqMap[seq] = len(seqMap) + 1
             
-            return seq
+            id = seqMap[seq]
+            cnt[id] +=1
+            if cnt[id] == 2:
+                res.append(root)
+    
+            
+            return id
         
         dfs(root)
         #print(seqMap)
         
-        res = []
-        for key,val in seqMap.items():
-            if len(val) > 1:
-                res.append(val[0])
-        
+
         
         return res
