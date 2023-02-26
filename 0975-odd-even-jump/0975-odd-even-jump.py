@@ -2,13 +2,48 @@ from sortedcontainers import SortedList
 
 class Solution:
     def oddEvenJumps(self, arr: List[int]) -> int:
+        
+        #get next higher and next lower
+        higher = [0] * len(arr)
+        lower = [0] * len(arr)
+
+        stack = []
+        for a, i in sorted([a, i] for i, a in enumerate(arr)):
+            
+            while stack and stack[-1] < i:
+                higher[stack.pop()] = i
+            
+            stack.append(i)
+        for a, i in sorted([-a, i] for i, a in enumerate(arr)):
+            
+            while stack and stack[-1] < i:
+                lower[stack.pop()] = i
+            
+            stack.append(i)
+        
+        dp = [[False,False] for j in range(len(arr))]
+        dp[-1] = [True,True]
+        for i in range(len(arr)-2,-1,-1):
+           
+            dp[i][0] = dp[higher[i]][1]
+            dp[i][1] = dp[lower[i]][0]
+            
+         
+        #print(dp)
+        res = 0
+        for x,y in dp:
+            if x:
+                res +=1
+        
+        return res
+        
+        """
+            
         sl = SortedList([[arr[-1], len(arr)-1]])
         dp = [[False,False] for j in range(len(arr))]
         
         dp[-1] = [True,True]
-        
-       # minSeen = [arr[-1],len(arr)-1]
-       # maxSeen = [arr[-1],len(arr)-1]
+
         
         for i in range(len(arr)-2,-1,-1):
             nxtMin = bisect_left(sl,arr[i],key=lambda i: i[0])
@@ -32,6 +67,7 @@ class Solution:
                 res +=1
         
         return res
+        """
                 
                 
             
