@@ -4,6 +4,10 @@ class Solution:
     def oddEvenJumps(self, arr: List[int]) -> int:
         
         #get next higher and next lower
+        #same idea here but instead of a sorted list we use a monotonic stack to get the next greater element and the next 
+        #lower element
+        #we sort by the values in the list keeping track of their index than when we hit a value where i is > than the top of the stack we
+        #can assign the index
         higher = [0] * len(arr)
         lower = [0] * len(arr)
 
@@ -23,6 +27,8 @@ class Solution:
         
         dp = [[False,False] for j in range(len(arr))]
         dp[-1] = [True,True]
+        
+        #since we already know higher and lower this becomes simple
         for i in range(len(arr)-2,-1,-1):
            
             dp[i][0] = dp[higher[i]][1]
