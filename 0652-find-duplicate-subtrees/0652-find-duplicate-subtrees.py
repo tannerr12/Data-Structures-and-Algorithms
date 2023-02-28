@@ -15,16 +15,18 @@ class Solution:
                 return 0
             
             seq = (dfs(root.left), root.val, dfs(root.right))
-            
+            #when we see a new sequence we assign a unique id to it
             if seq not in seqMap:
                 seqMap[seq] = len(seqMap) + 1
             
+            #we grab the id assigned to this sequence
             id = seqMap[seq]
+            #increament the count of this sequences id
             cnt[id] +=1
             if cnt[id] == 2:
                 res.append(root)
     
-            
+            #we return the id
             return id
         
         dfs(root)
