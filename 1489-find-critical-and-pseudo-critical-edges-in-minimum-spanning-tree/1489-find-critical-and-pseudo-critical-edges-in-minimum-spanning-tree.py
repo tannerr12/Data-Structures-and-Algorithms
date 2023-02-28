@@ -2,9 +2,14 @@ class Solution:
     def findCriticalAndPseudoCriticalEdges(self, n: int, edges: List[List[int]]) -> List[List[int]]:
         parent = [i for i in range(n)]
         rank = [0] * n
-        count = n
+        count = n-1
         
-        print(len(edges))
+        #First we setup union find for MST than we sort the edges by weight and include its index in the array
+        #next we do 2 cycles 
+        #The first cycle will find all critical edges by checking if without that edge the weight of the tree increases
+        #the second cycle will find all psudo edges by checking all edges and adding them by force than checking if the weight of the 
+        #tree is still the optimal weight if not than it is not a psudo
+        
         def find(val):
             
             if val == parent[val]:
@@ -36,44 +41,47 @@ class Solution:
         
         
         #build out edges
-        
-        #score = {}
+
         for i in range(len(edges)):
             edges[i].append(i)
         edges = sorted(edges, key=lambda x: (x[2]))
-        score = set()
-        phsudo = set()
+        crit = []
+        pseudo = []
         weight = 0
         #no edges removed
         for a,b,c,d in edges:
-
             if union(a,b):
                 weight += c
-
+            if count == 0:
+                break
         parent = [i for i in range(n)]
         rank = [0] * n
+        count = n-1
         
+        #check for crit
         for i in range(len(edges)):
-
             w = 0
             for a,b,c,d in edges:
                 if d == i:
                     continue
                 if union(a,b):
-                    #tempScore.add(d)
                     w +=c
-            
+                if count == 0:
+                    break
+                    
             if w != weight:
-                score.add(i)
+                crit.append(i)
+                
             parent = [i for i in range(n)]
             rank = [0] * n
+            count = n-1
         
-        count = n-1
+        #check for pseudo
         for i in range(len(edges)):
-            if edges[i][3] in score:
+            if edges[i][3] in crit:
                 continue
-            w = 0
-            w += edges[i][2]
+         
+            w = edges[i][2]
             union(edges[i][0],edges[i][1])
             
             for a,b,c,d in edges:
@@ -81,18 +89,15 @@ class Solution:
                     continue
                 if union(a,b):
                     w +=c
-                    
+                
+                if count == 0:
+                    break
             
             if w == weight and count == 0:
-                phsudo.add(edges[i][3])
+                pseudo.append(edges[i][3])
             
             count = n-1
             parent = [i for i in range(n)]
             rank = [0] * n
-        
-        #print(score)
-        phsudo = phsudo - score
-        res = list(score)
-        res1  = list(phsudo)
-            
-        return [res,res1]
+
+        return [crit,pseudo]
