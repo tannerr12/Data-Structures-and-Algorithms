@@ -1,6 +1,20 @@
 class Solution:
     def reorderedPowerOf2(self, n: int) -> bool:
-
+        #get our counter of our input
+        count = Counter(str(n))
+        
+        #now we just compare the count of digits to any of the powers of 2
+        #go through 30 bit positions
+        for i in range(31):
+            num = 0 | (1 << i)
+            nCount = Counter(str(num))
+            if count == nCount:
+                return True
+        
+        return False
+        
+        
+        """
         mask = 0
         
         n = str(n)
@@ -28,3 +42,5 @@ class Solution:
             return res
         
         return backtrack(0,0)
+        
+        """
