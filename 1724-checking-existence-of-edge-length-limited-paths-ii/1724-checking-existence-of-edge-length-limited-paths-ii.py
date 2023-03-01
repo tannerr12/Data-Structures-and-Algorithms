@@ -2,8 +2,6 @@ class DistanceLimitedPathsExist:
     
     
     def find(self,val):
-        
-        
         if val == self.parent[val]:
             return val
 
@@ -29,7 +27,6 @@ class DistanceLimitedPathsExist:
         return False
     
     def isConnected(self,x,y):
-        
         return self.find(x) == self.find(y)
             
     def __init__(self, n: int, edgeList: List[List[int]]):
@@ -47,7 +44,6 @@ class DistanceLimitedPathsExist:
                 self.count -=1
             self.adj[x].append((y,weight))
             self.adj[y].append((x,weight))
-       # print(self.wMap)
     def query(self, p: int, q: int, limit: int) -> bool:
         
         
@@ -57,11 +53,10 @@ class DistanceLimitedPathsExist:
             
             if self.isConnected(p,q) == False:
                 return False
-            
-            return self.dfs2(p,q,limit)
+            return self.dfs(p,q,limit)
     
-    
-    def dfs2(self,p,q,limit):
+    #iterative vs recursive dfs seems to be fast enough to pass
+    def dfs(self,p,q,limit):
             i = 0
             stack = [p]
             seen = set()
@@ -77,43 +72,7 @@ class DistanceLimitedPathsExist:
                         stack.append(i)
             return False
         
-        
-        
-  
-    @cache
-    def findMap(self,val,target,limit):
-        
-        if val == target:
-            return True
-        self.seen.add(val)
-        res = False
-        
-        for key,v in self.wMap[val].items():
-            if v >= limit or key in self.seen:
-                continue
-            res = res or self.findMap(key,target,limit)
-        
-        return res
-    """          
-    def execute(self,p,q,limit):
-        self.parent = [i for i in range(self.n)]
-        self.rank = [0] * self.n
-        self.count = self.n-1
-        for x,y,weight in self.edges:
-            if weight >= limit:
-                break
-            
-            if self.union(x,y):
-                self.count -=1
-            
-            
-            if self.count == 0:
-                break
 
-        if self.isConnected(p,q):
-            return True
-        return False
-     """ 
 
 
 # Your DistanceLimitedPathsExist object will be instantiated and called as such:
