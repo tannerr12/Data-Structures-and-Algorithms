@@ -1,6 +1,10 @@
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         
+        #we will do 3 loops the first one will set all of the negative values to 0 as a not used option
+        #the second will flip all of the values indexs we have seen to negative to mark them but not remove the values
+        #We set any 0s we see to negative inf as to not mess up the positive process since inf cannot be found in the list
+        #finally we return the first non negative number we find or if we do not find one we can return the len of the list + 1 since that would be the worst case
         for i in range(len(nums)):
             
             if nums[i] < 0:
