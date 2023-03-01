@@ -22,7 +22,7 @@ class Solution:
                     if nums[val-1] > 0:
                         nums[val-1] = -1* nums[val-1]
         
-        print(nums)
+        
         for i in range(len(nums)):
             if nums[i] >= 0:
                 return i+1
