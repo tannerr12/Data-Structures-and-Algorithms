@@ -1,5 +1,7 @@
 class DistanceLimitedPathsExist:
-    
+    #we will build a MST and check the minimum weight + the amount of connected nodes as well as an adjacency list
+    #We than dfs from one node to the other if they are connected but do no fit withing our minimum weight 
+    #if they run into eachother we can return True
     
     def find(self,val):
         if val == self.parent[val]:
