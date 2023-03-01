@@ -5,17 +5,17 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> nums = [5,2,3,1]
+<pre><strong>Input:</strong> nums = [5,2,3,1]
 <strong>Output:</strong> [1,2,3,5]
 <strong>Explanation:</strong> After sorting the array, the positions of some numbers are not changed (for example, 2 and 3), while the positions of other numbers are changed (for example, 1 and 5).
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> nums = [5,1,1,2,0,0]
+<pre><strong>Input:</strong> nums = [5,1,1,2,0,0]
 <strong>Output:</strong> [0,0,1,1,2,5]
 <strong>Explanation:</strong> Note that the values of nums are not necessairly unique.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
