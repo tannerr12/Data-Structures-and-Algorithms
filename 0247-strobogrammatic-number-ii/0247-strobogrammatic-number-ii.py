@@ -4,7 +4,7 @@ class Solution:
         #if the start number is a 0 and its not length 1 skip it
         res = []
         
-    
+        ls = [0,1,6,8,9]
         def dfs(num):
             
             if len(num) == n:
@@ -13,7 +13,7 @@ class Solution:
                 return 
             
             
-            for i in range(10):
+            for i in ls:
                 
                 if n - len(num) == 1 and (i == 0 or i == 1 or i == 8):
                     dfs(num[:len(num)//2] + str(i) + num[len(num)//2:])
