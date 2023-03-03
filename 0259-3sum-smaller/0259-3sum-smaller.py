@@ -4,13 +4,16 @@ class Solution:
         nums.sort()
   
         res = 0
+        r = len(nums) -1
         for i in range(len(nums)):
+            r = len(nums) -1
             for j in range(i+1,len(nums)):
                 tar = target - nums[i] - nums[j]
-                idx = bisect_left(nums, tar)
-                idx -=1
-                if idx > j:
-                    res += idx - j
+                
+                while r > j and nums[r] >= tar:
+                    r -=1
+                if r > j:
+                    res += r - j
                 
         return res
                 
