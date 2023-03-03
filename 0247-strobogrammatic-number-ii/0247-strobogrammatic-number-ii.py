@@ -8,8 +8,7 @@ class Solution:
         def dfs(num):
             
             if len(num) == n:
-                if num[0] == '0' and len(num) > 1:
-                    return
+  
                 res.append(num)
                 return 
             
@@ -24,7 +23,7 @@ class Solution:
                         dfs(str(i) + num + '9')
                     elif i == 9:
                         dfs(str(i) + num + '6')
-                    elif i == 1 or i == 8 or i == 0:
+                    elif i == 1 or i == 8 or (i == 0 and n - len(num) != 2 and n - len(num) != 3):
                         dfs(str(i) + num + str(i))
             
         
