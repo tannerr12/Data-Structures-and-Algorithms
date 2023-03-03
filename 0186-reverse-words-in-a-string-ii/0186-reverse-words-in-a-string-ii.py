@@ -12,7 +12,7 @@ class Solution:
                 l+=1
                 r-=1
             
-        #print(s)
+    
         l = 0
         i = 0
         reverse(0,len(s)-1)
@@ -26,4 +26,4 @@ class Solution:
             i+=1
         
         reverse(l,len(s)-1)
-        print(s)
+        
