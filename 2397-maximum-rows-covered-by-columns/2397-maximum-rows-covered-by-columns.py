@@ -9,8 +9,7 @@ class Solution:
                 if matrix[i][j] == 1:
                     maskArr[i] |= (1 << n-j-1)
         
-        comb = 2 ** (max(m,n)+1)
-        #print(comb)
+        comb = 2 ** (n+1)
         def  countSetBits(n):
             count = 0
             while (n):
@@ -18,11 +17,6 @@ class Solution:
                 n >>= 1
             return count
         
-        #def backtrack(bitmask):
-            
-           # if i >= m:
-           #     return countSetBits(bitmask)
-            
         res = 0
 
         for i in range(comb+1):
