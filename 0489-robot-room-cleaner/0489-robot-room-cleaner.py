@@ -36,9 +36,11 @@ class Solution:
         :type robot: Robot
         :rtype: None
         """
+        #The tricky part with this question is not knowing where you are but the idea is to keep a virtual position grid and use it to mark a cell as seen
+        #The other trick that I ran into issues with was the idea of going back where in normal dfs we can simply pop back to a previous state the robot must manually go back so after every successful move we go back
+        #so that we can continue from that previous state
         directions = [[-1,0], [0,1], [1,0],[0,-1]]
         seen =set()
-        stack = []
         d = 0
         
         def go_back():
@@ -53,7 +55,6 @@ class Solution:
             if (i,j) in seen:
                 return
             seen.add((i,j))
-            stack.append([i,j])
             robot.clean()
             for val in range(4):
                 if (i+directions[d][0], j + directions[d][1]) not in seen and robot.move():
@@ -65,4 +66,4 @@ class Solution:
             
 
         dfs(0,0)
-       # print(stack)
+     
