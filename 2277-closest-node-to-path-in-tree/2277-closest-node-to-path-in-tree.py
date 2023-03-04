@@ -9,14 +9,17 @@ class Solution:
             adj[x].append(y)
             adj[y].append(x)
             
-        
+        #2x dfs and store path the target in another set
+        #first we find from 1 node to target saving its path than dfs a from the second
+        #node and if we find a node we have seen before in that path we return it
         seen =set()
-        stack = set()
+        optimalPath = set()
         def dfs(node,parent,target):
-            nonlocal stack
+            nonlocal optimalPath
             seen.add(node)
             if node == target:
-                stack = seen.copy()
+                optimalPath = seen.copy()
+                seen.remove(node)
                 return  
             
             for val in adj[node]:
@@ -29,9 +32,9 @@ class Solution:
             seen.remove(node)   
         
         def dfs2(node,parent):
-            nonlocal stack
+            nonlocal optimalPath
             
-            if node in stack:
+            if node in optimalPath:
                 return node
             res = None
             for val in adj[node]:
@@ -48,11 +51,9 @@ class Solution:
         
         res = []
         for x,y,z in query:
-        
             dfs(x,-1,z)
-            
             res.append(dfs2(y,-1))
-            seen = set()
+   
         return res
             
             
