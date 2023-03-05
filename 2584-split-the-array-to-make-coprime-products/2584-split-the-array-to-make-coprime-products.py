@@ -1,7 +1,7 @@
 
 class Solution:
     def findValidSplit(self, nums: List[int]) -> int:
-        mx = max(nums)
+        #mx = max(nums)
         """
         primes = [True] * (mx)
         primes[0]=False
@@ -27,10 +27,17 @@ class Solution:
                 p.append(i)
                 
         """
-
+        
+        
+        #there are two ways that we can solve prime factorization the first is to use sleve method and gather all primes up to a certain point 
+        #than go through each number and // by primes until the value is 1 but in this case that would be too slow
+        
+        #the second way to solve this problem is to do the prime factorization on the spot to do this we start at 2 and iterate all odds there after by saying if j is odd than j += 2 else j +=1
+        #we can go up to 1000 than stop since we can assume everything past 1000 is concidered a "large prime" these can just be added as a prime on their own
+        #once we have all the factors and indexes mapped out we can just loop through with 2 indexs one is to keep track of our current position and the other is to keep track of the furthest location where we have seen a common prime 
+        #if the current index ever passes the max index than we can break and return our running index -1 since we can say there are no common primes past this point
  
         lastPrime = defaultdict(int)
-        #print(p)
         factors = defaultdict(list)
         for i in range(len(nums)):
             
