@@ -20,24 +20,26 @@ class Solution:
         """
         if n == 1:
             return 0
+        if n == 2:
+            return 2
         
-     
-        def dfs(count, cur, total):
+        @cache
+        def dfs(count, cur):
             
             if count == n:
-                return total
+                return 0
             elif count > n:
                 return float('inf')
         
             res = float('inf')
             #take 
-            res = min(res,dfs(count * 2, count, total + 2))
+            res = min(res,dfs(count * 2, count) + 2)
             #dont take
-            res = min(res,dfs(count + cur, cur, total + 1))
+            res = min(res,dfs(count + cur, cur) + 1)
             
             return res
         
         
-        return dfs(2, 1, 2)
+        return dfs(2, 1) + 2
             
             
