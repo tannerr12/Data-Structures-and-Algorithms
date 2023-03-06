@@ -21,7 +21,7 @@ class Solution:
         if n == 1:
             return 0
         
-        @cache
+     
         def dfs(count, cur, total):
             
             if count == n:
