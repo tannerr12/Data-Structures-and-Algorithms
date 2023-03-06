@@ -7,6 +7,10 @@ class Solution:
         
         i = 0
         
+        
+        #check gcd between index and top of stack and pop both and merge new value
+        #check 2 top values in stack and pop/merge them if gcd
+        #return the stack
         while i < len(nums):
             
             if i == 0:
