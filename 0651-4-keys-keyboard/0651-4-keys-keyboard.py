@@ -1,6 +1,8 @@
 class Solution:
     def maxA(self, n: int) -> int:
         memo = {}
+        if n == 1:
+            return 1
         
         def dfs(count,buffer,size):
             
@@ -25,4 +27,4 @@ class Solution:
             
             return res
         
-        return dfs(0,1,0)
+        return dfs(2,1,2)
