@@ -38,7 +38,7 @@ class Solution:
         for i,num in enumerate(nums):
             n = num
             j = 2
-            while j < 500 and n != 1:
+            while j < 400 and n != 1:
                 
                 if n % j == 0:
                     #we are a factor
