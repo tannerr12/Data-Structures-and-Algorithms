@@ -1,0 +1,28 @@
+class Solution:
+    def maxA(self, n: int) -> int:
+        memo = {}
+        
+        def dfs(count,buffer,size):
+            
+            if count == n:
+                return size
+            
+            if count > n:
+                return float('-inf')
+            
+            if (count,buffer,size) in memo:
+                return memo[(count,buffer,size)]
+            res = 0
+            
+            #select whole screen, copy 
+            if count < n-1:
+                res = max(res, dfs(count +3, size, size * 2))
+            
+            #paste
+            res = max(res,dfs(count +1, buffer, size + buffer))
+            
+            memo[(count,buffer,size)] = res
+            
+            return res
+        
+        return dfs(0,1,0)
