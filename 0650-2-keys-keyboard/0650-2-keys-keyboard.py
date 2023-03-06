@@ -23,7 +23,7 @@ class Solution:
         if n == 2:
             return 2
         
-        @cache
+        
         def dfs(count, cur):
             
             if count == n:
