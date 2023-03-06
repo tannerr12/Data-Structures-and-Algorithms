@@ -17,7 +17,7 @@ class Solution:
             res = 0
             
             #select whole screen, copy 
-            if count < n-1:
+            if count < n-1 and size - buffer > 1:
                 res = max(res, dfs(count +3, size, size * 2))
             
             #paste
