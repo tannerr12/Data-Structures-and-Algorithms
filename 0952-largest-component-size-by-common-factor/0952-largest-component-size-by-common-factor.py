@@ -34,7 +34,7 @@ class Solution:
             return False
         
         
-        factMap = defaultdict(list)
+        factMap = {}
         for i,num in enumerate(nums):
             n = num
             j = 2
@@ -42,9 +42,9 @@ class Solution:
                 
                 if n % j == 0:
                     #we are a factor
-                    if len(factMap[j]) > 0:
-                        union(factMap[j][0], i)
-                    factMap[j].append(i)
+                    if j in factMap:
+                        union(factMap[j], i)
+                    factMap[j] = i
                 
                 while n % j == 0:
                     n //= j
@@ -52,9 +52,9 @@ class Solution:
                 j += 1 + j % 2
             #we are a large prime
             if n > 1:
-                if len(factMap[n]) > 0:
-                    union(factMap[n][0], i)
-                factMap[n].append(i)
+                if n in factMap:
+                    union(factMap[n], i)
+                factMap[n] = i
             
         #print(factMap)
         #print(parent)
