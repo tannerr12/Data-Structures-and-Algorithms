@@ -4,6 +4,8 @@ class Solution:
         if n == 1:
             return 1
         
+        #we make the observation that we do not need to create a path for A key presses
+        #if it is already in our buffer
         def dfs(count,buffer,size):
             
             if count == n:
