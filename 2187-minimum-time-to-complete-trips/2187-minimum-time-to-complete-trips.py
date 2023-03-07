@@ -13,7 +13,7 @@ class Solution:
                 
         
         
-        l,r = 0, 10**15
+        l,r = 0, 10**14
         res= 0
         while l <= r:
             
