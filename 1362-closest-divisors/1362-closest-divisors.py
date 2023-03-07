@@ -23,12 +23,16 @@ class Solution:
             
             return primes
         """
+       
+        #count divisors from both ends of the number and go inwards get the distance between the left and right
+        #we can assume if i goes into N than n // i will also be divisable
         best = float('inf')
         ans = []
         def factors(n):  
             nonlocal best
             nonlocal ans
             i = 1
+            #sqrt of n is highest #
             while i * i <= n:
                 if n % i == 0:
                     current = abs(i-n//i)
