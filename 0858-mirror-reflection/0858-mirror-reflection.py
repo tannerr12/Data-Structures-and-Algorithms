@@ -23,20 +23,13 @@ class Solution:
             bounce +=1
             
         """
-        bounce = p * q // gcd(p,q)
-        cycle = bounce // p
-        bounce //= q
+        lcm = p * q // gcd(p,q)
+        cycle = lcm // p
+        lcm //= q
         
-        print(bounce)
-        print(cycle)
-        
-        
-        #print(cycle)
-        #print(bounce)
-        
-        if cycle % 2 and bounce % 2 == 0:
+        if cycle % 2 and lcm % 2 == 0:
             return 2
-        if cycle % 2 and bounce % 2:
+        if cycle % 2 and lcm % 2:
             return 1
         else:
             return 0
