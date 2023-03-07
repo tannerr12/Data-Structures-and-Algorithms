@@ -10,6 +10,7 @@ class Solution:
             return 1
         if q == 0:
             return 0
+        """
         val = q
         cycle = 1
         bounce = 1
@@ -21,6 +22,13 @@ class Solution:
             val %= p
             bounce +=1
             
+        """
+        bounce = p * q // gcd(p,q)
+        cycle = bounce // p
+        bounce //= q
+        
+        print(bounce)
+        print(cycle)
         
         
         #print(cycle)
