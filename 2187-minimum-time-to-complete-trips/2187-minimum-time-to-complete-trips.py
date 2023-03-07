@@ -6,10 +6,9 @@ class Solution:
             trips = 0 
             for i in range(len(time)):
                 trips += val // time[i]
-                
-            
-            
-            return trips >= totalTrips
+                if trips >= totalTrips:
+                    return True
+            return False
                 
         
         
