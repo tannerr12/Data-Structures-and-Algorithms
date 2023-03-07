@@ -23,8 +23,8 @@ class Solution:
             
         
         
-        print(cycle)
-        print(bounce)
+        #print(cycle)
+        #print(bounce)
         
         if cycle % 2 and bounce % 2 == 0:
             return 2
