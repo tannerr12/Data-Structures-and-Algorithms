@@ -8,7 +8,6 @@ class Solution:
         def isGood(mid):
             
             #calculate how many solves are before this number for each a, b and c
-            
             tarA = mid // a
             tarB = mid // b
             tarC = mid // c
@@ -21,6 +20,7 @@ class Solution:
             #remove points where they all intersect
             al = mid // allLCM
             
+            #sum up all of our results
             s = tarA + tarB + tarC - ab - ac - bc + al
             
             #are we above and = or below our target
@@ -37,11 +37,9 @@ class Solution:
         
         while l < r:
             
-            mid = (l+r)//2
-            
-            val = isGood(mid)
-            
-            if val:
+            mid = l + (r-l)//2
+
+            if isGood(mid):
                 r = mid
             else:
                 l = mid +1
