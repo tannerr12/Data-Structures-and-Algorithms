@@ -12,25 +12,28 @@ class Solution:
             tarA = mid // a
             tarB = mid // b
             tarC = mid // c
-            
-            
-            
+
             #remove intersection points
             ab = mid // abLCM
             ac = mid // acLCM
             bc = mid // bcLCM
             
+            #remove points where they all intersect
             al = mid // allLCM
             
             s = tarA + tarB + tarC - ab - ac - bc + al
             
+            #are we above and = or below our target
             return s >= n 
             
+        #check all lcms ahead of time
         abLCM = lcm(a,b)
         acLCM = lcm(a,c)
         bcLCM = lcm(b,c)
         allLCM = lcm(abLCM, c)
-        l,r = 0, 10**18
+        
+        #search range from 
+        l,r = 0, 2 * 10**9
         
         while l < r:
             
