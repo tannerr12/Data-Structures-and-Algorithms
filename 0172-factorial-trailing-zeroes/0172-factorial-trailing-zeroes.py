@@ -3,7 +3,7 @@ class Solution:
         
         num = str(math.factorial(n))
         
-        print(len(num))
+       #print(len(num))
         
         res = 0
         i = len(num) -1
