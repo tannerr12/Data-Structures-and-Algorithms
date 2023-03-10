@@ -1,11 +1,6 @@
 class Solution:
     def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
-        w1Map = defaultdict(dict)
-      
-        for word in words1:
-            w1Map[word] = Counter(word)
-        
-        
+
         w2Global = defaultdict(int)
         for word in words2:
             count = defaultdict(int)
@@ -17,9 +12,10 @@ class Solution:
         
         res = []
         for word in words1:
+            w1Map = Counter(word)
             valid = True
             for key,val in w2Global.items():
-                if w1Map[word][key] < val:
+                if w1Map[key] < val:
                     valid = False
                     break
             
