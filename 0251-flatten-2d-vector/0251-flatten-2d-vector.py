@@ -1,20 +1,23 @@
 class Vector2D:
 
     def __init__(self, vec: List[List[int]]):
-        self.arr = []
-        for i in range(len(vec)):
-            for j in range(len(vec[i])):
-                self.arr.append(vec[i][j])
-                
-        self.idx = 0    
+        self.i = 0
+        self.j = 0    
+        self.vec = vec
 
+        while self.hasNext() and self.j == len(self.vec[self.i]):
+            self.i+=1
+            self.j = 0
     def next(self) -> int:
         
-        val = self.arr[self.idx]
-        self.idx +=1
+        val = self.vec[self.i][self.j]
+        self.j +=1
+        while self.hasNext() and self.j == len(self.vec[self.i]):
+            self.i+=1
+            self.j = 0
         return val
     def hasNext(self) -> bool:
-        return self.idx < len(self.arr)
+        return self.i < len(self.vec)
 
 
 # Your Vector2D object will be instantiated and called as such:
