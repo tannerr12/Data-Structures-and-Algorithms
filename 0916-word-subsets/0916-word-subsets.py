@@ -1,6 +1,6 @@
 class Solution:
     def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
-
+        #first we want to group together all of the words2 words by taking the max character counts from each
         w2Global = defaultdict(int)
         for word in words2:
             count = defaultdict(int)
@@ -10,6 +10,7 @@ class Solution:
             for key, val in count.items():
                 w2Global[key] = max(w2Global[key], val)
         
+        #now we loop through and check if the current words counts are always greater or equal if not we dont add it to our result
         res = []
         for word in words1:
             w1Map = Counter(word)
