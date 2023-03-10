@@ -17,7 +17,7 @@ class Solution:
         else:
             arr.append(num)
         
-        print(arr)
+       
         
         def backtrack(left,right):
             
