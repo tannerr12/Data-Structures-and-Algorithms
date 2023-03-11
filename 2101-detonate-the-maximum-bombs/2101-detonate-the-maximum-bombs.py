@@ -1,6 +1,7 @@
 class Solution:
     def maximumDetonation(self, bombs: List[List[int]]) -> int:
-        
+        #create an adjacency list between the bombs first than we will run dfs on all of the bombs and pick the bomb with the largest adjacency list
+        #we want to add all adjacency instead of finding the longest path
         
         adj = defaultdict(list)
         
@@ -16,7 +17,7 @@ class Solution:
                 if b1 <= r2:
                     adj[j].append(i)
         
-        #print(adj)
+      
         
         def dfs(i):
             
