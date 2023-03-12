@@ -46,6 +46,7 @@ class Bitset:
         return self.total
     
     #O(N)
+    #sped up using built in functions
     def toString(self) -> str:
         
         res= []
