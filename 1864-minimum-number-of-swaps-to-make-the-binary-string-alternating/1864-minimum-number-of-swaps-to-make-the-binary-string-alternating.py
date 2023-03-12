@@ -2,7 +2,7 @@ class Solution:
     def minSwaps(self, s: str) -> int:
      
         ones = s.count('1')
-        zeros = s.count('0')
+        zeros = len(s) - ones
         
         if len(s) % 2 == 0 and ones != zeros:
             return -1
@@ -13,8 +13,10 @@ class Solution:
         cost1,cost2 = 0,0
         
         for i in range(len(s)):
-            if s[i] != str(i%2):
+            #010
+            if s[i] == '1' and i%2 or s[i] == '0' and i % 2 == 0:
                 cost1 +=1
+            #101
             else:
                 cost2 +=1
             
