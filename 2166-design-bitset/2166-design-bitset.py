@@ -33,6 +33,7 @@ class Bitset:
         return self.bit != 0
     
     #logN fast bit counting/shifting by jumping to next active bit
+    #O(1) sped up by counting bits as we go
     def count(self) -> int:
         """
         res = 0
@@ -44,19 +45,24 @@ class Bitset:
         """
         return self.total
     
+    #O(N)
     def toString(self) -> str:
         
         res= []
-        
+        """
         for i in range(self.size-1,-1,-1):
             if self.bit & (1 << i) > 0:
                 res.append('1')
             else:
                 res.append('0')
     
-        
+        """
+        """
         return ''.join(res)
-
+        """
+        s = bin(self.bit).replace("0b", "")
+        s2 = '0' * (self.size - len(s))
+        return s2 + s
 # Your Bitset object will be instantiated and called as such:
 # obj = Bitset(size)
 # obj.fix(idx)
