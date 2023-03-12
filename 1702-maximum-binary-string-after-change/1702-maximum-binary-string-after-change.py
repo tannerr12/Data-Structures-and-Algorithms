@@ -6,21 +6,21 @@ class Solution:
         if '0' not in binary:
             return binary
         
-        res = ''
+        res = []
         idx = binary.find('0')
         countZ = binary.count('0')
         
         for i in range(idx):
-            res += '1'
+            res.append('1')
         
-        res += '1' * (countZ -1)
+        res = res + (['1'] * (countZ -1))
     
-        res += '0'
+        res.append('0')
         
         for i in range(len(binary) - len(res)):
-            res += '1'
+            res.append('1')
         
         
-        return res
+        return ''.join(res)
             
                 
