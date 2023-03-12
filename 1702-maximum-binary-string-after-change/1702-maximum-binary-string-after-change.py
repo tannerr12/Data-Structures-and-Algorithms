@@ -13,11 +13,8 @@ class Solution:
         for i in range(idx):
             res += '1'
         
-        while countZ >= 2:
-            res += '1'
-            countZ -=1
-        
-        
+        res += '1' * (countZ -1)
+    
         res += '0'
         
         for i in range(len(binary) - len(res)):
