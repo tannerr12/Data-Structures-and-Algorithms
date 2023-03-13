@@ -5,18 +5,22 @@ class Solution:
         #same for negative these need to be seperated
         #a loop must have atleast 1 indegree
         
+        
+        #with these observations we can assume that anything that passes all of these checks and reconnects with 
+        #another node of its same cycle is infact a valid loop since it would be of atleast size 2
+        
+        #implement union find
         parent = [i for i in range(len(nums))]
         rank = [0] * len(nums)
         
-        
+        #find with compression
         def find(val):
             if val == parent[val]:
                 return val
-            
             parent[val] = find(parent[val])
             return parent[val]
         
-        
+        #union with rank
         def union(x,y):
             
             v1,v2 = find(x), find(y)
@@ -33,13 +37,15 @@ class Solution:
                 return False
             return True
         
-        
+        #loop over all of nums and check the current value and the target value. 
+        #if they are not both positive or both negative or we see a self cycle this connection should be ignored
         for i in range(len(nums)):
             left = i
             right = (left + nums[i]) % len(nums)
-            
             if ((nums[left] > 0 and nums[right] > 0) or (nums[left] < 0 and nums[right] < 0)) and right != left:
+                #if true we found a relationship
                 if union(left,right):
                     return True
-        
+                
+        #no relationship found
         return False
