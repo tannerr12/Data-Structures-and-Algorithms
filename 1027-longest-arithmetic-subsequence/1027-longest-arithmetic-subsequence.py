@@ -29,6 +29,9 @@ class Solution:
         return dfs(0,float('inf'), float('inf'),'')
         """
         
+        #very tricky, top down dp does not work there is no way to memoize the information properly instead we use bottom up dp with an array of hashmaps
+        #the idea is that if we see a sequence we can update our current j to be dp[i][diff] + 1 and we keep track of the max value seen
+       
         dp = [{} for _ in nums]
         mx = 0
         for i in range(len(nums)):
@@ -37,11 +40,11 @@ class Solution:
                 if diff in dp[i]:
                     dp[j][diff] = dp[i][diff] + 1
                 else:
-                    dp[j][diff] = 1
+                    dp[j][diff] = 2
                 
                 mx = max(mx, dp[j][diff])
         
-        return mx + 1 if mx > 0 else 0
+        return mx 
         
         
         
