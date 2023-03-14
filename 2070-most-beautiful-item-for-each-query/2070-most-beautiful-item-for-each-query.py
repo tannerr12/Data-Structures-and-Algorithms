@@ -1,6 +1,8 @@
 class Solution:
     def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:
         
+        
+        #stop and go iterate over items of lesser or equal value until we catch up than move on the the next query
 
         items.sort()
         mx = 0
@@ -11,8 +13,7 @@ class Solution:
             queries[i] = [queries[i], i]
             
         queries.sort()
-        
-        
+
         i = 0  
         
         for val,j in queries:
