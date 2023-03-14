@@ -3,109 +3,79 @@ class Solution:
         #anytime our running total can stay >= 0 we should keep it
         #we should also keep track of our biggest negative to remove it from sum when we see a negative
         r = 0
+        r2 = 0
         res = float('-inf')
-        pos = False
         mxNeg = float('-inf')
         curmxNeg = 0
-        
-        left = 0
-        right = 0
+        curmxNeg2 = 0
+        left = float('inf')
+        right = -1
         for i in range(len(arr)):
-            if arr[i] > 0:
-                left = i
-                break
-        
-        for i in range(len(arr)-1,-1,-1):
-            if arr[i] > 0:
-                right = i
-                break
-        
-        for i in range(left, len(arr)):
             
-            if arr[i] >= 0:
-                r += arr[i]
-                pos = True
-
+            if arr[i] > 0:
+                left = min(i, left)
+                right = max(i, right)
             else:
-                res = max(res,r)
-                if arr[i] < curmxNeg:
-                    r += curmxNeg
-                else:
-                    r += arr[i]
-
                 mxNeg = max(arr[i],mxNeg)
-              
-                
-                curmxNeg = min(curmxNeg, arr[i])
-                if r + curmxNeg <= 0:
-                    r = 0
-                    curmxNeg = 0
         
-            
-            
+        if left == float('inf'):
+            return mxNeg
+    
         
-        res = max(res,r)
-        r = 0
-        curmxNeg = 0
-        for i in range(right,-1,-1):
-            
-            if arr[i] >= 0:
-                r += arr[i]
-                
-
-            else:
-                res = max(res,r)
-                if arr[i] < curmxNeg:
-                    r += curmxNeg
-                else:
-                    r += arr[i]
-
-                curmxNeg = min(curmxNeg, arr[i])
-                if r + curmxNeg <= 0:
-                    r = 0
-                    curmxNeg = 0
-        
-        res = max(res,r)
-        r = 0
-        curmxNeg = 0
         for i in range(left, len(arr)):
             
             if arr[i] >= 0:
                 r += arr[i]
-                
+                r2 += arr[i]
+                res = max(res,r,r2)
 
             else:
-                res = max(res,r)
+                res = max(res,r,r2)
                 if arr[i] < curmxNeg:
                     r += curmxNeg
+                    r2 += curmxNeg2
                 else:
                     r += arr[i]
-
+                    r2 += arr[i]
+                
+                
                 curmxNeg = min(curmxNeg, arr[i])
-                if r <= 0:
+                curmxNeg2 = min(curmxNeg2, arr[i])
+                if r + curmxNeg <= 0:
                     r = 0
                     curmxNeg = 0
-        res = max(res,r)
+                if r2 <= 0:
+                    r2 = 0
+                    curmxNeg2 = 0
+        
         r = 0
+        r2 = 0
         curmxNeg = 0
+        curmxNeg2 = 0
         for i in range(right,-1,-1):
             
             if arr[i] >= 0:
                 r += arr[i]
-                
-
+                r2 += arr[i]
+                res = max(res,r,r2)
             else:
-                res = max(res,r)
+                res = max(res,r,r2)
                 if arr[i] < curmxNeg:
                     r += curmxNeg
+                    r2 += curmxNeg2
                 else:
                     r += arr[i]
+                    r2 += arr[i]
 
                 curmxNeg = min(curmxNeg, arr[i])
-                if r <= 0:
+                curmxNeg2 = min(curmxNeg2, arr[i])
+                if r + curmxNeg <= 0:
                     r = 0
                     curmxNeg = 0
+                if r2 <= 0:
+                    r2 = 0
+                    curmxNeg2 = 0
+                
         
-        res = max(res,r)
         
-        return res if pos else mxNeg
+        return res 
