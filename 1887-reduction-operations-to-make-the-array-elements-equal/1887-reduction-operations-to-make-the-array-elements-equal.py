@@ -1,7 +1,7 @@
 class Solution:
     def reductionOperations(self, nums: List[int]) -> int:
         
-        
+        """        
         heap = []
         
         keys = Counter(nums)
@@ -25,4 +25,16 @@ class Solution:
         
         return res
             
+        """
         
+        res = 0
+        nums.sort()
+        
+        unique = set()
+        for i in range(len(nums)):
+            unique.add(nums[i])
+            res += len(unique) -1
+                
+        return res
+            
+            
