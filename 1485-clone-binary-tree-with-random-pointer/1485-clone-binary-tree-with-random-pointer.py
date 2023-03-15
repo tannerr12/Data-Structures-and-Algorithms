@@ -24,11 +24,6 @@ class Solution:
             
             node2 = stack.pop()
             node = stack.pop()
-            
-            if node.random in mp:
-                n = mp[node.random]
-                node2.random = n
-           
             mp[node] = node2
             count +=1
             if node.left:
