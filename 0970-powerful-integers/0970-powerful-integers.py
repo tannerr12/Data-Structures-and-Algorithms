@@ -1,9 +1,10 @@
 class Solution:
     def powerfulIntegers(self, x: int, y: int, bound: int) -> List[int]:
-
+        
+        #brute force go through every pair of exponents while the 
         res = set()
         i = 0
-        while x ** i <= bound:
+        while x ** i < bound:
             v1 = x ** i
             j = 0
             while (y ** j) + v1 <= bound:
