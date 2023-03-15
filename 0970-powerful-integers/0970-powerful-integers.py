@@ -8,7 +8,7 @@ class Solution:
         if x == 1:
             ls1 = [1]
         else:
-            while x ** i <= bound:
+            while x ** i < bound:
                 ls1.append(x ** i)
                 i+=1
         
@@ -17,16 +17,11 @@ class Solution:
         if y == 1:
             ls2 = [1]
         else:
-            while y ** i <= bound:
+            while y ** i < bound:
                 ls2.append(y**i)
                 i+=1
-        
-        
-        
-        #print(ls1)
-        #print(ls2)
-        
-        
+
+                
         res = set()
         
         for i in range(len(ls1)):
