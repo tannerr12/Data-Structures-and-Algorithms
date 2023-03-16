@@ -13,8 +13,8 @@ class Solution:
         #heapArrive = []
         heapLeave = []
         
-        av = [i for i in range(10 ** 5)]
-    
+        av = []
+        count = 0
         
         i = 0
         
@@ -27,7 +27,11 @@ class Solution:
                 l,c = heappop(heapLeave)
                 heappush(av, c)
             
-            chair = heappop(av)
+            if av:
+                chair = heappop(av)
+            else:
+                chair = count
+                count +=1
             if idx == targetFriend:
                 return chair
             
