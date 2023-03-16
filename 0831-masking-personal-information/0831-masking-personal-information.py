@@ -1,6 +1,6 @@
 class Solution:
     def maskPII(self, s: str) -> str:
-        
+        #nothing to the question its just super tedious
         #first figure out if it is an email or a phone #
         email = False
         if '@' in s:
@@ -29,11 +29,6 @@ class Solution:
             
         else:
             
-            #op = s.find('(')
-            
-            #cl = s.find(')')
-            
-            #bracket = s.find('-')
             ns = ''
             for char in s:
                 if char in '()-+ ':
