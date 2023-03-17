@@ -3,10 +3,10 @@ class Solution:
         
         
         
-        c = Counter(s)
+        #c = Counter(s)
         
-        if s[0] != 'a' or c['a'] != c['b'] or c['a'] != c['c']:
-            return False
+        #if s[0] != 'a' or c['a'] != c['b'] or c['a'] != c['c']:
+        #    return False
         
         #the solution is to just go through with a stack and anytime we run into a 'c' we pop twice which should be 'b' and 'a' in that order
         #if we run into an 'a' or 'b' we simply add it to the top of the stack
