@@ -1,10 +1,12 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         
-        c = Counter(s)
         
-        if s[0] != 'a' or c['a'] != c['b'] or c['a'] != c['c'] or 'abc' not in s:
-            return False
+        #
+        #c = Counter(s)
+        
+        #if s[0] != 'a' or c['a'] != c['b'] or c['a'] != c['c'] or 'abc' not in s:
+        #    return False
         
         
         stack = []
