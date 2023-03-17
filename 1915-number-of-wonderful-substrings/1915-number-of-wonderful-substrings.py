@@ -30,7 +30,7 @@ class Solution:
             
             res += mp[prefix[i]]
             bit = prefix[i]
-            for j in range(11):
+            for j in range(10):
                 flip = bit ^ (1 << j)
                 res += mp[flip]
                 
