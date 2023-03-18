@@ -1,10 +1,10 @@
 class Solution:
     def longestCommonSubsequence(self, arrays: List[List[int]]) -> List[int]:
         
-        mp = {}
+        mp = defaultdict(int)
         
-        for i in range(len(arrays)):
-            mp[i] = Counter(arrays[i])
+       # for i in range(len(arrays)):
+       #     mp[i] = Counter(arrays[i])
             
         #print(mp)
         res = []
@@ -14,9 +14,9 @@ class Solution:
             n = arrays[0][i]
             for j in range(1, len(arrays)):
                 
-                if mp[j][n] > 0:
-                    mp[j][n] -= 1
-                else:
+                while mp[j] < len(arrays[j]) and arrays[j][mp[j]] < n:
+                    mp[j] += 1
+                if mp[j] >= len(arrays[j]) or arrays[j][mp[j]] != n:
                     valid = False
                     break
             
