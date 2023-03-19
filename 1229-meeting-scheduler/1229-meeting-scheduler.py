@@ -15,22 +15,22 @@ class Solution:
         
         sl.sort()
         count = 0
-        s,e = float('inf'), float('-inf')
+        s = float('inf')
         for time, val in sl:
             if val > 0:
                 count += val
             
             if count == 2:
                 s = min(time, s)
-                e = max(time, e)
-                if e-s >= duration:
+                
+                if time-s >= duration:
                     return [s, s + duration]
                 
             if val < 0:
                 count += val
             
             if count < 2:
-                s,e = float('inf'), float('-inf')
+                s = float('inf')
             
             
         
