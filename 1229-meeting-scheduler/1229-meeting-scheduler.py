@@ -22,7 +22,6 @@ class Solution:
             
             if count == 2:
                 s = min(time, s)
-                
                 if time-s >= duration:
                     return [s, s + duration]
                 
