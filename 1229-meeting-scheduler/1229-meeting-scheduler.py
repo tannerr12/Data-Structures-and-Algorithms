@@ -1,19 +1,19 @@
-from sortedcontainers import SortedList
+
 class Solution:
     def minAvailableDuration(self, slots1: List[List[int]], slots2: List[List[int]], duration: int) -> List[int]:
         
-        sl = SortedList()
+        sl = []
         
         for s,e in slots1:
-            sl.add((s, 1))
-            sl.add((e,-1))
+            sl.append((s, 1))
+            sl.append((e,-1))
         
         for s,e in slots2:
-            sl.add((s, 1))
-            sl.add((e,-1))
+            sl.append((s, 1))
+            sl.append((e,-1))
             
         
-        doubleT = []
+        sl.sort()
         count = 0
         s,e = float('inf'), float('-inf')
         for time, val in sl:
