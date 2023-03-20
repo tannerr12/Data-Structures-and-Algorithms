@@ -13,9 +13,9 @@ class Solution:
                 res = min(res, dfs(num // 2) + 1)
             #else if odd we take 2 paths
             else:
-                res = min(res,dfs(num + 1) + 1)
+                
                 res = min(res,dfs(num - 1) + 1)
-            
+                res = min(res,dfs(num + 1) + 1)
             
             return res
         
