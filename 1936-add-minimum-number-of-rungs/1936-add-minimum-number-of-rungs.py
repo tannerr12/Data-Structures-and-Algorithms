@@ -6,13 +6,9 @@ class Solution:
         
         for val in rungs:
             
-            d = val - cur
-            
-            minus = 0
-            if d % dist == 0:
-                minus = -1
-            if d > dist:
-                res += (d // dist) + minus
+            d = (val - cur -1) // dist
+        
+            res += d
             cur = val
         
         return res
