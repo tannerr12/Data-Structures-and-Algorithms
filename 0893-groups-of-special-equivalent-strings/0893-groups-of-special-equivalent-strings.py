@@ -1,5 +1,9 @@
 class Solution:
     def numSpecialEquivGroups(self, words: List[str]) -> int:
+        
+        #interesting problem
+        #solved using a tuple of size 52 to hold all of the alpha characters * 2 
+        #the second half being used to hold odd and the first half to hold even
         mp = defaultdict(int)
         #tuple the size of 52
         for i in range(len(words)):
