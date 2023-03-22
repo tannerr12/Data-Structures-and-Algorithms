@@ -7,7 +7,10 @@
 class Solution:
     def sufficientSubset(self, root: Optional[TreeNode], limit: int) -> Optional[TreeNode]:
         
-        
+        #we dfs all the way to the bottom of the tree subtracting the roots value from our current limit
+        #if any of our leaf nodes are less than limit after this pass subtraction we remove it and return None else we return that node
+        #if we do encounter an non leaf where both the left and right were removed inclusive of the current node value we return None stating 
+        #that this entire tree is safe to remove. Eventually at the end we return the source root
         def dfs(root, lim):
             
             if root.right == root.left:
