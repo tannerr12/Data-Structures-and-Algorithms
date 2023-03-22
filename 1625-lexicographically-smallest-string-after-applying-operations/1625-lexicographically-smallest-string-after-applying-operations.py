@@ -52,11 +52,15 @@ class Solution:
         """
         
         seen = set()
+        res = 'z' 
+     
         def dfs(s):
-            
+            nonlocal res
             if s in seen:
                 return
             
+            if s < res:
+                res = s
             seen.add(s)
             #2 options
             #increment all evens
@@ -76,7 +80,7 @@ class Solution:
             
         
         dfs(s)
-        
+        return res
         #print(seen)
         ls = list(seen)
         ls.sort()
