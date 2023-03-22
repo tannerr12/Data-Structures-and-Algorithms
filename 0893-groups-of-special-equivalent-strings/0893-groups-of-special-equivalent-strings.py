@@ -7,7 +7,7 @@ class Solution:
         mp = defaultdict(int)
         #tuple the size of 52
         for i in range(len(words)):
-            a = [0] * 52
+            a = [0] * 51
             for j in range(len(words[i])):
                 char = words[i][j]
                 if j % 2 == 0:
@@ -15,7 +15,7 @@ class Solution:
                     a[v] += 1
                 else:
                     v = ord(char) - ord('a')
-                    v += 26
+                    v += 25
                     a[v] +=1
             
             mp[tuple(a)] += 1
