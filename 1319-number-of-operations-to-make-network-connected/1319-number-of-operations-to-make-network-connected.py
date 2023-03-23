@@ -12,19 +12,15 @@ class Solution:
         def find(val):
             
             if val == parent[val]:
-                
                 return val
             
             parent[val] = find(parent[val])
-            
             return parent[val]
         
         
         def union(x,y):
             
             v1,v2 = find(x),find(y)
-            
-            
             if v1 != v2:
                 
                 if rank[v1] > rank[v2]:
@@ -34,14 +30,15 @@ class Solution:
                 else:
                     rank[v1] +=1
                     parent[v2] = v1
-        
-        unique = set()
+                
+                return True
+            return False    
+            
+        res = n
         for x,y in connections:    
-            union(x,y)
+            if union(x,y):
+                res -=1
         
-        for i in range(len(parent)):
-            unique.add(find(i))
-        
-        
-        return len(unique) -1
+  
+        return res -1
         
