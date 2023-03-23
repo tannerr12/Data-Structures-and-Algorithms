@@ -15,8 +15,12 @@ class Solution:
                 pointer = root
             
             dfs(root.left, root)
-            #dfs(root.right, root)
             
+            #once we hit a leaf node we want to flip the parents left and right to None to avoid a cycle
+            #we will need the parents right so lets save that, We than assign this nodes right = parent node and the 
+            #left to be equal to the parents right. Since rights only go 1 level deep we dont need to traverse the right side of the
+            #tree at all and just need to get to the bottom of the left than go from there. Another thing to note is by the time we get back to the top
+            #our root is now a leaf so if we reach a leaf node we should save that so it can be returned later
             if par:
                 right = par.right
                 par.left = None
