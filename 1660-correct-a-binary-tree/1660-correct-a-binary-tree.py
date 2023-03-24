@@ -7,31 +7,30 @@
 class Solution:
     def correctBinaryTree(self, root: TreeNode) -> TreeNode:
         
-        r = root
-        
+        #We will do BFS right -> left and keep track of the parent
         q = deque()
-        q.append((root, None, ''))
+        q.append((root, None))
         seen = set()
         while q:
             
             for i in range(len(q)):
                 
-                node,par,direc = q.popleft()
+                node,par = q.popleft()
                 seen.add(node)
                 if node.right:
                     if node.right in seen:
-                        if direc == 'l':
+                        if par.left == node:
                             par.left = None
                         else:
                             par.right = None
                         
                         break
                     
-                    q.append((node.right, node, 'r'))
+                    q.append((node.right, node))
                 
                 if node.left:
-                    q.append((node.left, node, 'l'))
+                    q.append((node.left, node))
                     
                 
-        return r
+        return root
                 
