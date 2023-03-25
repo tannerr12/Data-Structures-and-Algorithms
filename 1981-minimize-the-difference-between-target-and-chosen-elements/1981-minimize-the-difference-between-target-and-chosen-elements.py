@@ -1,6 +1,11 @@
 class Solution:
     def minimizeTheDifference(self, mat: List[List[int]], target: int) -> int:
-        res = float('inf')
+        res = 0
+        
+        for i in range(len(mat)):
+            res += mat[i][0]
+            
+        res = abs(target - res)
         
         @cache
         def dfs(r,total):
