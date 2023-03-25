@@ -1,10 +1,11 @@
 class Solution:
     def minimizeTheDifference(self, mat: List[List[int]], target: int) -> int:
         res = float('inf')
+        
         @cache
         def dfs(r,total):
             nonlocal res
-            if total - target >= res:
+            if total - target >= res or res == 0:
                 return
             if r == len(mat):
                 res = min(res,abs(target - total))
