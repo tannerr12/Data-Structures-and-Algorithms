@@ -1,12 +1,14 @@
 class Solution:
     def minimizeTheDifference(self, mat: List[List[int]], target: int) -> int:
         res = 0
-        
+        #sorting is very important here and will optimize by 400% this is because we exit early if the value is too large
+        #I also set our base as the smallest sum in the array to help our exit early
         for i in range(len(mat)):
             mat[i].sort()
             res += mat[i][0]
             
         res = abs(target - res)
+        
         
         @cache
         def dfs(r,total):
