@@ -22,6 +22,8 @@ class Solution:
                 ones -= val
             
             elif twos:
+                if ones == 0 and k == twos * 2:
+                    return True
                 if k > twos:
                     val = k - twos
                     ones = val
