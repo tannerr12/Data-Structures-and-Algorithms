@@ -1,6 +1,7 @@
 class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
-        
+        """
+        #option 2 binary search an array of arrays of size 26 for next occurance
         arr = [[] for i in range(26)]
         for i in range(len(s)):
             v = ord(s[i]) - ord('a')
@@ -31,3 +32,27 @@ class Solution:
                 res +=1
         
         return res
+        
+        """
+        
+        mp = defaultdict(list)
+        
+        for word in words:
+            
+            mp[word[0]].append(word)
+            
+            
+        res = 0
+        for i,s in enumerate(s):
+            
+            wordls = mp[s]
+            mp[s] = []
+            for word in wordls:
+                
+                if len(word) == 1:
+                    res +=1
+                else:
+                    mp[word[1]].append(word[1:])
+            
+        return res
+            
