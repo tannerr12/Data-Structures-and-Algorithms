@@ -13,8 +13,6 @@ class Solution:
             
             twos += val // 2
         
-        #print(ones)
-        #print(twos)
         
         while k:
             
@@ -25,9 +23,10 @@ class Solution:
             
             elif twos:
                 if k > twos:
-                    ones = 1
-                    twos -=1
-                    k-=1
+                    val = k - twos
+                    ones = val
+                    twos -= (val // 2)
+                    
                 else:
                     return True
             else:
