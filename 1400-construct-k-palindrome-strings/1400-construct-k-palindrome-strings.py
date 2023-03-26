@@ -16,21 +16,24 @@ class Solution:
         #print(ones)
         #print(twos)
         
-        while k > 1:
+        while k:
             
             if ones:
-                ones -=1
+                val = min(k,ones)
+                k -= val
+                ones -= val
             
             elif twos:
                 if k > twos:
                     ones = 1
                     twos -=1
+                    k-=1
                 else:
-                    twos -=1
+                    return True
             else:
                 return False
             
-            k -=1
         
         
-        return ones <= 1 and twos or ones == 1
+        
+        return ones == 0
