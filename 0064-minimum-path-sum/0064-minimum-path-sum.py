@@ -1,6 +1,6 @@
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
-
+        """
         dp = [[0 for j in range(len(grid[0]) + 1)] for i in range(len(grid) + 1)]
 
         for i in range(len(dp)):
@@ -22,7 +22,7 @@ class Solution:
         
         
         return dp[0][0]
-        
+        """
         
         heap = [[grid[0][0],0,0]]
         seen = set()
