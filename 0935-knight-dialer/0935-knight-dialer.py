@@ -45,7 +45,8 @@ class Solution:
         res = 0
         
         for i in range(10):
-            res += dfs(i,n-1)
+            res += dfs(i,n-1) 
+            res %= MOD
         
         
-        return res % MOD
+        return res 
