@@ -1,13 +1,13 @@
 class Solution:
     def canTransform(self, start: str, end: str) -> bool:
+        #check to make sure both counts == eachother
+        #countS = Counter(start)
+        #countE = Counter(end)
         
-        countS = Counter(start)
-        countE = Counter(end)
+        #if countS != countE:
+        #    return False
         
-        if countS != countE:
-            return False
         #cant get R past L
-        
         #try one pass each way
         
         need = 0
