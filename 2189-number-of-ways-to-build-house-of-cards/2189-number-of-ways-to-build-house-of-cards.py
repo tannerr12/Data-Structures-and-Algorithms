@@ -5,11 +5,12 @@ class Solution:
         @cache
         def dfs(rem, prev):
             
-            if rem == 0:
+            if rem == 0 or rem == 2:
                 return 1
             
             res = 0
-            i = 2
+            i = 5
+    
             while i <= prev - 3 and i <= rem:
                 
                 res += dfs(rem - i, i)
