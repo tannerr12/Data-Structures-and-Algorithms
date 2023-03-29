@@ -2,9 +2,8 @@ class Solution:
     def maxEvents(self, events: List[List[int]]) -> int:
         
         
-        #events.sort(key = lambda x: (x[1], x[0]))
+        #
         events.sort()
-        #print(events)
         res = 0
         day = events[0][0]
         i = 0
@@ -18,8 +17,6 @@ class Solution:
                 heappush(heap, events[i][1])
                 i+=1
                 
-            
-            
             while heap and heap[0] < day:
                 heappop(heap)
             
@@ -27,7 +24,11 @@ class Solution:
             if heap:
                 heappop(heap)
                 res +=1
+            
+            elif not heap and i < len(events):
                 
+                day = events[i][0]
+                continue
             day += 1
 
         
