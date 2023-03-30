@@ -26,8 +26,7 @@ class PeekingIterator:
         :type iterator: Iterator
         """
         self.it = iterator
-        self.q = []
-        self.idx = 0
+        self.nxt = None
 
     def peek(self):
         """
@@ -35,10 +34,10 @@ class PeekingIterator:
         :rtype: int
         """
         
-        if self.it.hasNext() and self.idx >= len(self.q):
-            self.q.append(self.it.next())
+        if self.it.hasNext() and not self.nxt:
+            self.nxt = self.it.next()
     
-        return self.q[-1]
+        return self.nxt
     
 
     def next(self):
@@ -46,9 +45,9 @@ class PeekingIterator:
         :rtype: int
         """
         val = 0
-        if self.idx < len(self.q):
-            val = self.q[self.idx]
-            self.idx +=1
+        if self.nxt:
+            val = self.nxt
+            self.nxt = None
             
         else:
             val = self.it.next()
@@ -59,7 +58,7 @@ class PeekingIterator:
         """
         :rtype: bool
         """
-        return self.idx < len(self.q) or self.it.hasNext()
+        return self.nxt != None or self.it.hasNext()
 
 # Your PeekingIterator object will be instantiated and called as such:
 # iter = PeekingIterator(Iterator(nums))
