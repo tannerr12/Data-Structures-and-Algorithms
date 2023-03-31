@@ -1,8 +1,8 @@
 class Solution:
     def countMaxOrSubsets(self, nums: List[int]) -> int:
         
-
-        
+        """
+        #count occurances of each xor and add them to the new xor when a new number allows it to reach
         mp = defaultdict(int)
         mp[0] = 1
         
@@ -12,32 +12,37 @@ class Solution:
         
         
         return mp[max(mp)]
-        """
+        
         ans = set()
         
-       
+        """
+        bitOr = 0
+        for num in nums:
+            bitOr |= num
+            
+        
         def backtrack(i, mask,val):
             nonlocal bitOr
-            nonlocal ans
+            #nonlocal ans
             
-            if val == bitOr and mask not in ans:
-                ans.add(mask)
-                
             if i >= len(nums):
-                return
+                if val == bitOr:
+                    return 1
+                return 0
         
+            res = 0
             #dont take
-            backtrack(i+1, mask,val)
+            res += backtrack(i+1, mask,val)
             
             
             #take
-            backtrack(i+1, mask | (1 << i), val | nums[i])
+            res += backtrack(i+1, mask | (1 << i), val | nums[i])
             
-  
+            return res
         
-        backtrack(0,0,0)
-        return len(ans)
+        return backtrack(0,0,0)
+        
        
         
         
-        """
+        
