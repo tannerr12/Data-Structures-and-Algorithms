@@ -9,34 +9,24 @@ class Solution:
             
         queries.sort()
         
-        q1 = deque(nums)  
-        q2 = deque()
+        idx = 0
         time = 0
-        turn = 0
+        turn = False
+        
         
         res = [-1] * len(queries)
         for t,j,i in queries:
             
-            while time < t:
-                
-                if not q1:
-                    turn = 1
-                elif not q2:
-                    turn = 0
-                    
-                if turn == 0 and q1:
-                    q2.append(q1.popleft())
-
-                elif turn == 1 and q2:
-                    q1.append(q2.popleft())
-
-                time +=1
-            
-           
-            if j < len(q1):
-                ans = q1[j]
+            idx = t % len(nums)
+            cycle = t // len(nums)
+            if cycle % 2 == 1 and idx == 0:
+                continue
+            elif cycle % 2 == 0 and j + idx < len(nums):
+                ans = nums[j + idx]
                 res[i] = ans
-                
+            elif cycle % 2 == 1 and j < idx:
+                ans = nums[j]
+                res[i] = ans
 
         return res
                 
