@@ -1,15 +1,18 @@
 class Solution:
     def countMaxOrSubsets(self, nums: List[int]) -> int:
         
-        bitOr = 0
+
         
-        for num in nums:
-            
-            bitOr |= num
-            
+        mp = defaultdict(int)
+        mp[0] = 1
         
-        #print(bitOr)
+        for i in range(len(nums)):
+            for k,c in list(mp.items()):    
+                mp[k | nums[i]] += c
         
+        
+        return mp[max(mp)]
+        """
         ans = set()
         
        
@@ -28,8 +31,7 @@ class Solution:
             
             
             #take
-            if mask | (1 << i) not in ans:
-                backtrack(i+1, mask | (1 << i), val | nums[i])
+            backtrack(i+1, mask | (1 << i), val | nums[i])
             
   
         
@@ -38,4 +40,4 @@ class Solution:
        
         
         
-        
+        """
