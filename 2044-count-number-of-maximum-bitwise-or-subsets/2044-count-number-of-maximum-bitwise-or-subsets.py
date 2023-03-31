@@ -21,7 +21,7 @@ class Solution:
             bitOr |= num
             
         
-        def backtrack(i, mask,val):
+        def backtrack(i, val):
             nonlocal bitOr
             #nonlocal ans
             
@@ -32,15 +32,15 @@ class Solution:
         
             res = 0
             #dont take
-            res += backtrack(i+1, mask,val)
+            res += backtrack(i+1, val)
             
             
             #take
-            res += backtrack(i+1, mask | (1 << i), val | nums[i])
+            res += backtrack(i+1, val | nums[i])
             
             return res
         
-        return backtrack(0,0,0)
+        return backtrack(0,0)
         
        
         
