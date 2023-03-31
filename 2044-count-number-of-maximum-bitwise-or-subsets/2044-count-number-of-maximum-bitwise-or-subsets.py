@@ -12,8 +12,8 @@ class Solution:
         
         ans = set()
         
-        @cache
-        def backtrack(i, mask,val,tot):
+       
+        def backtrack(i, mask,val):
             nonlocal bitOr
             nonlocal ans
             
@@ -21,20 +21,18 @@ class Solution:
                 ans.add(mask)
                 
             if i >= len(nums):
-                return tot
+                return
         
-            
-            res = 0
             #dont take
-            res += backtrack(i+1, mask,val,tot)
+            backtrack(i+1, mask,val)
             
             
             #take
-            res += backtrack(i+1, mask | (1 << i), val | nums[i],tot)
+            backtrack(i+1, mask | (1 << i), val | nums[i])
             
-            return res
+  
         
-        backtrack(0,0,0,0)
+        backtrack(0,0,0)
         return len(ans)
        
         
