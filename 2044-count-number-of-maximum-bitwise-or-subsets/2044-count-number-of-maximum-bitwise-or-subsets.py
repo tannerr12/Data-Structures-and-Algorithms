@@ -28,7 +28,8 @@ class Solution:
             
             
             #take
-            backtrack(i+1, mask | (1 << i), val | nums[i])
+            if mask | (1 << i) not in ans:
+                backtrack(i+1, mask | (1 << i), val | nums[i])
             
   
         
