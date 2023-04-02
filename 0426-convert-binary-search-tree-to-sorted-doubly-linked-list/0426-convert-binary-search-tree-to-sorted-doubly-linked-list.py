@@ -47,11 +47,8 @@ class Solution:
         
         dfs(root,-1)
         
-        arr.sort()
-        #print(arr)
-        
-        #mx.right = mn
-        #mn.left = mx
+      
+
         for i in range(len(arr)):
             l,r = i - 1,i + 1
             if r >= len(arr):
