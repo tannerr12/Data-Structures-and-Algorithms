@@ -1,9 +1,8 @@
 class Solution:
     def predictPartyVictory(self, s: str) -> str:
         
-        rad = s.count('R')
-        dire = s.count('D')
-        r1,d1 = rad,dire
+        r1 = s.count('R')
+        d1 = s.count('D')
         banned = set()
         rban = 0
         dban = 0
