@@ -8,7 +8,7 @@
 class Solution:
     def search(self, reader: 'ArrayReader', target: int) -> int:
         
-        l, r = 0,10** 8
+        l, r = 0,10** 6
         
         while l <= r:
             
