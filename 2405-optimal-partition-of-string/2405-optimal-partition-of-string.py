@@ -1,14 +1,14 @@
 class Solution:
     def partitionString(self, s: str) -> int:
         
-        letter = set()
+        letter = 0
         res = 1
         for char in s:
-            
-            if char in letter:
-                letter = set()
+            v = ord(char) - ord('a')
+            if letter & (1 << v):
+                letter = 0
                 res += 1
             
-            letter.add(char)
+            letter |= (1 << v)
         
         return res 
