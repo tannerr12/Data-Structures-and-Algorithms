@@ -5,7 +5,7 @@ class Solution:
         seen = set()
         directions = [[-1,0], [1,0], [0,-1], [0,1]]
         
-        @cache
+        
         def dfs(i,j,par,char):
             nonlocal n,m
             if i >= n or i < 0 or j >= m or j < 0 or grid[i][j] != char:
