@@ -9,7 +9,7 @@ class Node:
 """
 
 class Solution:
-    def flipBinaryTree(self, root: 'Node', leaf: 'Node') -> 'Node':
+    def flipBinaryTree(self, r: 'Node', leaf: 'Node') -> 'Node':
         #test leaf
         def dfs2(root):
             
@@ -17,45 +17,41 @@ class Solution:
                 return None
             
             print('val ' + str(root.val))
-            print('parent ' + str(root.parent.val))
+            if root.parent:
+                print('parent ' + str(root.parent.val))
             dfs2(root.left)
             dfs2(root.right)
         
-        found = False
+        
         def dfs(root,par):
-            nonlocal found
+    
             if not root:
                 return None
 
-            if root == leaf:
-                found = True
+            if root == r:
+                root.parent = par
+                return 
+ 
+            if root.left:
+                root.right = root.left
+
+            root.left = root.parent
+            if root.parent.left == root:
+                root.parent.left = None
+                
+            else:
+                root.parent.right = None
             
-            #print(root.val)
-            if root.left and not found:
-                dfs(root.left,root)
-                
-            if root.right and not found:
-                dfs(root.right, root)
+            p = root.parent
+            root.parent = par
             
-            if found and par is not None:
-                if root.left:
-                    root.right = root.left
-                
-                root.left = par
-                if par and par.left == root:
-                    par.left = None
-                    par.parent = root
-                elif par:
-                    par.right = None
-                    par.parent = root
-                
-                return root
+            dfs(p,root)
             return root
             
             
-        dfs(root, None)      
+        dfs(leaf,None)      
         #dfs2(leaf)
-        leaf.parent = None
+        #leaf.parent = None
         return leaf
     
     
