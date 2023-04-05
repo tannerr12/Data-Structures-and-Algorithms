@@ -1,9 +1,6 @@
 class Solution:
     def lastStoneWeightII(self, heap: List[int]) -> int:
-        heap.sort()
-        
-        #print(stones)
-        
+
         @cache
         def dfs(i,tot):
             
