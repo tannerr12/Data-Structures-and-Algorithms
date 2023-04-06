@@ -4,6 +4,7 @@ class Solution:
         
         s = set()
         
+        @cache
         def comb(i, bitmask,word):
             
             if bitmask and word not in s:
@@ -23,6 +24,6 @@ class Solution:
         
         comb(0,0,'')
         
-        #print(s)
+  
         return len(s)
             
