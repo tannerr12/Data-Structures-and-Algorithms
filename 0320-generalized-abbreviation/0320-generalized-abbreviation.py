@@ -2,12 +2,13 @@ class Solution:
     def generateAbbreviations(self, word: str) -> List[str]:
         
         
-        res = set()
+        res = []
+        
         @cache
         def dfs(i, w):
             nonlocal res
             if i >= len(word):
-                res.add(w)
+                res.append(w)
                 return
             
             for j in range(i, len(word)):
