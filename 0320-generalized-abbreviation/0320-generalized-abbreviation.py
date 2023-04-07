@@ -3,6 +3,7 @@ class Solution:
         
         
         res = set()
+        @cache
         def dfs(i, w):
             nonlocal res
             if i >= len(word):
