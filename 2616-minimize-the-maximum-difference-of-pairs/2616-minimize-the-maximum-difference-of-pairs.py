@@ -8,6 +8,8 @@ class Solution:
             k = p
             i = 1
             while i < len(nums):
+                if k <=0:
+                    return True
                 if nums[i] - nums[i-1] <= val:
                     k -=1
                     i +=1
