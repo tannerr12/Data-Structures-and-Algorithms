@@ -18,7 +18,7 @@ class Solution:
             else:
                 return False
         
-        l,r = 0,max(nums)
+        l,r = 0,10**9
         res = float('inf')
         while l <= r:
             
