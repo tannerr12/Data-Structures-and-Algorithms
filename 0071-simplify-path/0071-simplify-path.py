@@ -16,8 +16,7 @@ class Solution:
                 
                 while i < len(path) and path[i] == '/':
                     i+=1
-                    
-                
+
                 word = ''
                 
                 while i < len(path) and path[i] != '/':
