@@ -15,7 +15,9 @@ class Solution:
             if len(arr) == 1:
                 return res
             
-            while r > len(arr)-1 or (r > 0 and arr[r] != "0"):
+            if r >= len(arr) -1:
+                r = len(arr) -2 
+            while r > 0 and arr[r] != "0":
                 r -=1
             
             if r == 0 and arr[r] == '1':
