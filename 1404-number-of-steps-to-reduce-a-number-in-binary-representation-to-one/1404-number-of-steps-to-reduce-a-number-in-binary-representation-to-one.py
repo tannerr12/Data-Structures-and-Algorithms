@@ -23,8 +23,8 @@ class Solution:
                 break
                 
             arr[r] = '1'
-            arr[-1] = '0'
-            res +=1
+            arr.pop()
+            res +=2
             
         
         return res
