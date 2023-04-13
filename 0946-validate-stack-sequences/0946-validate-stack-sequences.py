@@ -8,7 +8,7 @@ class Solution:
         
         while r < len(popped):
             
-            if popped[r] not in stack:
+            if not stack or popped[r] != stack[-1]:
                 val = None
                 while l < len(pushed) and val != popped[r]:
                     val = pushed[l]
