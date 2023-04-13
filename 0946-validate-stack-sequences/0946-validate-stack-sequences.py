@@ -4,24 +4,24 @@ class Solution:
         
         stack = []
         
-        pushed = deque(pushed)
-        popped = deque(popped)
+        l,r = 0,0
         seen = set()
-        while popped:
+        while r < len(popped):
             
-            if popped[0] not in seen:
+            if popped[r] not in seen:
                 val = None
-                while pushed and val != popped[0]:
-                    val = pushed.popleft()
+                while l < len(pushed) and val != popped[r]:
+                    val = pushed[l]
                     stack.append(val)
                     seen.add(val)
+                    l +=1
             
             
-            if not stack or stack[-1] != popped[0]:
+            if not stack or stack[-1] != popped[r]:
                 return False
             
             stack.pop()
-            popped.popleft()
+            r +=1
         
         return True
             
