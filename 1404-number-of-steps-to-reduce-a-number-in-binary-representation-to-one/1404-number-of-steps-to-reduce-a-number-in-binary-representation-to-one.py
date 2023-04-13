@@ -3,29 +3,29 @@ class Solution:
         
         
         arr = list(s)
-        
+        l = len(arr)-1
         r = len(arr)-1
         res = 0
-        while len(arr) > 1:
+        while l > 0:
             
-            while len(arr) > 1 and arr[-1] == '0':
-                arr.pop()
+            while l > 0 and arr[l] == '0':
+                l -=1
                 res +=1
             
-            if len(arr) == 1:
+            if l == 0:
                 return res
             
-            if r >= len(arr) -1:
-                r = len(arr) -2 
+            if r >= l -1:
+                r = l -1
             while r > 0 and arr[r] != "0":
                 r -=1
             
             if r == 0 and arr[r] == '1':
-                res += len(arr) + 1
+                res += l + 2
                 break
                 
             arr[r] = '1'
-            arr.pop()
+            l-=1
             res +=2
             
         
