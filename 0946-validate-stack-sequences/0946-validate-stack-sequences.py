@@ -5,15 +5,14 @@ class Solution:
         stack = []
         
         l,r = 0,0
-        seen = set()
+        
         while r < len(popped):
             
-            if popped[r] not in seen:
+            if popped[r] not in stack:
                 val = None
                 while l < len(pushed) and val != popped[r]:
                     val = pushed[l]
                     stack.append(val)
-                    seen.add(val)
                     l +=1
             
             
