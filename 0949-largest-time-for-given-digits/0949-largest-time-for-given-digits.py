@@ -7,9 +7,11 @@ class Solution:
         for key in c:
             if key > 5:
                 great5 += c[key]
-        
-        
+                
+        #set the size of the ranges for each position
         cycl = {0:3, 1:4, 2:0,3:6,4:10}
+        
+        #O(1)
         for i in range(5):
             #spacer
             if i == 2:
@@ -17,18 +19,24 @@ class Solution:
             assigned = False
             
             #edge case
+            #we were allowed to take 2 so fill the second slot in with the largest number we have remaining
             if i == 1 and int(res[0]) < 2:
+                #4 at most
                 mx = max(c)
                 res[i] = str(mx)
                 c[mx] -=1
                 if c[mx] == 0:
                     del c[mx]
                 continue
+                
+            #try all number ranges for the given postion and take the largest
             for j in range(cycl[i] -1,-1,-1):
                 #edge case
+                #if there are more than 2 numbers greater than 5 in the list than we cant take 2 as the first number since we will need it in the second position
                 if i == 0 and j == 2 and great5 >= 2:
                     continue
                 
+                #if we have this number remaining use it and remove it from our dict
                 if j in c:
                     assigned = True
                     res[i] = str(j)
@@ -37,110 +45,9 @@ class Solution:
                         del c[j]
                     break
             
+            #we could not assign this position
             if not assigned:
                 return ""
         
         res[2] = ":"
-        return ''.join(res)
-        #first
-        if 2 in c and great5 < 2:
-            res[0] = 2
-            c[2] -=1
-            if c[2] == 0:
-                del c[2]
-                
-        elif 1 in c:
-            res[0] = 1
-            c[1] -=1
-            if c[1] == 0:
-                del c[1]
-        
-        elif 0 in c:
-            res[0] =0
-            c[0] -=1
-            if c[0] == 0:
-                del c[0]
-        else:
-            return ""
-        
-        
-        if res[0] < 2:
-            mx = max(c)
-            res[1] = mx
-            c[mx] -=1
-            if c[mx] == 0:
-                del c[mx]
-        else:    
-            if 3 in c:
-                res[1] = 3
-                c[3] -=1
-                if c[3] == 0:
-                    del c[3]
-
-            elif 2 in c:
-                res[1] = 2
-                c[2] -=1
-                if c[2] == 0:
-                    del c[2]
-
-            elif 1 in c:
-                res[1] =1
-                c[1] -=1
-                if c[1] == 0:
-                    del c[1]
-            elif 0 in c:
-                res[1] =0
-                c[0] -=1
-                if c[0] == 0:
-                    del c[0]
-            else:
-                return ""
-        
-        res[2] = ":"
-        
-        if 5 in c:
-            res[3] = 5
-            c[5] -=1
-            if c[5] == 0:
-                del c[5]
-                
-        elif 4 in c:
-            res[3] = 4
-            c[4] -=1
-            if c[4] == 0:
-                del c[4]
-        
-
-        elif 3 in c:
-            res[3] = 3
-            c[3] -=1
-            if c[3] == 0:
-                del c[3]
-                
-        elif 2 in c:
-            res[3] = 2
-            c[2] -=1
-            if c[2] == 0:
-                del c[2]
-        
-        elif 1 in c:
-            res[3] =1
-            c[1] -=1
-            if c[1] == 0:
-                del c[1]
-        elif 0 in c:
-            res[3] =0
-            c[0] -=1
-            if c[0] == 0:
-                del c[0]
-        else:
-            return ""
-        
-        #print(c)
-        for key in c:
-            res[4] = key
-        
-       
-        for i in range(len(res)):
-            res[i] = str(res[i])
         return ''.join(res)
