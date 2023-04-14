@@ -7,6 +7,41 @@ class Solution:
         for key in c:
             if key > 5:
                 great5 += c[key]
+        
+        
+        cycl = {0:3, 1:4, 2:0,3:6,4:10}
+        for i in range(5):
+            #spacer
+            if i == 2:
+                continue
+            assigned = False
+            
+            #edge case
+            if i == 1 and int(res[0]) < 2:
+                mx = max(c)
+                res[i] = str(mx)
+                c[mx] -=1
+                if c[mx] == 0:
+                    del c[mx]
+                continue
+            for j in range(cycl[i] -1,-1,-1):
+                #edge case
+                if i == 0 and j == 2 and great5 >= 2:
+                    continue
+                
+                if j in c:
+                    assigned = True
+                    res[i] = str(j)
+                    c[j] -=1
+                    if c[j] == 0:
+                        del c[j]
+                    break
+            
+            if not assigned:
+                return ""
+        
+        res[2] = ":"
+        return ''.join(res)
         #first
         if 2 in c and great5 < 2:
             res[0] = 2
