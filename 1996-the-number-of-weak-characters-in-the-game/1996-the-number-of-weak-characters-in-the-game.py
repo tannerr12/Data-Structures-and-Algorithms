@@ -3,7 +3,6 @@ class Solution:
 
         
         properties.sort()
-        print(properties)
         res = 0
         
         mxdef = properties[-1][1]
@@ -14,6 +13,7 @@ class Solution:
             if att != properties[i+1][0]:
                 mxdef = max(localdef, mxdef)
                 lastAtt = properties[i+1][0]
+                
             localdef = max(localdef, deff)
             if att < lastAtt and deff < mxdef:
                 res +=1
