@@ -17,6 +17,7 @@ class Solution:
             #skip this crime
             res += dfs(m,i+1,p) % MOD
             res %= MOD
+            
             #take this crime
             if m >= group[i]:
                 updatedProfit = p + profit[i] if p + profit[i] < minProfit else minProfit
@@ -26,7 +27,7 @@ class Solution:
             return res % MOD
         
         
-        return dfs(n, 0, 0) % MOD
+        return dfs(n, 0, 0) 
     
         
             
