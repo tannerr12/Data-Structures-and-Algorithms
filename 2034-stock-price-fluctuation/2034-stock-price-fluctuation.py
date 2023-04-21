@@ -7,14 +7,14 @@ class StockPrice:
         self.mn = []
         self.mx = []
         self.counter = 0
-        self.tombstone = defaultdict(dict)
+        self.tombstone = defaultdict(set)
 
     def update(self, timestamp: int, price: int) -> None:
         if timestamp >= self.mxtstamp:
             self.curr = price
             self.mxtstamp = timestamp
         if timestamp in self.time:
-            self.tombstone[self.time[timestamp][0]][self.time[timestamp][1]] = True
+            self.tombstone[self.time[timestamp][0]].add(self.time[timestamp][1])
         self.time[timestamp] = [price, self.counter]
         
         heappush(self.mn, [price, self.counter])
