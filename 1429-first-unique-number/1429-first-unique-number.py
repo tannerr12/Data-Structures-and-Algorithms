@@ -15,9 +15,12 @@ class FirstUnique:
         return self.q[0] if self.q else -1
 
     def add(self, value: int) -> None:
-        
-        self.q.append(value)
+        if self.count[value] == 0:
+            self.q.append(value)
+            
         self.count[value] +=1
+        while self.q and self.count[self.q[0]] > 1:
+            self.q.popleft()
 
 
 # Your FirstUnique object will be instantiated and called as such:
