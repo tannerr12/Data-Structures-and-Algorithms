@@ -7,6 +7,11 @@ class Solution:
         1,1,1
         0,1,1
         1,1,1
+        
+        
+        super tedious problem but the idea is to keep a prefix sum map to each row and column for vertical and horizontal outside edges 
+        than each time we see a one we go through the top and left layers until we no longer see 1s and use our prefix array to verify that all the
+        outter edges are also ones and if valid res = (depth+1) ** 2
         '''
         
         
@@ -27,8 +32,7 @@ class Solution:
                 row[i].append(grid[i][j] + row[i][-1])
                 
         
-        #print(col)
-        #print(row)
+
         res = 0
         for i in range(m):
             for j in range(n):
