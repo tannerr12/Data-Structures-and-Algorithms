@@ -9,17 +9,15 @@ class Solution:
         dnode = head
         prev = None
         head = head.next   
-        running = 0
+        
         while head:
         
             if head.val == 0:
                 prev = node
-                node.val = running
                 node = node.next
-                running = 0
-            
+                node.val = 0
             else:
-                running += head.val
+                node.val += head.val
             
             head = head.next
         
