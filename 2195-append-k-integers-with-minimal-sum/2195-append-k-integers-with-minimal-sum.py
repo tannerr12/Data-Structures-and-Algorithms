@@ -7,7 +7,7 @@ class Solution:
         
         for i in range(len(nums) -1):
             
-            if k > 0 and nums[i] != nums[i+1]:
+            if k > 0 and nums[i] != nums[i+1] and nums[i+1] != nums[i]:
                 if nums[i+1] - nums[i] > k:
                     res += ((nums[i] + k) * (nums[i] + k + 1) //2) - ((nums[i] * (nums[i] + 1)) //2) 
                     k = 0
