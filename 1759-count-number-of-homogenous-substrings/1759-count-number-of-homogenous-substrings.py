@@ -4,19 +4,15 @@ class Solution:
         #count = Counter(s)
         res = 0
         MOD = 10 ** 9 + 7
-        
-        curChar = ''
-        size = 0
+        size = 1
     
-        for i, e in enumerate(s):
+        for i in range(1,len(s)):
             
-            if e == curChar:
+            if s[i] == s[i-1]:
                 size +=1
             else:
-                if size > 0:
-                    res += (size * (size + 1)) // 2
-                    res %= MOD
-                curChar = e
+                res += (size * (size + 1)) // 2
+                res %= MOD
                 size = 1
         
         
