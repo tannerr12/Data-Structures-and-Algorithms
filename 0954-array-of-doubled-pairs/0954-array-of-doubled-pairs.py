@@ -22,16 +22,12 @@ class Solution:
         ''' 
         arr.sort()
         count = Counter(arr)
-        
-        pairs = []
-        
+
         for i in range(len(arr)):
             val = arr[i]
             
             if count[val] > 0 and count[val * 2] > 0:
-                pairs.append([val,val*2])
                 count[val] -=1
                 count[val*2] -=1
         
-        #print(count)
         return max(count.values()) == 0
