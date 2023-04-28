@@ -28,7 +28,7 @@ class Solution:
             group[word[0]].append(word)
         pot = defaultdict(list)
         
-        @cache
+       
         def dfs(i,w,j):
             nonlocal pot
             if j >= len(w):
