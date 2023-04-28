@@ -1,13 +1,13 @@
 class trie:
-    
+    '''
     def __init__(self, char):
         
         self.char = char
         self.adj = {}
-
+    '''
 class Solution:
     def findLongestWord(self, s: str, dictionary: List[str]) -> str:
-        
+        ''' 
         mp = trie('')
         group = defaultdict(list)
         for word in dictionary:
@@ -21,9 +21,15 @@ class Solution:
                     mpp.adj[w] = trie(w)
                     mpp = mpp.adj[w]
         
+        '''
         
+        group = defaultdict(list)
+        for word in dictionary:
+            group[word[0]].append(word)
         pot = defaultdict(list)
-        def dfs(i,w,j,t):
+        
+        @cache
+        def dfs(i,w,j):
             nonlocal pot
             if j >= len(w):
                 pot[len(w)].append(w)
@@ -36,11 +42,11 @@ class Solution:
                 i+=1
             
             if i < len(s):
-                res = max(res,dfs(i+1, w, j+1, t.adj[s[i]]))
+                res = max(res,dfs(i+1, w, j+1))
             
             return res 
         
-        print(group)
+        #print(group)
         
         res = ''
         seen = set()
@@ -50,10 +56,10 @@ class Solution:
                 continue
             seen.add(w)
             for word in group[w[0]]:
-                res = max(res,dfs(i + 1,word,1,mp.adj[w[0]]))
+                dfs(i + 1,word,1)
         
         res = '{'
-        #print(max(pot))
+       
         if pot:
             for val in pot[max(pot)]:
                 res = min(res, val)
