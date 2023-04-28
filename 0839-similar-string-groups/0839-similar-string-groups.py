@@ -2,7 +2,7 @@ class Solution:
     def numSimilarGroups(self, strs: List[str]) -> int:
         parent = [i for i in range(len(strs))]
         rank = [0] * len(strs)
-        
+        count = len(strs)
         def find(val):
             
             if val == parent[val]:
@@ -14,7 +14,7 @@ class Solution:
         
         
         def union(x,y):
-            
+            nonlocal count
             v1,v2 = find(x),find(y)
             
             
@@ -34,6 +34,8 @@ class Solution:
                     parent[v2] = v1
                     rank[v1] +=1
                 
+                
+                count -=1
                 return False
             
             return True
@@ -66,9 +68,6 @@ class Solution:
                     union(i,j)
         
         
-        for i in range(len(strs)):
-            find(i)
-        #print(parent)
-        c = Counter(parent)
-        return len(c)
+        
+        return count
                 
