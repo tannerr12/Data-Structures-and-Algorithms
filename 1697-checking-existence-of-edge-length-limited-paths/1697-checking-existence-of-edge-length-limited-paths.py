@@ -41,6 +41,12 @@ class Solution:
         
         res = [False] * len(queries)
         
+        
+        
+        #we can do this because the quieries are given to us ahead of time
+        #we sort the input of the queries to have weights always increasing than do a "stop and go"
+        #style solve on the edge list where we continue to add edges to our union while they are less than the limit on the query
+        #we can use isconnected to see if these edges up this this point merged the 2 or not and add the result to our array
         edgeidx = 0
         edgelen = len(edgeList)
         for p,q,limit,i in queries:
