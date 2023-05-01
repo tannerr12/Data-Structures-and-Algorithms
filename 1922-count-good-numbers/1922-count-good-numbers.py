@@ -6,10 +6,6 @@ class Solution:
         
         ecount = n//2
         total = pow(primes,ecount,MOD)
-        total *= pow(evens,ecount,MOD)
-
-        if n % 2:
-            total = (total * 5) % MOD
-        
+        total *= pow(evens,ecount + n % 2,MOD)        
         
         return total % MOD
