@@ -4,7 +4,7 @@ class Solution:
         
         #try all 8 directions from the king and exit once we hit a queen
         
-        result = set()
+        result = []
         q = set()
         for i in range(len(queens)):
             x,y = queens[i]
@@ -17,7 +17,7 @@ class Solution:
             nx,ny = i + x, j + y
             while nx >= 0 and nx < 8 and ny >= 0 and ny < 8:
                 if (nx,ny) in q:
-                    result.add((nx,ny))
+                    result.append([nx,ny])
                     break
                 
                 nx += x
