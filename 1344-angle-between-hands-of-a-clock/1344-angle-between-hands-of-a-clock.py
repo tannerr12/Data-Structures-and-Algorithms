@@ -16,29 +16,6 @@ class Solution:
         #print(hour)
         #print(mn)
         
-        res = abs(hour - mn) * anglephour
-        if hour > mn:
-            count = 0
-            thour = hour
-            while int(thour) != int(mn):
-                thour += 1
-                count +=1
-                thour %=12
-
-            if thour <= mn:
-                res = min(res, (count + abs(thour - mn)) * anglephour)
-            else:
-                res = min(res, (abs(count - abs(thour - mn))) * anglephour) 
-        else:
-            count = 0
-            tmin = mn
-            while int(tmin) != int(hour):
-                tmin += 1
-                count +=1
-                tmin %=12
-
-            if tmin <= hour:
-                res = min(res,abs((count + abs(hour - tmin)) * anglephour))
-            else:
-                res = min(res, abs((abs(count - abs(hour - tmin))) * anglephour))
+        res = abs(hour - mn) * anglephour  
+        res = min(res, 360 - res)
         return res
