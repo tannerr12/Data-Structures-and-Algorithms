@@ -1,7 +1,7 @@
 class Solution:
     def soupServings(self, n: int) -> float:
         #Edge case that anything >= 4800 ml will always be 1 which greatly simplifies this problem and makes DP possible 
-        if n >= 4800:
+        if n >= 4276:
             return 1
         
         @cache
