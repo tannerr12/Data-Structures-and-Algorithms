@@ -5,47 +5,37 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def findDistance(self, root: Optional[TreeNode], p: int, end: int) -> int:
-        
-        adj = defaultdict(list)
-        start = None
+    def findDistance(self, root: Optional[TreeNode], p: int, q: int) -> int:
+
+        res = 0
         
         def dfs(root):
-            nonlocal start
+            if not root or root.val == p or root.val == q:
+                return root
+            
+            l = dfs(root.left)
+            r = dfs(root.right)
+            
+            if l and r:
+                return root
+            else:
+                return l or r
+                        
+        
+        
+        
+        def find(root,val):
+            
             if not root:
-                return 
+                return float('inf')
             
-            if root.val == p:
-                start = root
-            if root.left:
-                adj[root].append(root.left)
-                adj[root.left].append(root)
-                dfs(root.left)
-            if root.right:
-                adj[root].append(root.right)
-                adj[root.right].append(root)
-                dfs(root.right)
-        
-        
-        dfs(root)
-        
-        
-        q = deque([start])
-        layer = 0
-        seen = set()
-        seen.add(start)
-        while q:
+            if root.val == val:
+                return 0
+            return 1 + min(find(root.left,val), find(root.right,val))
             
-            for i in range(len(q)):
-                
-                node = q.popleft()
-                
-                if node.val == end:
-                    return layer
-                
-                for x in adj[node]:
-                    if x not in seen:
-                        seen.add(x)
-                        q.append(x)
-            layer +=1
-                    
+        lca = dfs(root)
+        return find(lca,p) + find(lca,q)
+    
+    
+    
+    
