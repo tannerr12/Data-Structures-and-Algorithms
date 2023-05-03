@@ -1,9 +1,11 @@
 class Solution:
     def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
-        
-        target = sum(nums) // k
+        totalSum = sum(nums)
+        if totalSum % k != 0:
+            return False
+        target = totalSum // k
         group = [0] * k
-        
+        nums.sort(reverse=True)
         def backtrack(i,g,bitmask):
             nonlocal target
             if g >= k:
