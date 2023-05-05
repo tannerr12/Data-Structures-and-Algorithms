@@ -5,13 +5,12 @@ class Solution:
         adj = defaultdict(list)
         
         for word in allowed:
-            
             adj[word[0] + word[1]].append(word[2])
             
         @cache
-        def dfs(i,last,level,prev):
+        def dfs(i,last,prev):
             
-            if level == 1:
+            if len(prev) == 1:
                 return True
             res = False
        
@@ -24,10 +23,10 @@ class Solution:
             for val in adj[block]:
 
                 if (len(last + val) < len(prev) -1):
-                    res = res or dfs(i + 1, last + val, level, prev)
+                    res = res or dfs(i + 1, last + val, prev)
                 else:
-                    res = res or dfs(1,'',level -1, last + val)
+                    res = res or dfs(1,'', last + val)
                 
             return res
         
-        return dfs(1,'', len(bottom) , bottom)
+        return dfs(1,'', bottom)
