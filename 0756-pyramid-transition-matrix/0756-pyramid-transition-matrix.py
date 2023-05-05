@@ -8,7 +8,7 @@ class Solution:
             
             adj[word[0] + word[1]].append(word[2])
             
-        
+        @cache
         def dfs(i,last,level,prev):
             
             if level == 1:
