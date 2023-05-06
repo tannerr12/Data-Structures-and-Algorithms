@@ -11,7 +11,7 @@ class Solution:
                 r = bisect_right(nums, target - nums[i])
                 if r >= len(nums) or nums[r] > target - nums[i]:
                     r -=1
-                res += 2 ** (r - i)
+                res += (2 ** (r - i)) % MOD
                 res %= MOD 
         
         
