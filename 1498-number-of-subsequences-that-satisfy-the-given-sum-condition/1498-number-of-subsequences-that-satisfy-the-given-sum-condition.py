@@ -13,6 +13,8 @@ class Solution:
                     r -=1
                 res += (2 ** (r - i)) % MOD
                 res %= MOD 
+            else:
+                break
         
         
         return res
