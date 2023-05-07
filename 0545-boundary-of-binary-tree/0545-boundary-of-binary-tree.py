@@ -21,8 +21,7 @@ class Solution:
     
             if t == 'left' and (root.left or root.right):
                 left.append(root.val)
-            elif t == 'right' and (root.left or root.right):
-                right.append(root.val)
+            
                 
             if t == 'left':
                 if root.left:
@@ -34,7 +33,11 @@ class Solution:
                     dfsFindBound(root.right,t)
                 else:
                     dfsFindBound(root.left,t)
-        
+            
+            
+            if t == 'right' and (root.left or root.right):
+                right.append(root.val)
+                
         def dfsFindLeaf(root):
             
             if root is None:
@@ -55,7 +58,7 @@ class Solution:
         #print(left)
         #print(right)
         #print(leaf)
-        right = right[::-1]
+        #right = right[::-1]
         
         return rootval + left + leaf + right
                 
