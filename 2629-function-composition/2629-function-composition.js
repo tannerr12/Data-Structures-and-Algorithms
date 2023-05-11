@@ -4,14 +4,11 @@
  */
 var compose = function(functions) {
 	return function(x) {
-        total = x
         for (i = functions.length-1; i >= 0; i --){
-            fn = functions[i]
-            //console.log(fn)
-            total = fn(total)
+            x = functions[i](x)
         }
         
-        return total
+        return x
     }
 };
 
