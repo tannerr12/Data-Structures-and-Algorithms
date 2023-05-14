@@ -10,8 +10,6 @@ class Solution:
                 return 0
             
             res = 0
-            
-           
             for k in range(len(nums)):
                 if (1 << k) & bitmask > 0:
                     continue
@@ -21,11 +19,8 @@ class Solution:
                     if (1 << j) & bitmask > 0:
                         continue
                     
-                    b = bitmask
-                    bitmask |= (1 << k)
-                    bitmask |= (1 << j)
-                    res = max(res, dfs(i+1,bitmask) + i * gcd(nums[k], nums[j]))
-                    bitmask = b
+                    res = max(res, dfs(i+1,bitmask | (1 << k) | (1 << j)) + i * gcd(nums[k], nums[j]))
+         
             
             
             return res
