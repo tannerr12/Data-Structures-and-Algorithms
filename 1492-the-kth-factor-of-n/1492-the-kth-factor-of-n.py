@@ -1,29 +1,22 @@
 class Solution:
     def kthFactor(self, n: int, k: int) -> int:
-        
-        
+
         factors = []
-        factorsback = []
         i = 1
-        backcount = -1
-        while i <= sqrt(n):
-            
+        sqr = sqrt(n)
+        while i <= sqr:
             if n % i == 0:
-                
                 factors.append(i)
-                if i != sqrt(n):
-                    factorsback.append(n // i)
-                
-            
+                k-=1
+                if k == 0:
+                    return i
+                if i == sqr:
+                    k+=1
+
             i +=1
         
-
-        factorsback.reverse()
-        newFact = factors + factorsback
-        
-        #print(newFact)
-        if len(newFact) < k:
+        if k > len(factors):
             return -1
         else:
-            return newFact[k-1]
-    
+            val = n // factors[-k]
+            return val
