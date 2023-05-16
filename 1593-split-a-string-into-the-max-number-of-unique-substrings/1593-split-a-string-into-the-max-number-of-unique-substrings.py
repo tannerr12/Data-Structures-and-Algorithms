@@ -1,7 +1,8 @@
 class Solution:
     def maxUniqueSplit(self, s: str) -> int:
         
-        val = defaultdict(int)
+        val = set()
+
         def dfs(i,word):
             
             if i >= len(s):
@@ -16,12 +17,10 @@ class Solution:
             
             #skip
             if word not in val:
-                val[word] +=1
+                val.add(word)
                 res = max(res,dfs(i+1, s[i]) +1)
-                val[word] -=1
-                if val[word] == 0:
-                    del val[word]
-            
+                val.remove(word)
+
             return res
         
         return dfs(1, s[0])
