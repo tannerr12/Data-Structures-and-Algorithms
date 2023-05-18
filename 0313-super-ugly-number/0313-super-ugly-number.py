@@ -7,9 +7,7 @@ class Solution:
         while n:
             val = heappop(heap)
             n-=1
-            if n ==0:
-                return val
-            
+
             for v in primes:
 
                 heappush(heap, val * v) 
@@ -17,7 +15,7 @@ class Solution:
                     break
               
                 
-            
+        return val
             
         '''
         for i in range(len(primes)):
