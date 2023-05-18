@@ -2,7 +2,6 @@ class Solution:
     def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
         if n ==1:
             return 1
-        p = set(primes)
         vals = set()
         heap = primes.copy()
         
