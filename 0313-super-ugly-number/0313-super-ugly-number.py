@@ -2,8 +2,7 @@ class Solution:
     def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
         if n ==1:
             return 1
-        heap = primes.copy()
-        n-=1
+        heap = [1]
         
         while n:
             val = heappop(heap)
