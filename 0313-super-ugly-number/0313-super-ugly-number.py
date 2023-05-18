@@ -2,23 +2,21 @@ class Solution:
     def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
         if n ==1:
             return 1
-        vals = set()
         heap = primes.copy()
-        
         n-=1
         
         while n:
             val = heappop(heap)
-            vals.add(val)
             n-=1
             if n ==0:
                 return val
             
             for v in primes:
-                if v * val in vals:
-                    continue
-                heappush(heap, val * v)
-                vals.add(val * v)
+
+                heappush(heap, val * v) 
+                if val % v == 0:
+                    break
+              
                 
             
             
