@@ -12,19 +12,19 @@ class Solution:
         #create the masks from targetWords but we need to find a match by removing 1 character from targetwords
         res = 0
         for i,e in enumerate(targetWords):
+            #first we build the targetmask 
             mask = 0
             for val in e:
                 idx = ord(val) - ord('a')
                 mask |= (1 << idx)
          
-            
+            #now we try removing a single character from target and see if we find a match in starting words, if we do increment the result and break
             for i in range(26):
                 if mask & (1 << i) > 0:
-                    mask ^= (1 << i)
-                    if mask in mp:
+                    if mask ^ (1 << i) in mp:
                         res += 1
                         break
-                    mask ^= (1 << i)
+                
         
         return res
                 
