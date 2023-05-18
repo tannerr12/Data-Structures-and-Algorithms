@@ -21,11 +21,12 @@ class Solution:
         
             for i in range(32):
                 if mask & (1 << i) > 0:
+                    m = mask
                     mask ^= (1 << i)
                     if mask in mp:
                         res += 1
                         break
-                    mask ^= (1 << i)
+                    mask = m
         
         return res
                 
