@@ -21,20 +21,13 @@ class Solution:
             if root is None:
                 return 0
             
-            great1,great2 = 0,0
+            mxdepth = 0
             for val in root.children:
                 v = dfs(val) + 1
-                
-                if v >= great1:
-                    great2 = great1
-                    great1 = v
-                elif v > great2 and v < great1:
-                    great2 = v
-                
-   
-            res = max(res, great1 + great2)
-
-            return great1
+                res = max(res, mxdepth + v)
+                mxdepth = max(mxdepth, v)
+  
+            return mxdepth
         
         dfs(root)
         
