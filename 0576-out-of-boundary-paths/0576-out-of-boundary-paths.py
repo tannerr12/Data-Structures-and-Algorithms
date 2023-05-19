@@ -19,6 +19,7 @@ class Solution:
             res = 0
             for x,y in directions:
                 res += dfs(i+x, j+y,moves-1)
+                res %= MOD
 
             return res % MOD
         
