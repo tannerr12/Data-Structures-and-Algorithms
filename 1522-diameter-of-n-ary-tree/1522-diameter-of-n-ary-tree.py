@@ -21,20 +21,20 @@ class Solution:
             if root is None:
                 return 0
             
-  
-            vals = []
-            
+            great1,great2 = 0,0
             for val in root.children:
-                vals.append(dfs(val) + 1)
+                v = dfs(val) + 1
                 
-            vals.sort()
-            if len(vals) >= 2:
-                res = max(res, vals[-1] + vals[-2])
-            elif len(vals) == 1:
-                res = max(res, vals[-1])
-            else:
-                return 0
-            return vals[-1]
+                if v >= great1:
+                    great2 = great1
+                    great1 = v
+                elif v > great2 and v < great1:
+                    great2 = v
+                
+   
+            res = max(res, great1 + great2)
+
+            return great1
         
         dfs(root)
         
