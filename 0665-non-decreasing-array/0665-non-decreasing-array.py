@@ -7,7 +7,7 @@ class Solution:
             
             if nums[i] < nums[i-1] and not used:
                 if nums[i-2] <= nums[i]:
-                    nums[i-1] = nums[i-2]
+                    nums[i-1] = nums[i]
                 else:
                     nums[i] = nums[i-1]     
                 used = True
