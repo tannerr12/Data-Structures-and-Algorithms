@@ -8,7 +8,7 @@ class Solution:
     def rob(self, root: Optional[TreeNode]) -> int:
         
         
-        @cache
+     
         def dfs(root):
             
             if root is None:
