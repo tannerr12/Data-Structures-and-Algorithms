@@ -14,18 +14,13 @@ class Solution:
             if root is None:
                 return 0
             
-            left,right = 0,0
-            res = 0
+            rob,donot = 0,0
+            
             if take:
-                left = max(left,dfs(root.left,False))
-                right = max(right,dfs(root.right,False))
-                res = max(res, left + right + root.val)
-            left = max(left, dfs(root.left,True))
-            right = max(right,dfs(root.right,True))
-            res = max(res, left + right)
-            
-            
-            return res
+                rob = root.val + dfs(root.left,False) + dfs(root.right,False)
+            donot = dfs(root.left,True) + dfs(root.right,True)
+
+            return max(rob,donot)
         
         
         return dfs(root,True)
