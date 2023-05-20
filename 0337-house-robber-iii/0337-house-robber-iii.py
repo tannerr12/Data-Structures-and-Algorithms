@@ -9,18 +9,19 @@ class Solution:
         
         
         @cache
-        def dfs(root,take):
+        def dfs(root):
             
             if root is None:
-                return 0
+                return (0,0)
             
             rob,donot = 0,0
+            left = dfs(root.left)
+            right = dfs(root.right)
             
-            if take:
-                rob = root.val + dfs(root.left,False) + dfs(root.right,False)
-            donot = dfs(root.left,True) + dfs(root.right,True)
+            rob = root.val + left[1] + right[1]
+            donot = max(left) + max(right)
 
-            return max(rob,donot)
+            return [rob,donot]
         
         
-        return dfs(root,True)
+        return max(dfs(root))
