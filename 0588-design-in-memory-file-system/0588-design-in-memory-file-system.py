@@ -24,10 +24,10 @@ class FileSystem:
                     return [t.directory]
                 else:
                     res = []
-                    for key in t.adj:
+                    for key in sorted(t.adj):
                         res.append(key)
                     
-                    res.sort()
+                    
                     return res
                     
                 
