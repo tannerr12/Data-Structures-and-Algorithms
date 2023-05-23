@@ -10,28 +10,22 @@ class Solution:
                 return False
             
         dp = [None] * n    
-        seen = set()
+        
         def dfs(node):
             
-            if len(adj[node]) == 0 and node == destination:
-                return True
+            if len(adj[node]) == 0:
+                return node == destination
             
             if dp[node] != None:
                 return dp[node]
-            if node in seen and dp[node] == None:
-                return False
             
-            seen.add(node)
-            res = False
+            dp[node] = False
             for x in adj[node]:
-                val = dfs(x)
-                if val == False:
+                if not dfs(x):
                     return False
-                else:
-                    res = True
-            
-            dp[node] = res
-            return res
+                
+            dp[node] = True
+            return True
             
             
         return dfs(source)
