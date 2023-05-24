@@ -18,8 +18,8 @@ class Solution:
                 r = books[i]
                 start = 1
                 end = books[i]
-                s = (end * (end + 1)) //2
-               # s = (start + end) * r // 2
+                s = (1 + books[i]) * books[i] // 2
+            
             
             dp[i] = s
             dp[i] += dp[left] if left >= 0 else 0
