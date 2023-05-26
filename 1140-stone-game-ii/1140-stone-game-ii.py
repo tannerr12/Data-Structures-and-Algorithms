@@ -32,6 +32,9 @@ class Solution:
         https://github.com/wuduhren/leetcode-python
 
         """
+        #we can get the max score by grabbing the max score from the opposing player at each start
+        #index and taking the sum of the rest of the array - his best value to get Alices value
+        #we keep the most stones we can get while the other player plays his best
         #get the max score from the opposing player and subtract it from the max total to get
         #Alice total
         @cache
