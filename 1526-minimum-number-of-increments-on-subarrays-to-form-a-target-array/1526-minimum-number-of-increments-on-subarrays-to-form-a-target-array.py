@@ -2,7 +2,7 @@ class Solution:
     def minNumberOperations(self, target: List[int]) -> int:
         
         res = 0
-        mn,mx = 0,0
+        mn,mx = float('inf'),target[0]
         sub = 0
         
         for i in range(len(target)):
@@ -17,12 +17,10 @@ class Solution:
             if v > mn:
                 sub += mn
                 res += mx - mn
-                mx,mn = 0, float('inf')
-                
+                mx,mn = target[i]-sub, float('inf')
             
-            
+            #update the min and max values for our decreasing subarray (the first value will always )
             mn = min(mn, target[i]-sub)
-            mx = max(mx, target[i]-sub)
         
         
 
