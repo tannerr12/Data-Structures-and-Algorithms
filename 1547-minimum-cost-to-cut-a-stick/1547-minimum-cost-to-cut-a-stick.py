@@ -12,8 +12,7 @@ class Solution:
             
             left[i] = last
         
-        last = n + 2
-        
+        last = n + 1
         arr = [i for i in range(n)]
         for i in range(n-1,-1,-1):
             if i in dic:
