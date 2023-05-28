@@ -1,7 +1,7 @@
 class Solution:
     def minCost(self, n: int, cuts: List[int]) -> int:
         n+=1
-        cuts.sort()
+        
         left = [0] * n
         right = [0] * n
         dic = set(cuts)
