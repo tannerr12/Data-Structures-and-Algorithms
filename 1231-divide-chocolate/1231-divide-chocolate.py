@@ -17,7 +17,7 @@ class Solution:
             return False
         
         
-        l,r = min(sweetness), sum(sweetness)
+        l,r = 1, 10**15
         res = 0
         while l <= r:
             
