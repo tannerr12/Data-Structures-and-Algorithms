@@ -9,7 +9,8 @@ class Solution:
                 if total >= val:
                     total = 0
                     groups -=1
-                
+                    if groups == 0:
+                        return True
                 
             if groups <= 0:
                 return True
