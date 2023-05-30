@@ -17,7 +17,7 @@ class Solution:
             return False
         
         
-        l,r = 1, 10**11
+        l,r = 1, 10**9
         res = 0
         while l <= r:
             
