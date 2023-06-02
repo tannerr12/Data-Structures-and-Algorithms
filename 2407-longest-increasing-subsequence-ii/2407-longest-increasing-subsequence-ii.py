@@ -21,7 +21,7 @@ class SegmentTree:
         while p > 1:
             p = p >> 1
             #go back up the tree and recalculate max
-            self.max_tree[p] = max(self.max_tree[p*2], self.max_tree[p*2+1])
+            self.max_tree[p] = max(self.max_tree[p << 1], self.max_tree[(p << 1) ^ 1])
     def query_max(self,l,r):
         l += self.n
         r += self.n
