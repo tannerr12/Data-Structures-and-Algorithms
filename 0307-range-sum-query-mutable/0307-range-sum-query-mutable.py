@@ -11,21 +11,18 @@ class NumArray:
             self.tree[i + self.n] = arr[i]
         
         for i in range(self.n-1,0,-1):
-            self.tree[i] = self.tree[i*2] + self.tree[(i*2)+1]
+            self.tree[i] = self.tree[i << 1] + self.tree[(i << 1) | 1]
         
 
     def update(self, index: int, val: int) -> None:
-        #print(self.tree)
         index += self.n
         self.tree[index] = val
-        index //=2
+        index >>= 1
         while index >= 1:
-            self.tree[index] = self.tree[index*2] + self.tree[(index*2)+1]
-            index //= 2
+            self.tree[index] = self.tree[index << 1] + self.tree[(index << 1) | 1]
+            index >>= 1
         
-        #print(self.tree)
-    def sumRange(self, left: int, right: int) -> int:
-        l,r = left, right
+    def sumRange(self, l: int, r: int) -> int:
         l += self.n
         r += self.n
         r+=1
@@ -33,16 +30,16 @@ class NumArray:
         
         while l < r:
             
-            if l % 2:
+            if l & 1:
                 total += self.tree[l]
                 l+=1
             
-            if r % 2:
+            if r & 1:
                 r -=1
                 total += self.tree[r]
         
-            l //= 2
-            r //= 2
+            l >>= 1
+            r >>= 1
         
         return total
 
