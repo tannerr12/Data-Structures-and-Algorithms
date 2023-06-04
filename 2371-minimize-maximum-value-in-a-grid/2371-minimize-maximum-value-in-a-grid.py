@@ -5,6 +5,7 @@ class Solution:
             if i < 0 or j < 0 or i >= m or j >= n:
                 return False
             return True
+        
         m,n = len(grid), len(grid[0])
         
         row = defaultdict(int)
@@ -14,8 +15,7 @@ class Solution:
             for j in range(n):
                 curr = grid[i][j]
                 heap.append((curr, i,j))
-                #row[i].append(curr)
-                #col[j].append(curr)
+
         heap.sort()
         
         for i in range(len(heap)):
@@ -25,21 +25,7 @@ class Solution:
             if col[k] == 0:
                 col[k] = 1
             v = max(row[j], col[k])
-             
-            if oob(i+1,j):
-                if grid[i+1][j] < v:
-                    v = max(v, grid[i+1][j] +1)
-            if oob(i,j+1):
-                if grid[i][j+1] < v:
-                    v = max(v, grid[i][j+1] +1)
-            if oob(i,j-1):
-                if grid[i][j-1] < v:
-                    v = max(v, grid[i][j - 1] +1)
-            if oob(i-1,j):
-                if grid[i-1][j] < v:
-                    v = max(v, grid[i-1][j] +1)
-            
-            
+
             row[j] = v + 1
             col[k] = v + 1
             grid[j][k] = v
