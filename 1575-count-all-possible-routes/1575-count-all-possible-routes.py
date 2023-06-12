@@ -3,12 +3,7 @@ class Solution:
         MOD = 10 ** 9 + 7
         @cache
         def dfs(i, f):
-            
-            if f == 0:
-                return i == finish
-            
             res = 0
-            
             for j in range(len(locations)):
                 if j == i:
                     continue
