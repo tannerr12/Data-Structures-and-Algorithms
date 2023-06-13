@@ -44,6 +44,8 @@ class Solution:
                 dp[(n,mask)] = True
                 
                 for val in graph[n]:
+                    if (val, mask | (1 << val)) in dp:
+                        continue
                     heappush(heap, [cost + 1, val, mask | (1 << val)])
         
         
