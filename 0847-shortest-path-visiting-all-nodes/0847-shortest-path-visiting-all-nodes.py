@@ -2,7 +2,7 @@ class Solution:
     def shortestPathLength(self, graph: List[List[int]]) -> int:
         m = 2 ** len(graph)
         m -= 1
-        print(m)
+        #print(m)
         dp = {}
         '''
         def dfs(i,mask):
