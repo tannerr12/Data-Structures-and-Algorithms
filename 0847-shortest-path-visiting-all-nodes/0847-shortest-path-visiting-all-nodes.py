@@ -3,50 +3,39 @@ class Solution:
         m = 2 ** len(graph)
         m -= 1
         #print(m)
-        dp = {}
-        '''
-        def dfs(i,mask):
+        seen = set()
+        N = len(graph)
+        dist = [[float('inf')] * N for _ in range(N)]
+        
+        for i, edges in enumerate(graph):
+            dist[i][i] = 0
+            for edge in edges:
+                dist[i][edge] = 1
+        
+        for k in range(N):
+            for i in range(N):
+                for j in range(N):
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+                    
+        @cache
+        def visit(node,mask):
             nonlocal m
-            
             if mask == m:
                 return 0
             
-            if (i,mask) in dp:
-                return dp[(i,mask)]
-            if i == None:
-                return float('inf')
-            
             res = float('inf')
-            for x in graph[i]:
-                res = min(res, dfs(x, mask | (1 << x)) + 1)
+            for i in range(N):
+                
+                if mask & (1 << i) == 0:
+                    res = min(res, visit(i, (1 << i) | mask) + dist[node][i])
             
-            dp[(i,mask)] = res            
             return res
         
-        res = float('inf')
-        for i in range(len(graph)):
-            res = min(res, dfs(i, 0 | (1 << i)))
-        '''
+        
         res = float('inf')
         
-        for node in range(len(graph)):
-            heap = [[0,node,0 | (1 << node)]]
-            dp = {}
-            while heap:
-
-                cost, n, mask = heappop(heap)
-                if mask == m:
-                    res = min(res,cost)
-                    break
-                if (n,mask) in dp:
-                    continue
-                
-                dp[(n,mask)] = True
-                
-                for val in graph[n]:
-                    if (val, mask | (1 << val)) in dp:
-                        continue
-                    heappush(heap, [cost + 1, val, mask | (1 << val)])
+        for i in range(N):
+            res = min(res, visit(i,(1 << i)))
         
-        
+                      
         return res
