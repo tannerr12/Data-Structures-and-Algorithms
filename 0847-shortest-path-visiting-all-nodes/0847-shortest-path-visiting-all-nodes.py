@@ -25,7 +25,8 @@ class Solution:
                     dp[(n,mask)] = level
                     
                     for val in graph[n]:
-                        
+                        if (val, mask | (1<<val)) in dp:
+                            continue
                         q.append((val, mask | (1 << val)))
                 
                 level +=1
