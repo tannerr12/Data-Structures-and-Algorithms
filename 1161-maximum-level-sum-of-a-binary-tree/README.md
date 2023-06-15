@@ -5,20 +5,20 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 <img alt="" src="https://assets.leetcode.com/uploads/2019/05/03/capture.JPG" style="width: 200px; height: 175px;">
-<pre><strong>Input:</strong> root = [1,7,0,7,-8,null,null]
+<pre style="position: relative;"><strong>Input:</strong> root = [1,7,0,7,-8,null,null]
 <strong>Output:</strong> 2
 <strong>Explanation: </strong>
 Level 1 sum = 1.
 Level 2 sum = 7 + 0 = 7.
 Level 3 sum = 7 + -8 = -1.
 So we return the level with the maximum sum which is level 2.
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> root = [989,null,10250,98693,-89388,null,null,null,-32127]
+<pre style="position: relative;"><strong>Input:</strong> root = [989,null,10250,98693,-89388,null,null,null,-32127]
 <strong>Output:</strong> 2
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
