@@ -1,52 +1,40 @@
 class Solution:
     def smallestSufficientTeam(self, req_skills: List[str], people: List[List[str]]) -> List[int]:
         
-        arr = []
-        skillmap = {}
-        for i in range(len(req_skills)):
-            skillmap[req_skills[i]] = i
-            
-        
-        for i in range(len(people)):
-            mask = 0
+        n = len(people)
+        m = len(req_skills)
+        skill_id = dict()
+        for i, skill in enumerate(req_skills):
+            skill_id[skill] = i
+        skills_mask_of_person = [0] * n
+        for i in range(n):
             for skill in people[i]:
-                mask |= (1 << skillmap[skill])
+                skills_mask_of_person[i] |= 1 << skill_id[skill]
+        dp = [-1] * (1 << m)
+        dp[0] = 0
+
+        
+        
+        def dfs(m):
+            if dp[m] != -1:
+                return dp[m]
             
-            arr.append(mask)
-        
-        
-        bitmask = 2 ** len(req_skills)
-        bitmask -= 1
+            for i in range(len(people)):
+                nm = m & ~skills_mask_of_person[i]
+                if nm != m:
+                    pm = dfs(nm) |  (1 << i)
+                    if (dp[m] == -1 or
+                        pm.bit_count()
+                       < dp[m].bit_count()):
+                        dp[m] = pm
+                    
+            return dp[m]
+        res = dfs((1 << m) -1)
         ans = []
-        gtotal = float('inf')
-        copy = []
-        
-        @cache
-        def dfs(i,m,total):
-            nonlocal bitmask,gtotal,ans,copy
-            if i >= len(arr) or m == bitmask:
-                if m == bitmask:
-                    if total < gtotal:
-                        gtotal = total
-                        copy = ans.copy()
-                    return total
-                
-                return float('inf')
-            
-            
-            res = float('inf')
-            
-            #dont take
-            res = min(res,dfs(i+1, m,total))
-            
-            if arr[i] > 0 and arr[i] & m != arr[i]:
+        for i in range(len(people)):
+            if res & (1 << i) > 0:
                 ans.append(i)
-                #take
-                res = min(res,dfs(i+1, m | arr[i],total + 1))
-                ans.pop()
-            return res
-        
-        res = dfs(0,0,0)
-        
-        return copy
+                
+        return ans
+            
             
