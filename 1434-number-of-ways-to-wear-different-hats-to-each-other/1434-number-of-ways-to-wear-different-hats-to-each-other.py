@@ -15,16 +15,18 @@ class Solution:
             
             if mask == 2 ** len(hats) -1:
                 return 1
-            
+            if hatId >= len(ph):
+                return 0
             res = 0
             
-            for i in range(hatId, len(ph)):
-                for p in possibleHats[ph[i]]:
-                    if mask & (1 << p) > 0:
-                        continue
-                    res += dfs(mask | (1 << p),i+1)
-                    res %= MOD
-        
+            res += dfs(mask,hatId+1)
+            
+            for p in possibleHats[ph[hatId]]:
+                if mask & (1 << p) > 0:
+                    continue
+                res += dfs(mask | (1 << p),hatId+1)
+                res %= MOD
+
             return res % MOD
         
         
