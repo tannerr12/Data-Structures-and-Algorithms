@@ -1,5 +1,10 @@
 class Solution:
     def shortestPathAllKeys(self, grid: List[str]) -> int:
+        #similar to a bst question I did where you were able to travel down nodes and back the idea here is to use BFS for shortest path + bitmask 
+        #where if we travel back with the same bitmask it exits but if we grab a key were allowed to return since our mask will change
+        #I initially tried dfs which doesnt work well since were marking tiles as seen far too early but BFS will mark them with proper timing
+        #also the x,y are backwards here which is a mind fuck
+        
         keyCount = 0
         start = [0,0]
         for i in range(len(grid)):
