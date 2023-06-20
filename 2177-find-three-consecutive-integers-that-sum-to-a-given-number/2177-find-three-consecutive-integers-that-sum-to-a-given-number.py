@@ -1,9 +1,7 @@
 class Solution:
     def sumOfThree(self, num: int) -> List[int]:
-        
-        
 
-        l,r = 0, 10 ** 15
+        l,r = 0, (10 ** 15) // 3
         
         while l <= r:
             
