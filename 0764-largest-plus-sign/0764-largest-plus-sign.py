@@ -1,42 +1,38 @@
 class Solution:
     def orderOfLargestPlusSign(self, n: int, mines: List[List[int]]) -> int:
         
-        col = defaultdict(list)
         row = defaultdict(list)
+        col = defaultdict(list)
         mines.sort()
         idx = 0
         for i in range(n):
             for j in range(n):
                 
                 if idx < len(mines) and [i,j] == mines[idx]:
-                    if len(col[i]) == 0:
-                        col[i].append(0)
-                        col[i].append(0)
+                    if len(row[i]) == 0:
+                        row[i].append(0)
+                        row[i].append(0)
                     else:
-                        col[i].append(col[i][-1] + 0)
-                    if len(row[j]) == 0:
-                        row[j].append(0)
-                        row[j].append(0)
+                        row[i].append(row[i][-1] + 0)
+                    if len(col[j]) == 0:
+                        col[j].append(0)
+                        col[j].append(0)
                     else:    
-                        row[j].append(row[j][-1] + 0)
+                        col[j].append(col[j][-1] + 0)
                 
                     idx +=1
                 else:
-                    if len(col[i]) == 0:
-                        col[i].append(0)
-                        col[i].append(1)
+                    if len(row[i]) == 0:
+                        row[i].append(0)
+                        row[i].append(1)
                     else:
-                        col[i].append(col[i][-1] + 1)
-                    if len(row[j]) == 0:
-                        row[j].append(0)
-                        row[j].append(1)
+                        row[i].append(row[i][-1] + 1)
+                    if len(col[j]) == 0:
+                        col[j].append(0)
+                        col[j].append(1)
                     else:    
-                        row[j].append(row[j][-1] + 1)
+                        col[j].append(col[j][-1] + 1)
         
-        #for i in row:    
-        #    row[i].append(row[i][-1])
-        #for j in col:
-        #    col[j].append(col[j][-1])
         
         def isGood(target):
             
@@ -44,10 +40,10 @@ class Solution:
                 for j in range(target-1, n-target+1):
                     
                     #check 4 prefix
-                    up = abs(row[j][i+1] - row[j][(i+1)-target]) == target
-                    down = abs(row[j][i] - row[j][i+target]) == target
-                    left = abs(col[i][j+1] - col[i][(j+1)-target]) == target
-                    right = abs(col[i][j] - col[i][j+target]) == target
+                    up = abs(col[j][i+1] - col[j][(i+1)-target]) == target
+                    down = abs(col[j][i] - col[j][i+target]) == target
+                    left = abs(row[i][j+1] - row[i][(j+1)-target]) == target
+                    right = abs(row[i][j] - row[i][j+target]) == target
                     
                     if up and down and left and right:
                         return True
