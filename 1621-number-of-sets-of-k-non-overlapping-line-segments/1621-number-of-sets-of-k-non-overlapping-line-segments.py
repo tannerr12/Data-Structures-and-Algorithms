@@ -5,12 +5,10 @@ class Solution:
         @lru_cache(maxsize=100000)
         def dfs(i,k,place):
             
+            if k == 0:
+                return 1
             if i >= n:
-                if k == 0 and not place:
-                    return 1
-                else:
-                    return 0
-            
+                return 0
             res = 0
             
             #skip
@@ -19,11 +17,11 @@ class Solution:
             
             if not place:
                 #placed here
-                res += dfs(i+1,k-1,True)
+                res += dfs(i+1,k,True)
                 res %= MOD
             else:
                 #place the end point
-                res += dfs(i,k,False)
+                res += dfs(i,k-1,False)
                 res %= MOD
                 
             
