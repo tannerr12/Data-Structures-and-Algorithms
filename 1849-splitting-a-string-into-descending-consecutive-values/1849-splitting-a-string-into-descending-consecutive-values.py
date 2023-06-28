@@ -2,12 +2,11 @@ class Solution:
     def splitString(self, s: str) -> bool:
         al = int(s)
         
-        @cache
+ 
         def dfs(i,last):
             nonlocal al
             if i >= len(s):
                 return last != al
-            
             res = False
             for j in range(i, len(s)):
                 v = int(s[i:j+1])
