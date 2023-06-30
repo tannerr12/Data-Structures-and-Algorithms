@@ -15,7 +15,7 @@ class Solution:
                     q.append((0, i))
             
             seen = set()
-            directions = [[1,0],[-1,0],[0,-1],[0,1]]
+            directions = [[-1,0],[0,-1],[0,1],[1,0]]
             while q:
                 
                 for i in range(len(q)):
@@ -37,9 +37,7 @@ class Solution:
                             q.append((newx,newy))
 
             return False
-                    
-                    
-                    
+ 
         
         grid = [[0 for j in range(col)] for i in range(row)]
         
