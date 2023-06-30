@@ -1,7 +1,7 @@
 class Solution:
     def isAdditiveNumber(self, num: str) -> bool:
         
-        @cache
+        
         def dfs(i, count, last2, last1):
             
             if i >= len(num) and count >= 3:
