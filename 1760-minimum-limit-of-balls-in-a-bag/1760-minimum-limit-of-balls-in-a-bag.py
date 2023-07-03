@@ -1,6 +1,6 @@
 class Solution:
     def minimumSize(self, nums: List[int], maxOperations: int) -> int:
-        nums.sort(reverse=True)
+        
         
         def isGood(mid):
             op = maxOperations
@@ -14,7 +14,7 @@ class Solution:
             return True
             
         
-        l,r = 1,max(nums)
+        l,r = 1,10 ** 9
         res = float('inf')
         while l <= r:
             
