@@ -1,37 +1,29 @@
 class Solution:
     def numSquarefulPerms(self, nums: List[int]) -> int:
-        if len(nums) == 1:
-            return 0
         
-        squares = set()
+        res = []
         
-        x = 0
-        
-        while x * x <= 10 ** 9:
-            
-            squares.add(x*x)
-            x +=1
-        
-        #print(squares)
-        
-        seqSet = set()
-        @cache
-        def dfs(mask,last,seq):
-            
-            if mask == (2 ** len(nums)) -1:
-                seqSet.add(seq)
+        def dfs(nums,cur_path):
+            if not nums:
+                res.append(list(cur_path))
                 return
             
-            
             for i in range(len(nums)):
-                if mask & (1 << i) > 0:
+                if i > 0 and nums[i] == nums[i - 1]:
                     continue
-                if last == -1 or nums[i] + last in squares:
-                    dfs(mask | (1 << i), nums[i], seq + str(nums[i]))
-            
-            return
+                
+                if cur_path and not isSquare(cur_path[-1] + nums[i]):
+                    continue
+                
+                cur_path.append(nums[i])
+                dfs(nums[:i] + nums[i+1:], cur_path)
+                cur_path.pop()
         
-        dfs(0,-1,'')
+        def isSquare(num):
+            return pow(isqrt(num), 2) == num
         
-        return len(seqSet)
+        
+        nums.sort()
+        dfs(nums, [])
+        return len(res)
             
