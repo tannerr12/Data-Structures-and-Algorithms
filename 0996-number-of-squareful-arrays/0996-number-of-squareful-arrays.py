@@ -1,11 +1,12 @@
 class Solution:
     def numSquarefulPerms(self, nums: List[int]) -> int:
-        
-        res = []
+        #had difficulty with removing duplicates the solution seems to be to create a path and 
+        res = 0
         
         def dfs(nums,cur_path):
+            nonlocal res 
             if not nums:
-                res.append(list(cur_path))
+                res += 1
                 return
             
             for i in range(len(nums)):
@@ -25,5 +26,5 @@ class Solution:
         
         nums.sort()
         dfs(nums, [])
-        return len(res)
+        return res
             
