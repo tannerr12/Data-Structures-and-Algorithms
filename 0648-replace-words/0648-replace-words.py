@@ -1,7 +1,6 @@
 class Trie:
     
     def __init__(self,char):
-        
         self.char = char
         self.adj = {}
         self.EOW = False
@@ -24,11 +23,8 @@ class Solution:
         
         
         res = []
-        
         words = sentence.split(' ')
-        
- 
-        res = []
+
         for word in words:
             t = tri        
             found = False
