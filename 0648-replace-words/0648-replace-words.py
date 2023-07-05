@@ -27,9 +27,7 @@ class Solution:
         
         words = sentence.split(' ')
         
-        
-        print(words)
-    
+ 
         res = []
         for word in words:
             t = tri        
