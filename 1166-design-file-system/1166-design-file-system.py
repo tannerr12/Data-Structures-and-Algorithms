@@ -4,7 +4,6 @@ class Trie:
         
         self.val = val
         self.adj = {}
-        self.EOP = False
         self.res = -1
 
 class FileSystem:
@@ -29,7 +28,6 @@ class FileSystem:
         
         if res:
             t.res = value
-            t.EOP = True
         return res
         
 
