@@ -1,6 +1,6 @@
 class Solution:
     def maxLength(self, ribbons: List[int], k: int) -> int:
-        ribbons.sort(reverse=True)
+
         
         def isGood(mid):
             need = k
