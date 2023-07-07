@@ -3,23 +3,22 @@ class Solution:
         total = sum(buckets)
         
         def isGood(mid):
-            below = 0
-            above = 0
+            count = 0
             dist = (100 - loss) / 100
             for i in range(len(buckets)):
                 if buckets[i] <= mid:
-                    below += mid - buckets[i]
+                    count -= mid - buckets[i]
                 else:
-                    above += (buckets[i] - mid) * dist
+                    count += (buckets[i] - mid) * dist
             
-            return below <= above
+            return count >= 0
         
         
         
         l,r = 0, total
         res = 0
         
-        d = 0.000001
+        d = 1e-6
         #print(d)
         while abs(l - r) >= d:
             
