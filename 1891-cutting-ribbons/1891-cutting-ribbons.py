@@ -14,7 +14,7 @@ class Solution:
                 
                 
         
-        l,r = 1, max(ribbons)
+        l,r = 1, 10 ** 9
         res = 0
         
         while l <= r:
