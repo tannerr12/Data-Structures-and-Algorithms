@@ -9,24 +9,23 @@ class Node:
 class Solution:
     def cloneTree(self, root: 'Node') -> 'Node':
         
-        rnode = Node()
-        def dfs(node,ncopy):
+      
+        def dfs(node):
             
             if node is None:
-                return
+                return node
 
-            ncopy.val = node.val
+            ncopy = Node(node.val)
             
             for child in node.children:
-                ncopy.children.append(Node(child.val))
-                dfs(child, ncopy.children[-1])
+                ncopy.children.append(dfs(child))
             
             return ncopy
         
         
         
         
-        return dfs(root,rnode)
+        return dfs(root)
         
             
             
