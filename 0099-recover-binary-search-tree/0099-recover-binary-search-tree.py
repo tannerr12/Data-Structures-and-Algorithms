@@ -9,14 +9,23 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        arr = []
+        x,y,pred = None,None,None
         def dfs(root):
-            nonlocal arr
+            nonlocal x,y,pred
             if root is None:
                 return root
 
             dfs(root.left)
-            arr.append(root.val)
+            if pred and pred.val > root.val:
+                
+                y = root
+                if x is None:
+                    x = pred
+                
+                else:
+                    return
+                
+            pred = root
             dfs(root.right)
             
             return root
@@ -24,25 +33,10 @@ class Solution:
         
         dfs(root)
         
+        x.val, y.val = y.val, x.val
+        
+    
         
         
-        arr.sort(reverse=True)
-        #print(arr)
-        def build(root):
-            nonlocal arr
-            if root is None:
-                return root
-            
-            build(root.left)
-            
-            root.val = arr.pop()
-            
-            build(root.right)
-        
-            return root
-        
-        
-        return build(root)
-            
         
                     
