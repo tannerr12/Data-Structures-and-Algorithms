@@ -6,24 +6,24 @@ class Solution:
             if x == y:
                 res += 1
                 continue
-            heappush(heap,[-((x+1)/(y+1) - x/y), i, x, y])
+            heappush(heap,[-((x+1)/(y+1) - x/y), x, y])
         
         
-        vals = [0] * len(classes)
+
         while extraStudents and heap:
             
-            v, i,x,y = heappop(heap)
+            v, x,y = heappop(heap)
             x += 1 
             y += 1
             extraStudents -= 1
-            vals[i] += 1
+           
             
-            heappush(heap, [-((x+1)/(y+1) - x/y),i,x,y])
+            heappush(heap, [-((x+1)/(y+1) - x/y),x,y])
         
         
         while heap:
             
-            a,b,x,y = heappop(heap)
+            a,x,y = heappop(heap)
             
             res += x/y
         
