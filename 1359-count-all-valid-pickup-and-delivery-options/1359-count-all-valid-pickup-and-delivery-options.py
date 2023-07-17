@@ -1,6 +1,16 @@
 class Solution:
     def countOrders(self, n: int) -> int:
         MOD = 1_000_000_007
+        
+        res = 1
+        for i in range(1,n+1):
+            
+            res *= i
+            
+            res *= (2 * i -1)
+            res %= MOD
+        return res
+        
         dp = [[0] * (n + 1) for i in range(n + 1)]
         
         for unpicked in range(n + 1):
