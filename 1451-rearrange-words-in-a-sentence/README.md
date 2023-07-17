@@ -12,15 +12,15 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> text = "Leetcode is cool"
+<pre><strong>Input:</strong> text = "Leetcode is cool"
 <strong>Output:</strong> "Is cool leetcode"
 <strong>Explanation: </strong>There are 3 words, "Leetcode" of length 8, "is" of length 2 and "cool" of length 4.
 Output is ordered by length and the new first word starts with capital letter.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> text = "Keep calm and code on"
+<pre><strong>Input:</strong> text = "Keep calm and code on"
 <strong>Output:</strong> "On and keep calm code"
 <strong>Explanation: </strong>Output is ordered as follows:
 "On" 2 letters.
@@ -28,13 +28,13 @@ Output is ordered by length and the new first word starts with capital letter.
 "keep" 4 letters in case of tie order by position in original text.
 "calm" 4 letters.
 "code" 4 letters.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong class="example">Example 3:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> text = "To be or not to be"
+<pre><strong>Input:</strong> text = "To be or not to be"
 <strong>Output:</strong> "To be or to be not"
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
