@@ -1,6 +1,6 @@
 class Solution:
     def parseBoolExpr(self, expression: str) -> bool:
-        @cache
+        
         def dfs(exp,syb):
             
             stack = []
