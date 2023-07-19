@@ -23,6 +23,7 @@ class Solution(object):
                 
                 node = q.popleft()
                 counts[node] +=1
+                counts[node] %= 2
                 memo[(node,counts[node] % 2)] = level
                 
                 if len(counts) == len(nextVisit):
