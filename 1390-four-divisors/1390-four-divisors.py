@@ -16,6 +16,8 @@ class Solution:
                         count += 2
                         s += curr // j
                     s += j
+                if count > 4:
+                    break
 
                 j+=1
             if count == 4:
