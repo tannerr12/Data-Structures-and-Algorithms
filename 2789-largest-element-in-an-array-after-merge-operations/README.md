@@ -11,24 +11,24 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> nums = [2,3,7,9,3]
+<pre><strong>Input:</strong> nums = [2,3,7,9,3]
 <strong>Output:</strong> 21
 <strong>Explanation:</strong> We can apply the following operations on the array:
 - Choose i = 0. The resulting array will be nums = [<u>5</u>,7,9,3].
 - Choose i = 1. The resulting array will be nums = [5,<u>16</u>,3].
 - Choose i = 0. The resulting array will be nums = [<u>21</u>,3].
 The largest element in the final array is 21. It can be shown that we cannot obtain a larger element.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> nums = [5,3,3]
+<pre><strong>Input:</strong> nums = [5,3,3]
 <strong>Output:</strong> 11
 <strong>Explanation:</strong> We can do the following operations on the array:
 - Choose i = 1. The resulting array will be nums = [5,<u>6</u>].
 - Choose i = 0. The resulting array will be nums = [<u>11</u>].
 There is only one element in the final array, which is 11.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
