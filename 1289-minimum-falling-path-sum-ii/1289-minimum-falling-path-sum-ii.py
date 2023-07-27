@@ -3,17 +3,31 @@ class Solution:
         
         
         dp = [[float('inf') for j in range(len(grid[0]))] for i in range(len(grid))]
-        
+        mn1, mn2 = [float('inf'), 0], [float('inf'), 0]
         for j in range(len(grid[0])):
             dp[-1][j] = grid[-1][j]
+            if dp[-1][j] <= mn1[0]:
+                mn2 = mn1
+                mn1 = [dp[-1][j], j]
+            elif dp[-1][j] <= mn2[0]:
+                mn2 = [dp[-1][j], j]
+            
         for i in range(len(grid)-2,-1,-1):
+            mn11, mn22 = [float('inf'), 0], [float('inf'), 0]
             for j in range(len(grid[0]) -1, -1,-1):
                 
-                for k in range(len(dp[0])):
-                    if k == j:
-                        continue
-                    dp[i][j] = min(dp[i][j], dp[i+1][k] + grid[i][j])
-        
+                if mn1[1] != j:
+                    dp[i][j] = min(dp[i][j], mn1[0] + grid[i][j])
+                elif mn2[1] != j:
+                    dp[i][j] = min(dp[i][j], mn2[0] + grid[i][j])
+                    
+                if dp[i][j] <= mn11[0]:
+                    mn22 = mn11
+                    mn11 = [dp[i][j], j]
+                elif dp[i][j] <= mn22[0]:
+                    mn22 = [dp[i][j], j]   
+                    
+            mn1, mn2 = mn11,mn22
         
         return min(dp[0])
                 
