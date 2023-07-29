@@ -1,12 +1,12 @@
 class Solution:
     def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
         
-        adj = defaultdict(set)
+        adj = defaultdict(int)
         indegree = defaultdict(set)
         for i in range(len(recipes)):
             
             for j in range(len(ingredients[i])):
-                adj[recipes[i]].add(ingredients[i][j])
+                adj[recipes[i]] += 1
                 indegree[ingredients[i][j]].add(recipes[i])
         
         #print(adj)
@@ -24,9 +24,9 @@ class Solution:
                 
                 for val in indegree[node]:
                     
-                    adj[val].remove(node)
+                    adj[val] -=1
                     
-                    if len(adj[val]) == 0:
+                    if adj[val] == 0:
                         res.append(val)
                         q.append(val)
         
