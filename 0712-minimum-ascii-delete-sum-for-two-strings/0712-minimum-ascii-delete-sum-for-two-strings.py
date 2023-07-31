@@ -13,6 +13,7 @@ class Solution:
             
         c1 = Counter(s1)
         c2 = Counter(s2)
+        
         prefix1 = [0]
         prefix2 = [0]
         #rebuild words
@@ -37,8 +38,6 @@ class Solution:
         if st1 == st2:
             return res
         
-        #build next list
-        #mp2 = {}
         
         @cache
         def dfs(i, j):
