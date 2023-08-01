@@ -15,7 +15,9 @@ class Solution:
         
         for i in range(1,n):
             #left option is just straight
-            dp1 = min(dp1Prev + regular[i], dp2Prev + regular[i])
+            #it is free to go up so we do not add 0
+            dp1 = min(dp1Prev + regular[i], dp2Prev + 0 + regular[i])
+            #this is the same as above but it has a cost to go down called expressCost
             dp2 = min(dp2Prev + express[i], dp1Prev + expressCost + express[i])
             res.append(min(dp1, dp2))
             dp1Prev = dp1
