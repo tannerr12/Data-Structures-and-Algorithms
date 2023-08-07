@@ -13,7 +13,7 @@ class Solution:
         p = ''.join(arr)
         #print(p)
         
-        @cache
+        
         def dfs(root, path):
             nonlocal p
             if root is None:
