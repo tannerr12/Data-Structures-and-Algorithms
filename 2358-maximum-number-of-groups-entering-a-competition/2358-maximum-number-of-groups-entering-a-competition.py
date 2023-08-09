@@ -1,21 +1,14 @@
 class Solution:
     def maximumGroups(self, grades: List[int]) -> int:
-        grades.sort()
-        groups = []
-        temp = []
-        while grades:
-            
-            val = heappop(grades)
-            temp.append(val)
-            
-            if len(groups) == 0 or len(groups[-1]) == len(temp) -1:
-                groups.append(temp)
-                temp = []
         
-        #print(groups)
+        groups,val = 0,0
+        for i in range(1, 100000):
+            if val + i <= len(grades):
+                val += i
+                groups += 1
+            else:
+                break
         
-        #if temp and sum(temp) > sum(groups[-1]):
-        #    groups.append(temp)
-        return len(groups)
+        return groups
             
             
