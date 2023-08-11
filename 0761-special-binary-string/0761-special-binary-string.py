@@ -1,7 +1,7 @@
 class Solution:
     def makeLargestSpecial(self, s: str) -> str:
         
-        @cache
+        
         def reorder(s):
             count1 = 0
             count2 = 0
