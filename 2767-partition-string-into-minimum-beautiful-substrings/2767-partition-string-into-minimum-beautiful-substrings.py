@@ -4,7 +4,7 @@ class Solution:
         for i in range(16):
             pows.add(5 ** i)
         
-        @cache
+        
         def dfs(i, val):
             
             if i >= len(s):
