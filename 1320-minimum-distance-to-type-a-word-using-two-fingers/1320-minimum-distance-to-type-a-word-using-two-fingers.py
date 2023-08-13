@@ -7,29 +7,27 @@ class Solution:
             r2,c2 = (ord(y) - ord('A')) // 6,(ord(y) - ord('A')) % 6
             return abs(r1 - r2) + abs(c1 - c2) 
             
-
-        heap = []
         
-        heappush(heap, (0, '', '', 0))
-        seen = set()
-        while heap:
+        @cache
+        def dfs(i,f1,f2):
             
-            cost, f1, f2,idx = heappop(heap)
-            if (f1,f2,idx) in seen or (f2,f1,idx) in seen:
-                continue
-            seen.add((f1, f2, idx))
-            seen.add((f2, f1, idx))
-            if idx == len(word):
-                return cost
+            if i >= len(word):
+                return 0
+            
+            res = float('inf')
             
             if f1 != '':
                 #move finger1
-                heappush(heap, (cost + distance(f1,word[idx]), word[idx], f2, idx + 1))
+                res = min(res, dfs(i + 1,word[i], f2) + distance(f1,word[i]))
             else:
-                heappush(heap, (cost, word[idx], f2, idx + 1))
+                res = min(res, dfs(i + 1,word[i], f2))
             if f2 != '':
                 #move finger2
-                heappush(heap, (cost + distance(f2,word[idx]), f1, word[idx], idx + 1))
+                res = min(res, dfs(i + 1,f1, word[i]) + distance(f2,word[i]))
             else:
-                heappush(heap, (cost, f1, word[idx], idx + 1))
+                res = min(res, dfs(i + 1,f1, word[i]))
+            
+            
+            return res
         
+        return dfs(0,'','')
