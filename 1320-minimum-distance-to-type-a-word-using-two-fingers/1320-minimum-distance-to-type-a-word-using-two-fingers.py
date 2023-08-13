@@ -1,22 +1,13 @@
 class Solution:
     def minimumDistance(self, word: str) -> int:
         
-        dist = defaultdict(dict)
         
-        for i in range(26):
-            letter = chr(i + ord('A'))
-            r,c = i // 6, i % 6 
-            for j in range(26):
-                nextLetter = chr(j + ord('A'))
-                
-                col = j % 6
-                row = j // 6
-                
-                dist[letter][nextLetter] = abs(r - row) + abs(c - col)
-        
-        #print(dist)
-        
-        
+        def distance(x,y):
+            r1,c1 = (ord(x) - ord('A')) // 6,(ord(x) - ord('A')) % 6
+            r2,c2 = (ord(y) - ord('A')) // 6,(ord(y) - ord('A')) % 6
+            return abs(r1 - r2) + abs(c1 - c2) 
+            
+
         heap = []
         
         heappush(heap, (0, '', '', 0))
@@ -33,12 +24,12 @@ class Solution:
             
             if f1 != '':
                 #move finger1
-                heappush(heap, (cost + dist[f1][word[idx]], word[idx], f2, idx + 1))
+                heappush(heap, (cost + distance(f1,word[idx]), word[idx], f2, idx + 1))
             else:
                 heappush(heap, (cost, word[idx], f2, idx + 1))
             if f2 != '':
                 #move finger2
-                heappush(heap, (cost + dist[f2][word[idx]], f1, word[idx], idx + 1))
+                heappush(heap, (cost + distance(f2,word[idx]), f1, word[idx], idx + 1))
             else:
                 heappush(heap, (cost, f1, word[idx], idx + 1))
         
