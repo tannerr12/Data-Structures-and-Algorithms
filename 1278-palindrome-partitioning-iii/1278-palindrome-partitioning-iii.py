@@ -1,7 +1,7 @@
 class Solution:
     def palindromePartition(self, s: str, k: int) -> int:
         
-        
+        @cache
         def minCostPal(i, st):
             
             if i == len(st) // 2:
