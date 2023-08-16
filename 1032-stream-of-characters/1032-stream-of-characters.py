@@ -11,7 +11,7 @@ class StreamChecker:
     def __init__(self, words: List[str]):
         
         self.tri = Trie('')
-        self.mw = []
+        self.mw = deque()
         for word in words:
             word = word[::-1]
             t = self.tri
@@ -28,6 +28,8 @@ class StreamChecker:
     def query(self, letter: str) -> bool:
         
         self.mw.append(letter)
+        if len(self.mw) > 200:
+            self.mw.popleft()
         found = False
         t = self.tri
         for i in range(len(self.mw)-1,-1,-1):
