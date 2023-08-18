@@ -27,33 +27,29 @@ class Solution:
         
                     
         '''
-        vals = defaultdict(int)
-        ans = []
-        vals['0' * n] += 1
+        vals = set()
+        ans = ''
+        vals.add('0' * n)
         @cache
         def dfs(s):
-                        
+            nonlocal ans
+            
+            if ans:
+                return True
+            
             if len(vals) == k ** n:
-                ans.append(s)
+                ans = s
                 return True
             
             for v in range(k):
                 ns = s + str(v)
-                if len(ns) >= n:
-                    if vals[ns[-n:]] >= 1:
-                        continue
-                    vals[ns[-n:]] += 1
-                if dfs(ns):
-                    return True
-            
-                if len(ns) >= n:
-                    vals[ns[-n:]] -= 1
-                    if vals[ns[-n:]] == 0:
-                        del vals[ns[-n:]]
-        
-        
+                if ns[-n:] not in vals:
+                    vals.add(ns[-n:])
+                    if dfs(ns):
+                        vals.remove(ns[-n:]) 
+                        return True
+                    vals.remove(ns[-n:])    
+                    
         dfs('0' * n)
         
-  
-        ans.sort(key=lambda x: (len(x)))
-        return ans[0]
+        return ans
