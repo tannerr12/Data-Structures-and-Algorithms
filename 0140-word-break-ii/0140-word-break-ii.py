@@ -3,7 +3,7 @@ class Solution:
         ans = []
         wordDict = set(wordDict)
         
-        @cache
+     
         def dfs(i,st,last):
             
             if i >= len(s):
