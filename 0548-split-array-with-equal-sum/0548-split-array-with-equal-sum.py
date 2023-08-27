@@ -20,11 +20,11 @@ class Solution:
                 total = (prefix[j] - prefix[i+1])
                 targetAmt = left * 2
                 diff = total - targetAmt
-                if (diff, left) in seen and prefix[-1] - prefix[j+1] == left:
+                if diff in seen and prefix[-1] - prefix[j+1] == left:
                     return True
                 
-                if j > i + 2:
-                    seen.add((nums[j-1], prefix[j-1] - prefix[i+1]))
+                if j > i + 2 and prefix[j-1] - prefix[i+1] == left:
+                    seen.add(nums[j-1])
 
                 
         
