@@ -25,7 +25,6 @@ class MyStack:
         return -1
 
     def top(self) -> int:
-       
         if not self.empty():
             val = 0
             while len(self.q1) != 0:
