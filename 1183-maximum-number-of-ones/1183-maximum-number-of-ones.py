@@ -4,7 +4,6 @@ class Solution:
         mp = defaultdict(int)
         for i in range(height):
             for j in range(width):
-                
                 mp[str(i % sideLength) + ',' + str(j % sideLength)] += 1
                 
                 
