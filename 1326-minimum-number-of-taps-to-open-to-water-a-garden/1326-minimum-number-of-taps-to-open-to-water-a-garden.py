@@ -5,25 +5,23 @@ class Solution:
         
         for i in range(len(ranges)):
             
-            ls.append((i - ranges[i],i + ranges[i], 1))
-            ls.append((i + ranges[i],float('-inf'), -1))
+            ls.append((i - ranges[i],i + ranges[i]))
+            #ls.append((i + ranges[i],float('-inf'), -1))
             
         ls.sort()
         
-        count = 0
         idx = 0
         close = 0
         mx = 0
         cost = 0
         for i in range(n):
             
-            while idx < len(ls) and ls[idx][2] == -1 and ls[idx][0] <= i:
-                count += ls[idx][2]
-                idx +=1
+            #while idx < len(ls) and ls[idx][2] == -1 and ls[idx][0] <= i:
+            #    count += ls[idx][2]
+            #    idx +=1
             
                 
             while idx < len(ls) and ls[idx][0] <= i:
-                count += ls[idx][2]
                 mx = max(mx, ls[idx][1])
                 idx +=1
             
