@@ -17,7 +17,7 @@ class Solution:
         #divide each quadrant into 4 more quandrants if a ship is found and keep going until no more ships are found in a quadrant.
         #count unique quadrants found, this is simmilar to quadtree
         
-        @cache
+        
         def divide(x,y):
             
             if not sea.hasShips(y,x):
