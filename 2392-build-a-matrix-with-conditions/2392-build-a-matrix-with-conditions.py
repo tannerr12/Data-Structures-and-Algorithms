@@ -13,18 +13,18 @@ class Solution:
         
         #0,0 -> 3, 0, 1 -> 1
         
-        adjRow = defaultdict(set)
-        adjCol = defaultdict(set)
-        reqRow = defaultdict(set)
-        reqCol = defaultdict(set)
+        adjRow = defaultdict(int)
+        adjCol = defaultdict(int)
+        reqRow = defaultdict(list)
+        reqCol = defaultdict(list)
         
         for x,y in rowConditions:
-            adjRow[y].add(x)
-            reqRow[x].add(y)
+            adjRow[y] +=1
+            reqRow[x].append(y)
         
         for x,y in colConditions:
-            adjCol[y].add(x)
-            reqCol[x].add(y)
+            adjCol[y] += 1
+            reqCol[x].append(y)
             
         
         posMp = defaultdict(int)
@@ -58,8 +58,8 @@ class Solution:
                 rowOrder.append(node)
                 
                 for val in reqRow[node]:
-                    adjRow[val].remove(node)
-                    if len(adjRow[val]) == 0:
+                    adjRow[val] -= 1
+                    if adjRow[val] == 0:
                         del adjRow[val]
                         q.append(val)
         
@@ -85,8 +85,8 @@ class Solution:
                 colOrder.append(node)
                 
                 for val in reqCol[node]:
-                    adjCol[val].remove(node)
-                    if len(adjCol[val]) == 0:
+                    adjCol[val] -= 1
+                    if adjCol[val] == 0:
                         del adjCol[val]
                         q.append(val)
         
