@@ -1,7 +1,6 @@
 class Solution:
     def minOperations(self, nums: List[int], x: int, y: int) -> int:
         
-        nums.sort(reverse=True)
         def isGood(mid):
             
             #mult 3
