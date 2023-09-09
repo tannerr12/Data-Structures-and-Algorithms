@@ -14,7 +14,8 @@ class Solution:
             for num in nums:
                 
                 moves += max(0, math.ceil((num - mid * y) / (x - y)))
-                
+                if moves > mid:
+                    return False
             return moves <= mid
         
         
