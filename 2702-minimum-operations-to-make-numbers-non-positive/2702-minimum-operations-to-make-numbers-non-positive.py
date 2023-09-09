@@ -16,10 +16,11 @@ class Solution:
                 moves += max(0, math.ceil((num - mid * y) / (x - y)))
                 if moves > mid:
                     return False
+                
             return moves <= mid
         
         
-        l,r = 0, 10 ** 9
+        l,r = 0, max(nums) // min(x,y) + 1
         res = float('inf')
         while l <= r:
             
