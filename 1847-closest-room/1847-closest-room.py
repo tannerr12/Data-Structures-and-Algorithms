@@ -19,8 +19,8 @@ class Solution:
         quer.sort(key=lambda x: (x[2], x[1]))
         
         
-        print(quer)
-        print(rooms)
+        #print(quer)
+        #print(rooms)
         ans = [-1] * len(queries)
         idx = 0
         
