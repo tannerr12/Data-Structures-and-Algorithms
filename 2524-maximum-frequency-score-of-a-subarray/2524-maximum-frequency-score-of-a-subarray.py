@@ -23,7 +23,7 @@ class Solution:
                 res = max(res, cur)
             else:
                 
-                cur -= nums[i-k] ** running[nums[i-k]]
+                cur -= (nums[i-k] ** running[nums[i-k]]) % MOD
                 cur %= MOD
                 if nums[i] in running:
                     cur -= (nums[i] ** running[nums[i]]) % MOD
