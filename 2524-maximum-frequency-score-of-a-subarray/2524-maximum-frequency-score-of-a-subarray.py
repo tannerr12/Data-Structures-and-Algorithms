@@ -17,16 +17,15 @@ class Solution:
             elif i == k -1:
                 running[nums[i]] += 1
                 for key,val in running.items():
-                    cur += (key ** val) % MOD
+                    cur = (cur + pow(key,val,MOD)) % MOD
                     cur %= MOD
                 
                 res = max(res, cur)
             else:
                 
-                cur -= (nums[i-k] ** running[nums[i-k]]) % MOD
-                cur %= MOD
+                cur = (cur - pow(nums[i-k],running[nums[i-k]], MOD)) % MOD
                 if nums[i] in running:
-                    cur -= (nums[i] ** running[nums[i]]) % MOD
+                    cur = (cur - pow(nums[i],running[nums[i]], MOD)) % MOD 
                     cur %= MOD
                 
                 running[nums[i-k]] -= 1
@@ -35,10 +34,9 @@ class Solution:
                 running[nums[i]] +=1
                 
                 if nums[i-k] in running:
-                    cur += (nums[i-k] ** running[nums[i-k]]) % MOD
-                    cur %= MOD
-                cur += (nums[i] ** running[nums[i]]) % MOD
-                cur %= MOD
+                    cur = (cur + pow(nums[i-k],running[nums[i-k]], MOD)) % MOD
+                cur = (cur + pow(nums[i], running[nums[i]], MOD)) % MOD 
+                
                 
                 res = max(res, cur)
         
