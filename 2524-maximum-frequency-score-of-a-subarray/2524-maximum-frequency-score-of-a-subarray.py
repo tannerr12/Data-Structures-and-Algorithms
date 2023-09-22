@@ -25,14 +25,16 @@ class Solution:
                 
                 cur -= nums[i-k] ** running[nums[i-k]]
                 cur %= MOD
-                if nums[i] in running and running[nums[i]] > 0:
+                if nums[i] in running:
                     cur -= nums[i] ** running[nums[i]]
                     cur %= MOD
                 
                 running[nums[i-k]] -= 1
+                if running[nums[i-k]] == 0:
+                    del running[nums[i-k]]
                 running[nums[i]] +=1
                 
-                if running[nums[i-k]] > 0:
+                if nums[i-k] in running:
                     cur += nums[i-k] ** running[nums[i-k]]
                     cur %= MOD
                 cur += nums[i] ** running[nums[i]]
