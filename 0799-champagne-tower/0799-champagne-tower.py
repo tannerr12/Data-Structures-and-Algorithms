@@ -17,10 +17,11 @@ class Solution:
                     glass[(level + 1, i)] += excess
                     glass[(level + 1, i + 1)] += excess
                     del glass[(level,i)]
-            
+                if (level, i) == (query_row, query_glass):
+                    return glass[(level, i)]
             level += 1
 
-        
+        print()
         return glass[(query_row, query_glass)]
             
         
