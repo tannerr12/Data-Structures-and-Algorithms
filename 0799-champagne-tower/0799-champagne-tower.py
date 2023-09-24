@@ -9,11 +9,14 @@ class Solution:
             
             for i in range(level + 1):
                 if glass[(level,i)] > 1:
+                    if (level, i) == (query_row, query_glass):
+                        return 1
+                    
                     excess = glass[(level, i)] - 1
                     excess /= 2
                     glass[(level + 1, i)] += excess
                     glass[(level + 1, i + 1)] += excess
-                    glass[(level, i)] = 1
+                    del glass[(level,i)]
             
             level += 1
 
