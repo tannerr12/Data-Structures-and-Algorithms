@@ -2,8 +2,7 @@ class Solution:
     def countSteppingNumbers(self, low: int, high: int) -> List[int]:
         
         ans = []
-        
-        @cache
+
         def dfs(num,target):
             
             if num > high:
