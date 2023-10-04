@@ -11,29 +11,22 @@ class Solution:
         
         def isGood(mid):
             less = 0
-            sameCount = 0
             for i in range(1,m + 1):
                 less += min(n, mid // i)
                 
-                if mid // i <= n and mid % i == 0:
-                    sameCount += 1
-            
-            return less+1 > k,less+1-sameCount <= k and less >= k
-                
+            return less >= k
             
             
         l, r = 1, m*n
     
-        while l <= r: 
+        while l < r: 
             
             mid = (l + r) // 2
-            x,y = isGood(mid)
-            if x and not y:
-                r = mid - 1
-            elif not x and not y:
+            
+            if not isGood(mid):
                 l = mid + 1
             else:
-                return mid
+                r = mid
             
         return l
             
