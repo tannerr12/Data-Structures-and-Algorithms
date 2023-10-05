@@ -17,7 +17,7 @@ class Solution:
                 
         
         
-        l,r = 1, 10 ** 9
+        l,r = 1, max(position)
         res = 1
         while l <= r:
             
