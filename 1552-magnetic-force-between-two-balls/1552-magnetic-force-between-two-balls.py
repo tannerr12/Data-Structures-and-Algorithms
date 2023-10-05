@@ -17,7 +17,7 @@ class Solution:
                 
         
         
-        l,r = 1, max(position)
+        l,r = 1, max(position) - m + 1
         res = 1
         while l <= r:
             
