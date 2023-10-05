@@ -17,19 +17,19 @@ class Solution:
                 
         
         
-        l,r = 1, max(position) - m + 1
-        res = 1
-        while l <= r:
+        l,r = 0, position[-1] - position[0]
+
+        while l < r:
             
-            mid = (l+r)// 2
+            mid = r - (r - l) // 2
             
             if isGood(mid):
-                res = mid
-                l = mid + 1
+                
+                l = mid
             
             else:
                 
                 r = mid - 1
         
         
-        return res
+        return l
