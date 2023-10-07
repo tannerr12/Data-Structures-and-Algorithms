@@ -12,19 +12,14 @@ class Solution:
             if size == 0:
                 return rem == 0
             
-            res = 0
-            for i in range(1, m+1):
-                
-                if i <= cur:
-                    #combinatorics
-                    res += dfs(cur, rem, size - 1)
-                    res %= MOD
-                else:
-                    
-                    res += dfs(i, rem - 1, size - 1)
-                    res %= MOD
             
-            return res % MOD 
+            res = (dfs(cur, rem, size - 1) * cur) % MOD
+            
+            for i in range(cur+1, m+1):
+                res = (res + dfs(i, rem - 1, size - 1)) % MOD
+                
+            
+            return res 
         
         
-        return dfs(-1, k, n)
+        return dfs(0, k, n)
