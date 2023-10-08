@@ -42,5 +42,7 @@ class Solution:
         ans = dfs(0,0)
     
         if ans == 0:
-            return max(max(nums1) * min(nums2), max(nums2) * min(nums1), max(nums1) * max(nums2), min(nums1) * min(nums2))
+            mn1,mx1 = min(nums1), max(nums1)
+            mn2,mx2 = min(nums2), max(nums2)
+            return max(mx1 * mn2, mx2 * mn1, mx1 * mx2, mn1 * mn2)
         return ans
