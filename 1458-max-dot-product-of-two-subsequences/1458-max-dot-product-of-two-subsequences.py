@@ -17,29 +17,30 @@ class Solution:
         #n^3
         
         @cache
-        def dfs(i, j, take):
+        def dfs(i, j):
             
             if i >= len(nums1) or j >= len(nums2):
-                if take:
-                    return 0
-                else:
-                    return float('-inf')
+                
+                return 0
+        
             
             
             res = float('-inf')
             
             #take both
-            res = max(res, dfs(i+1, j+1, True) + nums1[i] * nums2[j])
+            res = max(res, dfs(i+1, j+1) + nums1[i] * nums2[j])
             
             #skip nums1
-            res = max(res, dfs(i+1, j, take))
+            res = max(res, dfs(i+1, j))
             
             #skip nums2
-            res = max(res, dfs(i, j+1, take))            
+            res = max(res, dfs(i, j+1))            
             
             return res
         
         
-        return dfs(0,0,False)
+        ans = dfs(0,0)
     
-        
+        if ans == 0:
+            return max(max(nums1) * min(nums2), max(nums2) * min(nums1), max(nums1) * max(nums2), min(nums1) * min(nums2))
+        return ans
