@@ -40,9 +40,7 @@ class Solution:
                     l = mid +1
             
             return l -1
-        #print(sl)
-        #print(res)
-        #print(val)
+
         r = []
         for i in persons:
             if i < res[0] or i > res[-1]:
