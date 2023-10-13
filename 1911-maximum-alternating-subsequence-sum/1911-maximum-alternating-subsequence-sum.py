@@ -1,26 +1,26 @@
 class Solution:
     def maxAlternatingSum(self, nums: List[int]) -> int:
         
-        #nums = [1] * (10 ** 5)
-        @cache
-        def dfs(i, count):
-            
-            if i >= len(nums):
-                return 0
-            
-            res = 0
-            if count:
-                res = max(res,dfs(i+1,not count) - nums[i])
-            else:
-                res = max(res,dfs(i+1,True) + nums[i]) 
-            
-            
-            res = max(res,dfs(i+1, count))
-            
-            return res
         
-        return dfs(0,False)
+        #if increase readjust 2,3 we take 3 
+        #if decrease we take min 2,3,2,1,2 #buy at 3 sell at 1 than buy at 2 again
+        
+        ans = 0
+        cur = 0
+        
+        high = 0
+        low = float('inf')
+        for i in range(len(nums)):
+            
+            low = min(low,nums[i])
+            
+            if nums[i] > low:
+                ans += high - low
+                high = nums[i]
+                low = nums[i]
+            high = max(high, nums[i])
+            
         
         
-            
-            
+        return ans + high
+        
