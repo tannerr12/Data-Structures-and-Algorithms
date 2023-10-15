@@ -21,7 +21,8 @@ class Solution:
                 res = (res + dfs(i-1, step + 1)) % MOD
             
             #stay
-            res = (res + dfs(i, step + 1)) % MOD
+            if steps - (step + 1) >= i:
+                res = (res + dfs(i, step + 1)) % MOD
             
             return res 
         
