@@ -12,7 +12,7 @@ class Solution:
             
             res = 0
             
-            if i < arrLen:
+            if i < arrLen and steps - (step + 1) >= i+1:
                 #step right
                 res = (res + dfs(i+1, step + 1)) % MOD
             
