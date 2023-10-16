@@ -32,28 +32,11 @@ class Solution:
         
         # -5 -6 -8
         # -5 -7 -10
+        mn = 0
+        cur = 0
+        for x,y in transactions:
+            cur -= x
+            mn = min(mn,cur)
+            cur += y
         
-        def isGood(cash):
-            
-            for x,y in transactions:
-                if cash >= x:
-                    cash = cash - x + y
-                else:
-                    return False
-            
-            return True
-            
-        
-        l,r = 0, 10 ** 18
-        
-        while l < r:
-            
-            mid = (l+r) // 2
-            
-            if isGood(mid):
-                r = mid 
-            else:
-                l = mid + 1
-                
-        
-        return l
+        return mn * -1
