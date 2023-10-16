@@ -8,7 +8,7 @@ class Solution:
         transactions.sort(key=custom_sort)
 
         
-        print(transactions)
+        #print(transactions)
         
         #9 - 2 = 7 + 1 = 8
         #8 - 4 = 4 + 2 = 6
