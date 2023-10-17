@@ -16,9 +16,9 @@ class Solution:
             if x not in parent:
                 parent[x] = x
             if x != parent[x]:
-                x = find(parent[x])
+                parent[x] = find(parent[x])
             
-            return x
+            return parent[x]
         
         
         def union(x,y):
