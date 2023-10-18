@@ -31,7 +31,7 @@ class Solution:
                 maxTime[x-1] = max(maxTime[x-1], time[x-1] + maxTime[node-1])
                 if indegree[x] == 0:
                     heapq.heappush(q, (maxTime[x-1], x))
-                    #seen.add(x)
+           
             
 
         
