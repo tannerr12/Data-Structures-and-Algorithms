@@ -31,9 +31,7 @@ class NestedIterator:
                 self.dfs(0,self.ns[i].getList())
             else:
                 self.stack.append(self.ns[i].getInteger())
-        
-        #print(self.stack)
-            
+
         
     def dfs(self,i,n):
         
