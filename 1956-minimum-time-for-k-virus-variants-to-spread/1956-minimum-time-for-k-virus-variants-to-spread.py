@@ -1,6 +1,33 @@
 class Solution:
     def minDayskVariants(self, points: List[List[int]], k: int) -> int:
         
+        res = float('inf')
+        for i in range(1, 101):
+            
+            for j in range(1, 101):
+                
+                heap = []
+                
+                for x,y in points:
+                    dist = abs(i-x) + abs(j-y)
+                    heappush(heap, dist)
+                
+                cur = 0
+                tk = k
+                
+                while heap and tk:
+                    cur = max(cur,heappop(heap))
+                    tk -=1
+                
+                res = min(res, cur)
+                
+        
+        return res
+                
+        
+        
+        '''
+        
         pMp = defaultdict(set)
         
         seen = set()
@@ -39,4 +66,4 @@ class Solution:
             level += 1
         
         
-        
+        '''
