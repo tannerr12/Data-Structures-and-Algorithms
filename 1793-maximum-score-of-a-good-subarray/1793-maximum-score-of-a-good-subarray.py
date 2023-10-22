@@ -1,10 +1,8 @@
 class Solution:
     def maximumScore(self, nums: List[int], k: int) -> int:
-        
+        #get next lesser element to the right (right boundry)
         stack = []
         right = [len(nums)-1] * len(nums)
-
-        stack = []
         for i in range(len(nums)-1,-1,-1):
             
             while stack and nums[stack[-1]] >= nums[i]:
@@ -15,7 +13,8 @@ class Solution:
                 
             stack.append(i)
         
-        
+
+        #get lesser value to the left (left boundry) + calculate max value if left and right include k
         res = 0
         stack = []
         for i in range(len(nums)):
