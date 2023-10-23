@@ -1,10 +1,7 @@
 class Solution:
     def isPowerOfFour(self, n: int) -> bool:
         if n <= 0:
-            return False
-        if n == 1 or n == 4:
-            return True
-        
+            return False        
 
         #4 = 100
         #16 = 10000
@@ -16,12 +13,9 @@ class Solution:
         for i in range(32):
             if n & (1 << i) > 0:
                 bitCount += 1
+                if i % 2 == 0:
+                    seen = True
             
-        for i in range(2, 32, 2):
-            if n & (1 << i) > 0:
-                seen = True
-                
-        
         
         return bitCount == 1 and seen
             
