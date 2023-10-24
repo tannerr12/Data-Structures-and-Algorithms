@@ -18,7 +18,7 @@ class Solution:
             return [v1 + v2 - v3 < n, v1 + v2 - v3 == n]
             
             
-        l, r = 0, 10 ** 18
+        l, r = 0, 10 ** 15
         res = 0
         while l <= r:
             
