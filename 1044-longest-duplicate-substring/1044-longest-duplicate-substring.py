@@ -12,8 +12,8 @@ class Solution:
                 st.add(s[j:j+mid])
                 
             return ''
-        
-        l,r = 0, len(s)
+    
+        l,r = 1, len(s)
         res = ''
         while l <= r:
             
