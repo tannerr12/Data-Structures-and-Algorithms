@@ -1,6 +1,6 @@
 class Solution:
     def longestDupSubstring(self, s: str) -> str:
-        MOD = 9223372036854775807
+        MOD = 9973
         
         def check(num, word,st):
             
