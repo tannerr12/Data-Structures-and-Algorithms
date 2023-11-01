@@ -37,6 +37,7 @@ class Solution:
             
             if word2[i] in mp:
                 ans = max(ans,LCS(mp[word2[i]] +1, len(word1) + i - 1) + 2)
+                del mp[word2[i]]
         
         return ans
             
