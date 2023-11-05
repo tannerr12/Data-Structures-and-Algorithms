@@ -6,9 +6,7 @@ class Solution:
         
         #5
         
-        if k >= len(arr):
-            return max(arr)
-        
+
         count = 0
         mx = arr[0]
         
