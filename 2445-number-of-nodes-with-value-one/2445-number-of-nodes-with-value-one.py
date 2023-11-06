@@ -5,7 +5,7 @@ class Solution:
         
         #print(count)
         
-        @cache
+        
         def dfs(val,sign):
             
             if val > n:
