@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select ABS(max(salary)-(select max(salary) from salaries where department = 'Marketing')) as "salary_difference" from salaries where department = 'Engineering' 
