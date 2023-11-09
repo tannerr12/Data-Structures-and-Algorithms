@@ -6,11 +6,10 @@ class Solution:
         sNut = 0
         treeMax = 0
         
-        pairs = []
+   
         for x,y in nuts:
             res += (abs(x - tree[0]) + abs(y - tree[1])) * 2
-            pairs.append(((abs(x - tree[0]) + abs(y - tree[1])), (abs(x - sq[0]) + abs(y - sq[1]))))
-            
+
             if (abs(x - tree[0]) + abs(y - tree[1])) - (abs(x - sq[0]) + abs(y - sq[1])) > NutTree:
           
                 sNut = (abs(x - sq[0]) + abs(y - sq[1]))
