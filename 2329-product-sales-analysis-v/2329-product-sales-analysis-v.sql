@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select s.user_id, SUM(s.quantity * p.price) as spending from Sales s join Product p on p.product_id = s.product_id group by user_id order by spending desc, user_id 
