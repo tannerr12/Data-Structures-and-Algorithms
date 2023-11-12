@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select seller_name from seller where seller_id not in (select seller_id from orders group by seller_id having max(sale_date) >= '2020-01-01') order by seller_name
