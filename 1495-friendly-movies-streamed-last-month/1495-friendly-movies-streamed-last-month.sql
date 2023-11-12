@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select title from content where content_id in (select content_id from TVProgram where program_date >= '2020-06-01' and program_date < '2020-07-01')  and kids_content = true and content_type = 'Movies' group by title
