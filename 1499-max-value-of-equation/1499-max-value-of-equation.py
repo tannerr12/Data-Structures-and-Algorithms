@@ -21,17 +21,13 @@ class Solution:
         #4
         
         #2, -2, 5, -16
-        
-        nPoints = []
-        
-        for i, (x,y) in enumerate(points):
-            nPoints.append((y-x, i))
+
             
         #print(nPoints)
         l = 0
         sl = SortedList()
         res = float('-inf')
-        for i, val in enumerate(nPoints):
+        for i in range(len(points)):
             while sl and points[l][0] < points[i][0] - k:
                 idx = bisect_left(sl,(points[l][1] - points[l][0],l),key = lambda x: (x[0], x[1]))
                 sl.pop(idx)
@@ -40,6 +36,6 @@ class Solution:
             if len(sl) > 0:
                 b = sl[-1][1]
                 res = max(res, points[i][0] - points[b][0] + points[i][1] + points[b][1]) 
-            sl.add(val)
+            sl.add((points[i][1] - points[i][0], i))
         
         return res
