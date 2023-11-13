@@ -1,4 +1,4 @@
-from sortedcontainers import SortedList
+#from sortedcontainers import SortedList
 class Solution:
     def findMaxValueOfEquation(self, points: List[List[int]], k: int) -> int:
         #[[1,3],[2,0],[5,10],[6,-10]], k = 1
@@ -25,17 +25,15 @@ class Solution:
             
         #print(nPoints)
         l = 0
-        sl = SortedList()
+        sl = []
         res = float('-inf')
         for i in range(len(points)):
-            while sl and points[l][0] < points[i][0] - k:
-                idx = bisect_left(sl,(points[l][1] - points[l][0],l),key = lambda x: (x[0], x[1]))
-                sl.pop(idx)
-                l+=1
+            while sl and points[i][0] - points[sl[0][1]][0] > k:
+                heappop(sl)
             
             if len(sl) > 0:
-                b = sl[-1][1]
+                b = sl[0][1]
                 res = max(res, points[i][0] - points[b][0] + points[i][1] + points[b][1]) 
-            sl.add((points[i][1] - points[i][0], i))
+            heappush(sl,(-(points[i][1] - points[i][0]), i))
         
         return res
