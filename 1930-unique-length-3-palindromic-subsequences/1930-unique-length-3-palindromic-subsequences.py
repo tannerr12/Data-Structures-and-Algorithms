@@ -1,16 +1,11 @@
 class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
         
-        
-        dpleft = [0] * len(s)
+    
         dpright = [0] * len(s)
-        left = 0
         right = 0
         
-        for i in range(len(s)):
-            
-            dpleft[i] = left    
-            left |= (1 << (ord(s[i]) - ord('a')))
+        left =set()
             
         
         for i in range(len(s)-1,-1,-1):
@@ -20,15 +15,14 @@ class Solution:
         
         
         seen = set()
-        for num in range(1, len(s) -1):
-            left = dpleft[num]
+        for num in range(len(s) -1):
             right = dpright[num]
             for i in range(26):
-            
-                if left & (1 << i) > 0 and right & (1 << i) > 0:
-                    val = chr(ord('a') + i)
+                val = chr(ord('a') + i)
+                if right & (1 << i) > 0 and val in left:
+                    
                     seen.add(val + s[num] + val)
-        
+            left.add(s[num])
         return len(seen)
                     
             
