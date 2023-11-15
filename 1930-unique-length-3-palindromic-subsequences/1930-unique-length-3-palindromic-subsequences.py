@@ -4,8 +4,7 @@ class Solution:
     
         dpright = [0] * len(s)
         right = 0
-        
-        left =set()
+        left = 0
             
         
         for i in range(len(s)-1,-1,-1):
@@ -14,15 +13,32 @@ class Solution:
             right |= (1 << (ord(s[i]) - ord('a')))
         
         
-        seen = set()
+        def hammingDistance(x):
+            count = 0
+            while x:
+                x -= x & -x
+                count += 1
+            
+            return count
+        
+        chrBest = defaultdict(int)
+        
+        
         for num in range(len(s) -1):
             right = dpright[num]
-            for i in range(26):
-                val = chr(ord('a') + i)
-                if right & (1 << i) > 0 and val in left:
-                    
-                    seen.add(val + s[num] + val)
-            left.add(s[num])
-        return len(seen)
+            overlap = left & right
+            #c = hammingDistance(overlap)
+            chrBest[s[num]] |= overlap
+            left |= (1 << (ord(s[num]) - ord('a'))) 
+        
+        
+        
+        total = 0
+        
+        for key,val in chrBest.items():
+            total += hammingDistance(val)
+        
+        return total
+            
                     
             
