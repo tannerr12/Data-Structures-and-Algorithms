@@ -1,12 +1,14 @@
 class Solution:
     def alphabetBoardPath(self, target: str) -> str:
         manhat = defaultdict(tuple)
-        board = ["abcde", "fghij", "klmno", "pqrst", "uvwxy", "z...."]
+        board = ["abcde", "fghij", "klmno", "pqrst", "uvwxy", "z"]
         for i in range(len(board)):
             for j in range(len(board[0])):
+                
                 cur = board[i][j]
                 manhat[cur] = (i,j)
-        
+                if cur == 'z':
+                    break
         
         #print(manhat)
 
