@@ -38,9 +38,7 @@ class Solution:
             right[i] = total
             
                 
-        
-        print(left)
-        print(right)
+    
         res = 0
         for i in range(len(maxHeights)):
             res = max(res, left[i] + right[i] - maxHeights[i])
