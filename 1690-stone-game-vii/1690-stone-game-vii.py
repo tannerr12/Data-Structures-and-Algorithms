@@ -5,7 +5,7 @@ class Solution:
             prefix.append(prefix[-1] + stones[i])
         
      
-        @lru_cache(maxsize = 100000)
+        @lru_cache(maxsize = 2000)
         def dfs(i, j):
             
             if i > j:
