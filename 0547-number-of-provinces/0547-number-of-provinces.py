@@ -1,47 +1,52 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         
-        
-        adj = collections.defaultdict(list)
-        
-        
-        for r in range(len(isConnected)):
+        def dfs(i):
+            nonlocal st,idVal
+            stack.append(i)
+            inStack[i] = True
+            lowLink[i] = idVal
+            ids[i] = idVal
+            idVal += 1
             
-            for c in range(len(isConnected[0])):
-                
-                if r == c:
+            for j in range(len(isConnected[i])):
+                if isConnected[i][j] == 0 or i == j:
                     continue
-                if isConnected[r][c] == 1:
-                     adj[r].append(c)
+                    
+                if ids[j] == -1:
+                    dfs(j)
                 
-        
-        
-        
-        visited = {}
-        
-        def dfs(num):
+                if inStack[j]:
+                    lowLink[i] = min(lowLink[i], lowLink[j])
             
-            if num in visited:
-                return 0
-            
-            
-            
-            visited[num] = 1
-            
-            for a in adj[num]:
+            if lowLink[i] == ids[i]:
                 
-                dfs(a)
+                while stack:
+    
+                    val = stack.pop()
+                    inStack[val] = False 
+                    lowLink[val] = ids[i]
+                    if val == i:
+                        break
+
+                st += 1
+        
+        n = len(isConnected)
+        st = 0
+        stack = []
+        inStack = [False] * n
+        lowLink = [-1] * n
+        ids = [-1] * len(isConnected)
+        idVal = 0
+        
+        for i in range(len(isConnected)):
+            
+            if ids[i] == -1:
+                dfs(i)
             
             
-            
-            
-            return 1
+        
+        return st
         
         
-        res = 0
-        for key,val in adj.items():
-            
-            res += dfs(key)
         
-        
-        return res + len(isConnected) - len(visited)
