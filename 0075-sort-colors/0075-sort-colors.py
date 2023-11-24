@@ -5,20 +5,17 @@ class Solution:
         """
         
         l,r,j = 0,len(nums) -1,0
-        while r >= 0 and nums[r] == 2:
-            r -= 1
+
         
-        while l <= r and j <= r:
+        while j <= r:
             
-            if nums[j] == 0 or nums[l] == 1 and nums[j] == 0:
+            if nums[j] == 0:
                 nums[l],nums[j] = nums[j], nums[l]
                 l+=1
                 j+=1
             elif nums[j] == 2:    
                 nums[r], nums[j] = nums[j], nums[r]
-                while r >= 0 and nums[r] == 2:
-                    r -= 1
-            
+                r -= 1
             else:
                 j += 1
         
