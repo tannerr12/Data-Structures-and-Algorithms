@@ -15,31 +15,22 @@ class Solution:
             else:
                 return 26 - ch1 + ch2
     
-        arr = [0] * len(s)
-        
-        for i in range(len(s)):
-            arr[i] = checkDist(s[i], t[i])
-            
-        #print(arr)
-        
+        #arr = [0] * len(s)
         mx = k // 26
         
         count = [0] * 25
         
         for i in range(len(count)):
-            
             count[i] += mx + ((k % 26) > i)
-        
-        #print(count)
-        arr.sort()
-        
-        
-        for i in range(len(arr)):
-            if arr[i] > 0:
-                if count[arr[i]-1] == 0:
+            
+        for i in range(len(s)):
+            v = checkDist(s[i], t[i])
+            if v > 0:
+                if count[v-1] == 0:
                     return False
                 else:
-                    count[arr[i]-1] -= 1
+                    count[v-1] -= 1
+
         
         return True
         
