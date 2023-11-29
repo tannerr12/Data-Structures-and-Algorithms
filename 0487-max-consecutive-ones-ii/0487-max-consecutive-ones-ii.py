@@ -2,14 +2,12 @@ class Solution:
     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
         
         
-        zeroes, res = 0,0
+        res = 0
         
         
         s = ''.join(str(n) for n in nums)
         
         arr = s.split('0')
-        
-        #print(arr)
         
         for i in range(len(arr) -1):
             
