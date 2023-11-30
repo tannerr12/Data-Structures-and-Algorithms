@@ -1,5 +1,6 @@
 class Solution:
     def minimumOneBitOperations(self, n: int) -> int:
+        #look into gray code
         @cache
         def dfs(num):
             if num == '1':
