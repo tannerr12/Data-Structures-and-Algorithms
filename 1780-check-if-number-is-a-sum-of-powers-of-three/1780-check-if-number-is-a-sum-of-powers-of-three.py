@@ -1,7 +1,7 @@
 class Solution:
     def checkPowersOfThree(self, n: int) -> bool:
         
-      
+        @lru_cache(maxsize=100)
         def dfs(val, i):
             
             if val > n:
