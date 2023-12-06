@@ -3,7 +3,6 @@ class Solution:
         
         def count(i,j):
             return ((i + j) * (j - i + 1)) //2
-        
 
         week = 1
         total = 0
@@ -12,7 +11,7 @@ class Solution:
             total += count(week, week+6)
             week += 1
         
-        total += count(week, week + (n-((week-1) * 7)-1))
+        total += count(week, week + (n % 7)-1)
         
         return total
 
