@@ -13,29 +13,25 @@ class Solution:
     def palindromePairs(self, words: List[str]) -> List[List[int]]:
      
         t = trie('')
-        palis = []
+     
         for i,word in enumerate(words):
             tri = t
-            w = word[::-1]
-            if word == w:
-                palis.append(i)
-            for j,char in enumerate(w):
-                ispaliw = w[j:]
-                ispali = ispaliw == ispaliw[::-1]
+            word = word[::-1]
 
-                if ispali:
+            for j,char in enumerate(word):
+       
+
+                if word[j:] == word[j:][::-1]:
                     tri.endWords.append(i)
                 if char in tri.adj:
                     tri = tri.adj[char]
-                
                 else:
                     tri.adj[char] = trie(char)
                     tri = tri.adj[char]
                         
                       
-            tri.endWords.append(i)
             tri.endingWord = i
-        added = set()
+  
         ans = []
         for i,w in enumerate(words):
             
@@ -44,9 +40,9 @@ class Solution:
             for j,char in enumerate(w):
                 
                 if tri.endingWord != -1:
-                    if w[j:] == w[j:][::-1] and (i,tri.endingWord) not in added:
-                        added.add((i,tri.endingWord))
+                    if w[j:] == w[j:][::-1]:
                         ans.append([i, tri.endingWord])
+                        
                 if char in tri.adj:
                     tri = tri.adj[char]
                 else:
@@ -55,22 +51,12 @@ class Solution:
             
             
             if found:
-                if w == '':
-                    for val in palis:
-                        if i == val:
-                            continue
-                        if (i,val) not in added:
-                            added.add((i,val))
-                            ans.append([i,val])
-                        if (val, i) not in added:
-                            added.add((val,i))
-                            ans.append([val,i])
-                else:
-                    for val in tri.endWords:
-                        if val != i:
-                            if (i, val) not in added:
-                                ans.append([i,val])
-                                added.add((i,val))
+                if tri.endingWord != -1 and tri.endingWord != i:
+                    ans.append([i, tri.endingWord])
+                
+                for j in tri.endWords:
+                    ans.append([i,j])
+                
 
         
         return ans
