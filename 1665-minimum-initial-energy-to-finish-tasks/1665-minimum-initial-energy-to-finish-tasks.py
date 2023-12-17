@@ -16,11 +16,12 @@ class Solution:
             
             return True
         
-        low, high = 0,0
+        l, r = 0,0
         for x,y in tasks:
-            low +=x
-            high += y
-        l,r = low, high
+            l +=x
+            r += y
+            
+            
         res = 0
         while l <= r:
             
