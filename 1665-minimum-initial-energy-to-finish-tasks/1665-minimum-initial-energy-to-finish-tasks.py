@@ -16,7 +16,11 @@ class Solution:
             
             return True
         
-        l,r = 0, 10 ** 9
+        low, high = 0,0
+        for x,y in tasks:
+            low +=x
+            high += y
+        l,r = low, high
         res = 0
         while l <= r:
             
