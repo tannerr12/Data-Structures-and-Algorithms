@@ -1,34 +1,62 @@
-from collections import defaultdict
-from typing import List
 
 class Solution:
     def matrixRankTransform(self, matrix: List[List[int]]) -> List[List[int]]:
-        m, n = len(matrix), len(matrix[0])
-        rank = [0] * (m + n)  # Combined rank for rows and columns
-
-        # Map each value to its coordinates
-        value_to_positions = defaultdict(list)
+        m = len(matrix)
+        n = len(matrix[0])
+        
+        
+        
+        def find(x):
+            
+            if x != parent[x]:
+                parent[x] = find(parent[x])
+            
+            return parent[x]
+        
+        def union(x,y):
+            
+            x1 = find(x)
+            y1 = find(y)
+            
+            if x1 != y1:
+                parent[x1] = y1
+            
+        
+        def isConnected(x,y):
+            return find(x) == find(y)
+        
+        
+        
+        rankX = [0] * m
+        rankY = [0] * n
+        
+        mp = defaultdict(list)
         for i in range(m):
             for j in range(n):
-                value_to_positions[matrix[i][j]].append((i, j))
-
-        # Process each value in sorted order
-        for value in sorted(value_to_positions):
-            positions = value_to_positions[value]
-            rank2 = rank.copy()
-            parent = list(range(m + n))
-
-            def find(x):
-                if parent[x] != x:
-                    parent[x] = find(parent[x])
-                return parent[x]
-
-            for i, j in positions:
-                i, j = find(i), find(j + m)
-                parent[i] = j
-                rank2[j] = max(rank2[i], rank2[j])
-
-            for i, j in positions:
-                rank[i] = rank[j + m] = matrix[i][j] = rank2[find(i)] + 1
-
-        return matrix
+                mp[matrix[i][j]].append([i,j])
+            
+        
+        grid = [[0 for j in range(n)] for i in range(m)]
+        for val in sorted(mp):
+            
+            parent = list(range(m+n))
+            
+            for i,j in mp[val]:
+                union(i, j+m)
+            
+            root = defaultdict(int)
+            for i,j in mp[val]:
+                r = find(i)
+                root[r] = max(root[r], max(rankX[i], rankY[j]) + 1)
+            
+            for i,j in mp[val]:
+                r = find(i)
+                ra = root[r]
+                grid[i][j] = ra
+                rankX[i] = ra
+                rankY[j] = ra
+                
+        
+        return grid
+                
+            
