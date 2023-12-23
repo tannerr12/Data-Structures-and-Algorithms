@@ -3,18 +3,17 @@ class Solution:
         
         l = 0 
         res = 0
-        count = 0
         target = max(nums)
         for i in range(len(nums)):
             
             if nums[i] == target:
-                count += 1
+                k -= 1
                 
             
-            while count >= k:
+            while k == 0:
                 res += len(nums) - i
                 if nums[l] == target:
-                    count -= 1
+                    k += 1
                 l += 1
         
         return res
