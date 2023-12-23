@@ -30,7 +30,7 @@ class Solution:
             return [total,d]
         
         leaves,d = countLeaves(root)
-        print(leaves)
+        
         def dfs(node,depth):
             nonlocal leaves,d
             if node is None:
