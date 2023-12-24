@@ -2,7 +2,7 @@ class Solution:
     def smallestRepunitDivByK(self, k: int) -> int:
         rem = 0
         
-        for i in range(100000):
+        for i in range(10 ** 5):
             
             rem *= 10 
             rem += 1
