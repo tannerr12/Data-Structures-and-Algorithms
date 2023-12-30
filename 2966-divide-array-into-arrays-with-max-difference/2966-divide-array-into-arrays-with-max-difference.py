@@ -10,7 +10,7 @@ class Solution:
             
             if len(arr) == 3:
                 if arr[-1] - arr[0] <= k:
-                    res.append(arr.copy())
+                    res.append(arr)
                     arr = []
             
                 else:
