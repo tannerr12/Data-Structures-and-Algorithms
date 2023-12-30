@@ -6,8 +6,9 @@ class Solution:
         heap = []
         dist = 1
         s = grid[start[0]][start[1]]
+        ans = []
         if s >= pricing[0] and s <= pricing[1]:
-            heappush(heap, [0,s,start[0], start[1]])
+            ans.append([0,s,start[0], start[1]])
         
         grid[start[0]][start[1]] = 0
         
@@ -23,18 +24,21 @@ class Solution:
                         continue
                         
                     if grid[newx][newy] >= pricing[0] and grid[newx][newy] <= pricing[1]:
-                        heappush(heap, [dist, grid[newx][newy], newx, newy])                        
+                        ans.append([dist, grid[newx][newy], newx, newy])                        
                     
                     grid[newx][newy] = 0
                     q.append([newx,newy])
                     
-            if len(heap) >= k:
+            if len(ans) >= k:
                 break
             dist += 1
-        ans = []
+        ans.sort()
+        newans = []
         
-        while k and heap:
-            _, _1, x,y = heappop(heap)
-            ans.append([x,y])
-            k -= 1
-        return ans
+        for a,b,c,d in ans:
+            newans.append([c,d])
+            k-=1
+            if k == 0:
+                break
+        
+        return newans
