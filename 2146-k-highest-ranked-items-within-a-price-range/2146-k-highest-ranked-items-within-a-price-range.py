@@ -14,7 +14,7 @@ class Solution:
                 x,y = q.popleft()
                 if grid[x][y] >= pricing[0] and grid[x][y] <= pricing[1]:
                     heappush(heap, [dist, grid[x][y], x, y])
-                
+                    
                 
                 for a,b in directions:
                     newx,newy = x + a, y + b
@@ -24,6 +24,8 @@ class Solution:
                         
                     seen.add((newx,newy))
                     q.append([newx,newy])
+            if len(heap) >= k:
+                break
             dist += 1
         ans = []
         
