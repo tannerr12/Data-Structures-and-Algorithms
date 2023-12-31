@@ -32,10 +32,7 @@ class Solution:
         def isConnected(x,y):
             return find(x) == find(y)
         
-        groups = defaultdict(set)
-        for x,y in restrictions:
-            groups[x].add(y)
-            groups[y].add(x)
+
             
         
         ans = []
