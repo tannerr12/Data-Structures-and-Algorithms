@@ -39,10 +39,11 @@ class Solution:
         
         for x,y in requests:
             found = False
-            for a,b in restrictions:
-                if (isConnected(a,x) and isConnected(b,y)) or (isConnected(b,x) and isConnected(a,y)):
-                    found = True
-                    break
+            if find(x) != find(y):
+                for a,b in restrictions:
+                    if (isConnected(a,x) and isConnected(b,y)) or (isConnected(b,x) and isConnected(a,y)):
+                        found = True
+                        break
 
             if not found:
                 union(x,y)
