@@ -1,6 +1,6 @@
 class Solution:
     def flipLights(self, n: int, presses: int) -> int:
-        
+        n = min(n,3)
         if presses == 0:
             return 1
         if n == 1:
