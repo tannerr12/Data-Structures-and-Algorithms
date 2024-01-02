@@ -8,11 +8,10 @@ class Solution:
         #9! would be 1/9 of the options is our answer greater than this?
         
         ans = []
-        total = factorial(n)
         has = set([i for i in range(1, n + 1)])
         pos = n
         while len(ans) != n:
-            total = factorial(n - len(ans))
+            total = factorial(pos)
             i = 1
             for val in sorted(has,reverse=True):
                 if k > (total // pos) * (len(has) -i):
