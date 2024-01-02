@@ -12,11 +12,11 @@ class Solution:
             res = mp[(h,w)]
             
             #all possible cuts
-            for i in range(1, h):
+            for i in range(1, h //2 + 1):
                 left = dfs(i, w)
                 right = dfs(h-i, w)
                 res = max(res, left + right)
-            for i in range(1, w):
+            for i in range(1, w // 2 + 1):
                 left = dfs(h,i)
                 right = dfs(h,w-i)
                 res = max(res, left + right)
