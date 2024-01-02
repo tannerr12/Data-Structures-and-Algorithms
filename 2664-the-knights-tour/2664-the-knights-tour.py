@@ -3,12 +3,12 @@ class Solution:
         grid = [[-1 for j in range(n)] for i in range(m)]
         
         moves = [[-2,-1], [-2,1], [-1,-2], [1,-2], [-1,2],[1,2],[2,1],[2,-1]]
-        ans = []
+       
         def dfs(x,y,depth):
-            nonlocal ans
+       
 
             if depth == m * n:
-                #ans = [[grid[i][j] for j in range(len(grid[0]))] for i in range(len(grid))]
+        
                 return True
             
 
