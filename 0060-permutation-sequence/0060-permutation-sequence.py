@@ -10,15 +10,18 @@ class Solution:
         factors.append(1)
         for i in range(1, n+1):
             factors.append(factors[-1] * i)
+            
         ans = []
         has = set([i for i in range(1, n + 1)])
         pos = n
+        
         while len(ans) != n:
             total = factors[pos]
+            deviation = total // pos
             i = 1
             for val in sorted(has,reverse=True):
-                if k > (total // pos) * (len(has) -i):
-                    k -= (total // pos) * (len(has) -i)
+                if k > deviation * (len(has) -i):
+                    k -= deviation * (len(has) -i)
                     ans.append(str(val))
                     break
                 i += 1
