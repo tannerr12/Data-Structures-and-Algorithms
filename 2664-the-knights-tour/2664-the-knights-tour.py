@@ -6,15 +6,12 @@ class Solution:
         ans = []
         def dfs(x,y,depth):
             nonlocal ans
-                        
-            if len(ans) > 0:
-                return
+
             if depth == m * n:
-                ans = [[grid[i][j] for j in range(len(grid[0]))] for i in range(len(grid))]
-                return
+                #ans = [[grid[i][j] for j in range(len(grid[0]))] for i in range(len(grid))]
+                return True
             
 
-            
             for a,b in moves:
                 
                 newx,newy = x + a, y + b
@@ -23,10 +20,10 @@ class Solution:
                     continue
                 
                 grid[newx][newy] = depth
-                dfs(newx,newy,depth + 1)
+                if dfs(newx,newy,depth + 1): return True
                 grid[newx][newy] = -1
         
         grid[r][c] = 0
         dfs(r,c,1)
         
-        return ans
+        return grid
