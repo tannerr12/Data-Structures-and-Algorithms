@@ -21,9 +21,8 @@ class Solution:
                 zero.append(i)
   
             
-        
-        has1 = has1 or (len(zero) > 0)
-        res = len(num) - has1
+    
+        res = len(num) - (len(zero) > 0)
         
         if len(seven) > 0 and len(five) > 0:
             idx = bisect_right(seven, five[-1])
