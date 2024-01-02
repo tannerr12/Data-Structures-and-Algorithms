@@ -10,7 +10,7 @@ class Solution:
         while idx1 < len(nums1) and idx2 < len(nums2):
             
             if nums1[idx1] == nums2[idx2]:
-                mp[nums1[idx1]] = [idx1, idx2, p1, p2]
+                mp[nums1[idx1]] = [p1, p2]
                 idx1 += 1
                 idx2 += 1
                 p1,p2 = 0,0
@@ -32,7 +32,7 @@ class Solution:
         end = [p1, p2]
         res = 0
         for key in sorted(mp):
-            i,j,v1,v2 = mp[key]
+            v1,v2 = mp[key]
             res += max(v1, v2) % MOD
             res += key % MOD
             res %= MOD
