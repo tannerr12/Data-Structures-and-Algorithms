@@ -6,7 +6,7 @@ class Solution:
         for x,y,p in prices:
             mp[(x,y)] = p
         
-        @lru_cache(maxsize = 100000)
+        @lru_cache(maxsize = 1000000)
         def dfs(h, w):
             
             res = mp[(h,w)]
