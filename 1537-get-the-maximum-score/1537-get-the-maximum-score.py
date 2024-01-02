@@ -1,7 +1,7 @@
 class Solution:
     def maxSum(self, nums1: List[int], nums2: List[int]) -> int:
         MOD = 10 ** 9 + 7
-        mp = defaultdict(list)
+        mp = defaultdict(int)
         
         idx1 = 0
         idx2 = 0
@@ -10,7 +10,7 @@ class Solution:
         while idx1 < len(nums1) and idx2 < len(nums2):
             
             if nums1[idx1] == nums2[idx2]:
-                mp[nums1[idx1]] = [p1, p2]
+                mp[nums1[idx1]] = max(p1,p2)
                 idx1 += 1
                 idx2 += 1
                 p1,p2 = 0,0
@@ -32,12 +32,12 @@ class Solution:
         end = [p1, p2]
         res = 0
         for key in sorted(mp):
-            v1,v2 = mp[key]
-            res += max(v1, v2) % MOD
+            v1 = mp[key]
+            res += v1 % MOD
             res += key % MOD
             res %= MOD
             
         res += max(end[0], end[1])
-        #print(mp)
+       
         return res % MOD
         
