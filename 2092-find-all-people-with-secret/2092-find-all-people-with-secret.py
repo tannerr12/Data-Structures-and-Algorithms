@@ -35,5 +35,5 @@ class Solution:
                         people.add(val)
                         q.append(val)
         
-        return list(people)
+        return people
                     
