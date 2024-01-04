@@ -13,14 +13,14 @@ class Solution:
         #add bits that are different + bits that are the same + different
         #at any given point in the tree for a number if we have enough points we can add the count here + below and stop that branch
         
-        #bits = math.ceil(log(max(nums),2))
+        bits = math.ceil(log(max(nums),2))
         s = set(nums)
         
         arr = []
         
         for val in s:
             bit = 0
-            for i in range(32):
+            for i in range(bits + 1):
                 if val & (1 << i) > 0:
                     bit += 1 
             
