@@ -1,12 +1,9 @@
 class Solution:
     def findSmallestRegion(self, regions: List[List[str]], region1: str, region2: str) -> str:
-        adj = defaultdict(list)
+        adj = {}
 
         for i in range(len(regions)):
-            
-            for j in range(1,len(regions[i])):
-                adj[regions[i][0]].append(regions[i][j])
-
+            adj[regions[i][0]] = i
                     
        
         res = None
@@ -21,18 +18,18 @@ class Solution:
                 r1 = True
             if node == region2:
                 r2 = True
-                
-            for val in adj[node]:
-                
-                v1,v2 = dfs(val)
-                
-                r1 = r1 or v1
-                r2 = r2 or v2
-                
-                if not res and r1 and r2:
-                    res = node
-                    return [True,True]
-            
+            if node in adj:
+                for i in range(1,len(regions[adj[node]])):
+                    val = regions[adj[node]][i]
+                    v1,v2 = dfs(val)
+
+                    r1 = r1 or v1
+                    r2 = r2 or v2
+
+                    if not res and r1 and r2:
+                        res = node
+                        return [True,True]
+
 
                 
             return [r1,r2]
