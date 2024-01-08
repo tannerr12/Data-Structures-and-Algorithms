@@ -1,21 +1,17 @@
 class Solution:
     def findSmallestRegion(self, regions: List[List[str]], region1: str, region2: str) -> str:
         adj = defaultdict(list)
-        reg = set()
-        for i in range(len(regions)):
-            reg.add(regions[i][0])
-            
+
         for i in range(len(regions)):
             
             for j in range(1,len(regions[i])):
                 adj[regions[i][0]].append(regions[i][j])
-                if regions[i][j] in reg:
-                    reg.remove(regions[i][j])
+
                     
        
         res = None
         
-       
+        @cache
         def dfs(node):
             nonlocal res
             
@@ -43,8 +39,8 @@ class Solution:
             
         
         
-        for val in reg:
-            dfs(val)
+        for val in regions:
+            dfs(val[0])
             if res:
                 return res
         
