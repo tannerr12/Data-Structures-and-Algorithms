@@ -11,7 +11,7 @@ class Solution:
        
         res = None
         
-        @cache
+       
         def dfs(node):
             nonlocal res
             
