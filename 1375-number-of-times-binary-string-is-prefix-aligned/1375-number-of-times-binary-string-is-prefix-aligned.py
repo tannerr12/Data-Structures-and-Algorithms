@@ -6,9 +6,7 @@ class Solution:
         res = 0
         cur = 0
         for i in range(len(flips)):
-            if flips[i] > cur:
-                cur = flips[i]
-            
+            cur = max(cur,flips[i])
             if i + 1 == cur:
                 res += 1
         return res
