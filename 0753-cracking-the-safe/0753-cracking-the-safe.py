@@ -1,55 +1,32 @@
 class Solution:
     def crackSafe(self, n: int, k: int) -> str:
         
-        '''  
-        q = deque([('', set())])
-        gl = set()
-        while q:
-            
-            for i in range(len(q)):
-                
-                node,vals = q.popleft()
-                
-                if len(vals) > 0 and vals in gl:
-                    continue
-
-                if len(node) >= n:
-                    vals.add(node[-n:])
-                if len(vals) > 0:
-                    gl.add(frozenset(vals))                
-                if len(vals) == k ** n:
-                    return node
-                
+        graph = defaultdict(list)
+        if n == 1:
+            return ''.join(map(str, range(k)))
         
-                for j in range(k):
-                    q.append((node + str(j),vals.copy()))
+        graph = defaultdict(list)
+		# Use product to create the possible passwords
+        for comb in product(range(k), repeat=n):
+			# Each node has n-1 digits
+			# Eg. if comb was 01001 (where n=4 and k=2)
+			# We would add an edge from node 0100 to node 1001
+            graph[tuple(comb[:-1])].append(tuple(comb[1:]))
+        print(graph)
+        ans = []
+        def dfs(node):
+            
+            while graph[node]:
+                dfs(graph[node].pop())
+            
+            ans.append(node[0])
+            
+        
+        dfs(tuple([0]*(n-1)))
+        
+        ans.reverse()
+        #ans += [0] * (n-2)
+        ans = [str(val) for val in ans]
+        return ''.join(ans) + ('0' * (n-2))
         
         
-                    
-        '''
-        vals = set()
-        ans = ''
-        vals.add('0' * n)
-        @cache
-        def dfs(s):
-            nonlocal ans
-            
-            if ans:
-                return True
-            
-            if len(vals) == k ** n:
-                ans = s
-                return True
-            
-            for v in range(k):
-                ns = s + str(v)
-                if ns[-n:] not in vals:
-                    vals.add(ns[-n:])
-                    if dfs(ns):
-                        vals.remove(ns[-n:]) 
-                        return True
-                    vals.remove(ns[-n:])    
-                    
-        dfs('0' * n)
-        
-        return ans
