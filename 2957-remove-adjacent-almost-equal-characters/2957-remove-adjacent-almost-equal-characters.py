@@ -1,6 +1,6 @@
 class Solution:
     def removeAlmostEqualCharacters(self, word: str) -> int:
-        
+        '''
         @cache
         def dfs(i, changed):
             
@@ -19,3 +19,20 @@ class Solution:
             return res
         
         return dfs(0,True)
+        '''
+        
+        res = 0
+        prev = False
+        for i in range(1, len(word)):
+            
+            if not prev and abs(ord(word[i]) - ord(word[i-1])) <= 1:
+                prev = True
+                res += 1
+            
+            else:
+                prev = False
+        
+        return res
+            
+            
+            
