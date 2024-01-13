@@ -12,10 +12,10 @@ class Solution:
             res = min(res, dfs(i+1, True) + 1)
             
             #dont change
-            if i == 0 or changed or abs(ord(word[i]) - ord(word[i-1])) > 1:
+            if changed or abs(ord(word[i]) - ord(word[i-1])) > 1:
                 res = min(res, dfs(i+1, False))
                 
             
             return res
         
-        return dfs(0,False)
+        return dfs(0,True)
