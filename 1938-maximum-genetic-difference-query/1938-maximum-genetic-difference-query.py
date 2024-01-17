@@ -24,7 +24,7 @@ class Solution:
         #queries.sort()
         #self.t = trie()
         
-        size = 20 
+        size = 19
         
         '''
         for i in range(len(parent)):
