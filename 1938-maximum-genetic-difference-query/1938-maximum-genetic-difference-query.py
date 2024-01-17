@@ -24,7 +24,7 @@ class Solution:
         #queries.sort()
         #self.t = trie()
         
-        size = 18
+        size = math.ceil(math.log(10 ** 5 * 2, 2))
         
         '''
         for i in range(len(parent)):
