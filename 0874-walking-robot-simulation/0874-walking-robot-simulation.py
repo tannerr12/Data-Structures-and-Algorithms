@@ -16,21 +16,17 @@ class Solution:
             yaxis[val].sort()
             
         
-        #pos = ['+Y', '+X', '-Y', '-X']
+ 
         cur = 0
-        
         px,py = 0,0
-        
         res = 0
         
         for x in commands:
             
             if x == -2:
-                cur -= 1
-                cur %= 4
+                cur = (cur - 1) % 4
             elif x == -1:
-                cur += 1 
-                cur %= 4
+                cur = (cur + 1) % 4
             else:
                 if cur == 0:
                     #scan for block than move to max distance possible
