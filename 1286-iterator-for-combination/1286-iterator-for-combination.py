@@ -1,19 +1,31 @@
 class CombinationIterator:
-
     def __init__(self, characters: str, combinationLength: int):
-        
-        self.comb = list(itertools.combinations(characters, combinationLength))
-   
-        self.idx = 0
+        self.characters = characters
+        self.combinationLength = combinationLength
+        self.generator = self._combinations_generator()
+        self.next_combination = next(self.generator, None)
+
+    def _combinations_generator(self):
+        def generate_combinations(start, path):
+            # When the path length equals the target combination length, yield it
+            if len(path) == self.combinationLength:
+                yield ''.join(path)
+                return
+            for i in range(start, len(self.characters)):
+                # Generate all combinations by picking the next character and moving forward
+                yield from generate_combinations(i + 1, path + [self.characters[i]])
+
+        yield from generate_combinations(0, [])
 
     def next(self) -> str:
-        if self.hasNext():
-            self.idx += 1
-            return ''.join(self.comb[self.idx-1])
-            
-    def hasNext(self) -> bool:
-        return self.idx < len(self.comb)
+        # Return the current combination and prepare the next one
+        current_combination = self.next_combination
+        self.next_combination = next(self.generator, None)
+        return current_combination
 
+    def hasNext(self) -> bool:
+        # Check if there's a next combination
+        return self.next_combination is not None
 
 # Your CombinationIterator object will be instantiated and called as such:
 # obj = CombinationIterator(characters, combinationLength)
