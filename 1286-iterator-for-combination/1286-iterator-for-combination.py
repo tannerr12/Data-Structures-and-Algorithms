@@ -3,7 +3,7 @@ class CombinationIterator:
     def __init__(self, characters: str, combinationLength: int):
         
         self.comb = list(itertools.combinations(characters, combinationLength))
-        self.comb.sort()
+   
         self.idx = 0
 
     def next(self) -> str:
