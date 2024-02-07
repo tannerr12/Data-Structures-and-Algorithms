@@ -16,20 +16,9 @@ class Solution:
             rookShare = True
         
         #same row and blocking left/right
-        if a == c and a == e and f > d and f > b and d > b:
+        if (a == c and a == e and f > d and f > b and d > b) or (a == c and a == e and f < d and f < b and d < b) or (b == d and b == f and e > a and e > c and c > a) or (b == d and b == f and e < a and e < c and c < a):
             bishBlock = True
-        elif a == c and a == e and f < d and f < b and d < b:
-            bishBlock = True
-        
-        
-        #same row and blocking up and down
-        elif b == d and b == f and e > a and e > c and c > a:
-            bishBlock = True
-            
-        elif b == d and b == f and e < a and e < c and c < a:
-            bishBlock = True
-            
-        
+
         #check if bishop has los on the queen
         directions = [[-1,-1], [1,1], [-1,1], [1, -1]]
         
