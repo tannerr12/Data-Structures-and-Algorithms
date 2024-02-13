@@ -10,13 +10,18 @@ class Solution:
         ans = [-1] * len(queries) 
         for j in range(len(queries)):
             l,r = queries[j]
-            
+            c = r - l + 1
             diff = float('inf')
             last = float('-inf')
             for i in range(1, 101):
-                if i in mp[r] and mp[r][i] - mp[l-1][i] > 0 and last != i:
-                    diff = min(diff, i - last)
-                    last = i
+                if i in mp[r] and mp[r][i] - mp[l-1][i] > 0:
+                    if last != i:
+                        diff = min(diff, i - last)
+                        last = i
+                    else:
+                        c -= 1
+                        if c == 0:
+                            break
                     
             
             queries[j] = diff if diff != float('inf') else -1
