@@ -1,23 +1,15 @@
 class Solution:
     def minDifference(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        
-        
-        for i in range(len(queries)):
-            queries[i] = [queries[i][0], queries[i][1], i]
-        
-        queries.sort()
-        
+                
         mp = defaultdict(lambda:defaultdict(int))
         
         for i in range(len(nums)):
             mp[i] = mp[i-1].copy()
             mp[i][nums[i]] += 1
         
-        
-        #print(mp)
         ans = [-1] * len(queries) 
-        for i in range(len(queries)):
-            l,r,idx = queries[i]
+        for j in range(len(queries)):
+            l,r = queries[j]
             
             diff = float('inf')
             last = float('-inf')
@@ -27,7 +19,7 @@ class Solution:
                     last = i
                     
             
-            ans[idx] = diff if diff != float('inf') else -1
+            queries[j] = diff if diff != float('inf') else -1
         
-        return ans
+        return queries
             
