@@ -1,26 +1,39 @@
 class Solution:
     def mostBooked(self, n: int, meetings: List[List[int]]) -> int:
         
-        unused_rooms, used_rooms = list(range(n)), []
-        heapify(unused_rooms)
-        meeting_count = [0] * n
-        for start, end in sorted(meetings):
-            while used_rooms and used_rooms[0][0] <= start:
-                _, room = heappop(used_rooms)
-                heappush(unused_rooms, room)
-            if unused_rooms:
-                room = heappop(unused_rooms)
-                heappush(used_rooms, [end, room])
-            else:
-                room_availability_time, room = heappop(used_rooms)
-                heappush(
-                    used_rooms,
-                    [room_availability_time + end - start, room]
-                )
-            meeting_count[room] += 1
-        return meeting_count.index(max(meeting_count))
-
-                
-                
-            
+        meetings.sort()
         
+        #heap for meeting rooms time, meeting room number
+        #going through each meeting we can try to allocate a meeting to a room
+        #or if we cannot we can push the meeting onto a waiting heap which would cover [starttime, endtime/duration]
+        score = defaultdict(int)
+        mheap = []
+        aheap = [i for i in range(n)]
+        
+        
+        for x,y in meetings:
+            while mheap and mheap[0][0] <= x:
+                val, idx = heappop(mheap)
+                heappush(aheap, idx)
+                
+            if aheap:
+                idx = heappop(aheap)
+                heappush(mheap, (y, idx))
+            
+            else:
+                rt, idx = heappop(mheap)
+                heappush(mheap, (rt + y - x, idx))
+            
+            score[idx]+= 1
+            
+        mx = max(score.values())
+        mn = float('inf')
+        
+        for x,y in score.items():
+            if y == mx:
+                mn = min(mn, x)
+                
+        
+        return mn
+
+   
