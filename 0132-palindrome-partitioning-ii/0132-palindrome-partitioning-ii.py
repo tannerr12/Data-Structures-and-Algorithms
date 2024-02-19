@@ -19,14 +19,11 @@ class Solution:
                 l -= 1
                 r += 1            
             
-        for key,val in mp.items():
-            mp[key].sort()
-        
             
         @cache
         def dfs(last):
             
-            if len(mp[last]) > 0 and mp[last][-1] == len(s) -1:
+            if last == len(s):
                 return 0
             
             res = float('inf')
@@ -40,5 +37,5 @@ class Solution:
             
        
         #print(mp)
-        return dfs(0) 
+        return dfs(0) -1
                 
