@@ -24,7 +24,7 @@ class Solution:
         
             
         @cache
-        def dfs(i,last):
+        def dfs(last):
             
             if len(mp[last]) > 0 and mp[last][-1] == len(s) -1:
                 return 0
@@ -32,14 +32,13 @@ class Solution:
             res = float('inf')
             
             #cut
-            if i < len(mp[last]):
-                res = min(res,dfs(0, mp[last][i] + 1) + 1)
-                #skip
-                res = min(res, dfs(i+1, last))
+            for i in range(len(mp[last])):
+                res = min(res,dfs(mp[last][i] + 1) + 1)
+                
             
             return res
             
        
         #print(mp)
-        return dfs(0,0) 
+        return dfs(0) 
                 
