@@ -26,7 +26,7 @@ class Solution:
         @cache
         def dfs(i,last):
             
-            if last == len(s):
+            if len(mp[last]) > 0 and mp[last][-1] == len(s) -1:
                 return 0
             
             res = float('inf')
@@ -41,5 +41,5 @@ class Solution:
             
        
         #print(mp)
-        return dfs(0,0) -1
+        return dfs(0,0) 
                 
