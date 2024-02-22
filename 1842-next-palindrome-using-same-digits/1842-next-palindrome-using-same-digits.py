@@ -16,15 +16,12 @@ class Solution:
         inc = -1
         for i in range(l):
             
-            greater = False
             for j in range(int(num[i]) + 1, 10):
                 if c[str(j)] > 0:
-                    greater = True
+                    last = i
                     inc = j
                     break
-            
-            if greater:
-                last = i
+
             
             c[num[i]] -= 1
         
@@ -45,10 +42,10 @@ class Solution:
         left.append(str(inc))
         right = []
         
-        for key in c:
-            right += [key] * c[key]
+        for i in range(10):
+            right += [str(i)] * c[str(i)]
         
-        right.sort()
+        #right.sort()
         #print(right)
         
         fullLeft = left + right
