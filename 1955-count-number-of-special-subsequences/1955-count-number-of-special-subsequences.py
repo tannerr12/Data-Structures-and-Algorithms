@@ -1,43 +1,27 @@
 class Solution:
     def countSpecialSubsequences(self, nums: List[int]) -> int:
-        print(len(nums))
-        right = defaultdict(lambda:[0,0])
-        MOD = 10 ** 9 + 7
-        one,two = 0,0
-        for i in range(len(nums)-1,-1,-1):
-            if nums[i] == 2:
-                two += 1
-            elif nums[i] == 1:
-                one += 1
-            right[i] = [one,two]
-            
 
-        powers = []
+        MOD = 10 ** 9 + 7
+
+        #print(newnums)
         
-        for i in range(100000):
-            powers.append(pow(2, i, MOD) -1)
-        
-        #print(right)
-        
-        @cache
+        @lru_cache(maxsize=50000)
         def dfs(i,cur):
+            
             if i >= len(nums):
-                return 0
-            elif cur == 2:
-                return (powers[right[i][1]]) % MOD
+                return cur == 2
             
             res = 0
-            #take number
-            if nums[i] == cur:
+            #take number and increase
+            if nums[i] == cur + 1:
                 res += dfs(i+1, cur+1) % MOD
                 res %= MOD
-                #increase target
+                #take number or skip
+                res += ((dfs(i+1,cur) % MOD) * 2) % MOD
+            else:
                 res += dfs(i+1, cur) % MOD
-                res %= MOD
-            #skip number
-            res += dfs(i+1,cur) % MOD
-            
+                
             return res % MOD
             
         
-        return dfs(0, 0)
+        return dfs(0,-1)
