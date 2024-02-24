@@ -23,33 +23,7 @@ class Solution:
                     gmask[i] |= (1 << v)
                     groups[i][v] += 1
         
-       
-        toRemove = set()
-        for i in range(len(groups)):
-            for j in range(len(groups)):
-                if i == j or j in toRemove:
-                    continue
-                add = True
-                for key, val in groups[i].items():
-                    if val > groups[j][key]:
-                        add = False
-                        break
-                
-                if add:
-                    toRemove.add(i)
-                
 
-        for i in range(len(groups)):
-            if gmask[i] & tmask == 0:
-                toRemove.add(i)
-        
-        #print(toRemove)
-        
-        for val in toRemove:
-            if val in groups:
-                del groups[val]
-                del gmask[val]
-        
         
 
         #print(t)
