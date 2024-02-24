@@ -55,25 +55,26 @@ class Solution:
         #print(t)
         
         @cache
-        def dfs(t,bitmask):
+        def dfs(t):
             
-            if bitmask == 0:
+            if max(t) == 0:
                 return 0
             
             res = float('inf')
          
             #try each sticker 
             for i in groups:
-                if gmask[i] & bitmask == 0:
-                    continue
+                #if gmask[i] & bitmask == 0:
+                #    continue
                 
                 bt = list(t)
                     
                 #common_bitmask = gmask[i] & bitmask
      
                     
-                tm = bitmask
+                #tm = bitmask
                 g = groups[i]
+                changed = False
                 for char_position in range(len(t)):
                     
                     
@@ -82,16 +83,18 @@ class Solution:
                     #key = chr(ord('a') + char_position)
                     if g[char_position] > 0 and bt[char_position] > 0:
                         bt[char_position] -= min(bt[char_position], g[char_position])
-                        if bt[char_position] == 0:
-                            tm ^= (1 << char_position)
+                        changed = True
+                        #if bt[char_position] == 0:
+                            #tm ^= (1 << char_position)
                         
                     
                     #common_bitmask &= ~lsb_position
-                res = min(res, dfs(tuple(bt), tm) + 1)
+                if changed:
+                    res = min(res, dfs(tuple(bt)) + 1)
             
             return res
         
-        ans = dfs(tuple(t),tmask)
+        ans = dfs(tuple(t))
         
         return ans if ans != float('inf') else -1
                     
