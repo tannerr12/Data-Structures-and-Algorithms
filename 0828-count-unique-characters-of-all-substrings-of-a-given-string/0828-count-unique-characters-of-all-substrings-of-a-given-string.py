@@ -11,27 +11,22 @@ class Solution:
         
         
         prefix= [0] * 26
-        mp = defaultdict(lambda:[-1])
+        mp = defaultdict(lambda:[-1,-1])
 
-        
-        #print(prefix)
-        
-        
-        #print(mp)
+    
         res = 0
         last = 0
         for i in range(len(s)):
             cur = ord(s[i]) - ord('A')
             prefix[cur] += 1
-            mp[cur].append(i)
+            mp[cur][0] = mp[cur][1]
+            mp[cur][1] = i
             for j in range(26):
                 if prefix[j] == 0:
                     continue
-                elif prefix[j] == 1:
-                    res += mp[j][1] - mp[j][0]
                 else:
-                    #calculate the leftmost point
-                    res += mp[j][prefix[j]] - mp[j][prefix[j]-1]
+                    res += mp[j][1] - mp[j][0]
+
         
         return res
         #A = 1
