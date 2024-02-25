@@ -19,13 +19,16 @@ class Solution:
         for i in range(len(s)):
             cur = ord(s[i]) - ord('A')
             prefix[cur] += 1
+            if prefix[cur] > 1:
+                last -= mp[cur][1] - mp[cur][0]
+                
             mp[cur][0] = mp[cur][1]
             mp[cur][1] = i
-            for j in range(26):
-                if prefix[j] == 0:
-                    continue
-                else:
-                    res += mp[j][1] - mp[j][0]
+        
+            score = mp[cur][1] - mp[cur][0]
+            last += score
+            
+            res += last
 
         
         return res
