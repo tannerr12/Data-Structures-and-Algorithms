@@ -10,16 +10,9 @@ class Solution:
         @cache
         def dfs(i):
             
-            if i >= len(s):
-                return 1
-            
-            if i == -1:
-                res = 0
-            else:
-                res = 1
-            
+            res = i != -1
 
-            for j in mp:
+            for j in range(26):
                 
                 idx = bisect_right(mp[j], i)
                 
