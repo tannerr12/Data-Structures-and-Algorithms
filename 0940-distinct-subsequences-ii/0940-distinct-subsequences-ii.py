@@ -1,6 +1,11 @@
 class Solution:
     def distinctSubseqII(self, s: str) -> int:
+                
         MOD = 10 ** 9 + 7
+        mp = defaultdict(list)
+        for i in range(len(s)):
+            num = ord(s[i]) - ord('a')
+            mp[num].append(i)
         
         @cache
         def dfs(i):
@@ -13,13 +18,17 @@ class Solution:
             else:
                 res = 1
             
-            seen = set()
-            
-            for j in range(i+1, len(s)):
-                if s[j] not in seen:
-                    res += dfs(j) % MOD
-                    res %= MOD
-                    seen.add(s[j])
+
+            for j in range(26):
+                
+                idx = bisect_right(mp[j], i)
+                
+                if idx >= len(mp[j]):
+                    continue
+                    
+                res += dfs(mp[j][idx]) % MOD
+                res %= MOD
+
             
             return res
         
