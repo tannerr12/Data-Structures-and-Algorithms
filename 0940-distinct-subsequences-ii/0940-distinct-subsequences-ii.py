@@ -19,7 +19,7 @@ class Solution:
                 res = 1
             
 
-            for j in range(26):
+            for j in mp:
                 
                 idx = bisect_right(mp[j], i)
                 
