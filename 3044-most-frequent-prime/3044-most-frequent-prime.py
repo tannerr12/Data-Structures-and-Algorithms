@@ -5,7 +5,7 @@ class Solution:
         directions = [[1,0], [1,1], [0,1],[1,-1],[-1,1], [-1,0], [0,-1], [-1,-1]]
         
         #primes = [True] * (10**(max(len(mat), len(mat[0]))))
-        
+        '''
         def gatherPrimes():
             cur = 2
             mx = isqrt(10**(max(len(mat), len(mat[0]))))
@@ -19,7 +19,7 @@ class Solution:
 
                 
                 cur += 1
-        
+        '''
         #gatherPrimes()
         
         @cache
@@ -47,7 +47,7 @@ class Solution:
                     while isGood(curx,cury):
                         num *= 10
                         num += mat[curx][cury]
-                        if num > 10 and isPrime(num):
+                        if mat[curx][cury] % 2 and num > 10 and isPrime(num):
                             mp[num] += 1
                             
                         curx += x
