@@ -5,7 +5,7 @@ class Solution:
         s = set(nums)
         ls = list(s)
         
-        
+        @cache
         def check(num):
             if num == 1:
                 return mp[num] - (mp[num] % 2 == 0)
