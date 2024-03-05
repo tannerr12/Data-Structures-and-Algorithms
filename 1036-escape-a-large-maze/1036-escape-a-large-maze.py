@@ -43,7 +43,7 @@ class Solution:
                 
                 if len(q) == 0:
                     return False
-                elif len(q) == 20000:
+                elif len(q) == len(blocked)**2 // 2:
                     return True
 
 
