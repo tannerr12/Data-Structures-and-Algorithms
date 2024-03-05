@@ -24,9 +24,8 @@ class Solution:
             seen = set()
 
             q = deque([[source[0], source[1]]])
-
             seen.add((source[0],source[1]))
-            for i in range(400):
+            for i in range(len(bset) * 2):
 
                 for j in range(len(q)):
 
@@ -41,10 +40,11 @@ class Solution:
                             seen.add((newx,newy))
                             q.append((newx,newy))
 
+                
+                if len(q) == 0:
+                    return False
 
 
-            if len(q) == 0:
-                return False
 
             return True
         
