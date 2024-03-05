@@ -39,11 +39,12 @@ class Solution:
                         if newx >= 0 and newx < mil and newy >= 0 and newy < mil and (newx,newy) not in bset and (newx,newy) not in seen:
                             seen.add((newx,newy))
                             q.append((newx,newy))
-
+        
                 
                 if len(q) == 0:
                     return False
-
+                elif len(q) == 20000:
+                    return True
 
 
             return True
