@@ -2,16 +2,7 @@ class Solution:
     def maxVacationDays(self, flights: List[List[int]], days: List[List[int]]) -> int:
         k = len(days[0])
         
-        adj = defaultdict(list)
-        
-        for i in range(len(flights)):
-            for j in range(len(flights[i])):
-                if flights[i][j] > 0:
-                    adj[i].append(j)
-        
-        #print(adj)
-        
-        #bfs 100 ** 100
+
         
         #100 weeks 100 possible flights
         
@@ -22,8 +13,10 @@ class Solution:
                 return 0
             
             res = 0
-            for loc in adj[location]:
-                res = max(res, dfs(week+1, loc) + days[loc][week])
+            for i,loc in enumerate(flights[location]):
+                if loc == 0:
+                    continue
+                res = max(res, dfs(week+1, i) + days[i][week])
             
             #stay
             res = max(res, dfs(week+1, location) + days[location][week])
