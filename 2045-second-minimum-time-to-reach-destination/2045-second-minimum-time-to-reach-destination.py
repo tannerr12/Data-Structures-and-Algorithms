@@ -11,7 +11,7 @@ class Solution:
         
         heap = [[0, 1]]
         seen = defaultdict(lambda:[float('inf'),float('inf')])
-        #seen[0] = 0
+        seen[1][0] = time
         best = -1
         
         while heap:
