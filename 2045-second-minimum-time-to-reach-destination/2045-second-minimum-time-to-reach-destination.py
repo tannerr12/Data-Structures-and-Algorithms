@@ -12,17 +12,11 @@ class Solution:
         heap = [[0, 1]]
         seen = defaultdict(lambda:[float('inf'),float('inf')])
         seen[1][0] = time
-        best = -1
+        #best = -1
         
         while heap:
             
-            t,node = heappop(heap)
-            
-            if best > -1 and t != best and node == n:
-                return t
-            elif best == -1 and node == n:
-                best = t
-                
+            t,node = heappop(heap)       
             wait = change - t % change if ((t // change) % 2) else 0
             for v in adj[node]:
                 
@@ -32,7 +26,7 @@ class Solution:
                     else:
                         seen[v][1] = t + wait + time
                         if v == n:
-                            return t + wait + time
+                            return seen[v][1]
                     
                     heappush(heap, [t + wait + time,v])
 
