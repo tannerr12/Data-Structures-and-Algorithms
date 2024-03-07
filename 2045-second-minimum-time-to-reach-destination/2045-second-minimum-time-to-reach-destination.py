@@ -31,6 +31,8 @@ class Solution:
                         seen[v][0] = t + wait + time
                     else:
                         seen[v][1] = t + wait + time
+                        if v == n:
+                            return t + wait + time
                     
                     heappush(heap, [t + wait + time,v])
 
