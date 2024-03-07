@@ -16,7 +16,7 @@ class Solution:
                 if pos == target:
                     return level
                 
-                if pos + speed <= target * 2 and (pos + speed, speed * 2) not in seen:
+                if pos + speed + speed <= target * 2 and (pos + speed, speed * 2) not in seen:
                     seen.add((pos + speed, speed * 2))
                     q.append((pos + speed, speed * 2))
                 if (pos, flipSpeed) not in seen:
