@@ -1,16 +1,23 @@
 class Solution:
     def breakPalindrome(self, pal: str) -> str:
         
-        best = '}'
+        cur = 0
+        pos = -1
+        
         for i in range(len(pal)):
             if i == len(pal) // 2 and len(pal) % 2:
                 continue
             if pal[i] == 'a':
-                new = pal[:i] + 'b' + pal[i+1:]
-                best = min(best,new)
+                cur = 1
+                pos = i
             else:
                 new = pal[:i] + 'a' + pal[i+1:]
-                best = min(best,new)
+                return new
         
-        return best if best != '}' else ''
+        
+        if pos == -1:
+            return ''
+        
+        new = pal[:pos] + 'b' + pal[pos+1:]
+        return new 
             
