@@ -26,12 +26,15 @@ class Solution:
             return res
             
         '''
-        #ans = dfs(0)
-        
+        furthest = max(x, max(forbidden)) + a + b
         q = deque([[0,0]])
         level = 0
         seen = set()
         seen.add((0,0))
+ 
+
+        
+   
         while q:
             
             for i in range(len(q)):
@@ -40,14 +43,12 @@ class Solution:
                 if pos == x:
                     return level
                 
-                if pos >= x * 1000:
-                    continue
                 #jump forward
-                if pos + a not in f and (pos + a, 0) not in seen:
+                if pos + a <= furthest and pos + a not in f and (pos + a, 0) not in seen:
                     seen.add((pos + a, 0))
                     q.append([pos + a, 0])
                 #jump back than forward
-                if not d and pos - b >= 0 and pos - b not in f and (pos - b, 1) not in seen:
+                if not d and pos - b >= 0 and pos - b not in f and (pos - b, 1) not in seen and (pos - b, 0) not in seen:
                     seen.add((pos - b, 1))
                     q.append([pos - b, 1]) 
 
