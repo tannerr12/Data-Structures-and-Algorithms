@@ -15,35 +15,28 @@ class Solution:
         #if the left did not match the right we can say its impossible
         
         #how can we efficiently build the left and right so they are easily comparable?
-        if s == s[::-1]:
-            return s
-        #"abbacd"
-        #"dcabbacd"
-        left = []
         
-        right = list(s)[::-1]
+        ns = s + '#' + s[::-1]
         
-        #print(left, right)
-        res = len(s) -1
-        for i in range(len(s) // 2):
-            right.pop()
+        print(ns)
+        
+        i, j = 0,1
+        lcs = [0] * len(ns)
+        while j < len(ns):
             
-            if right[-len(left):] == left:
-                res = min(res, len(right) - len(left))
-            
-            left.append(s[i])
-        
-        
-        left = []
-        
-        right = list(s)[::-1]
-        
-        for i in range(len(s) // 2):
-            right.pop()
-            left.append(s[i])
-            if right[-len(left):] == left:
-                res = min(res, len(right) - len(left))
+            if ns[i] == ns[j]:
+                lcs[j] = i+1
+                i+=1
+                j+=1
                 
-
-        return s[::-1][:res] + s
+            else:
+                
+                if i == 0:
+                    j+=1
+                else:
+                    i = lcs[i-1]
+            
+        
+        
+        return s[i:][::-1] + s
             
