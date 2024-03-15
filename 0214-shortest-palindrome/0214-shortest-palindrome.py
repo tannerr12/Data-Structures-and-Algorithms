@@ -18,7 +18,7 @@ class Solution:
         
         ns = s + '#' + s[::-1]
         
-        print(ns)
+        #print(ns)
         
         i, j = 0,1
         lcs = [0] * len(ns)
