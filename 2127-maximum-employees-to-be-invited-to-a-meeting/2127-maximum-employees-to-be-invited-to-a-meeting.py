@@ -57,7 +57,7 @@ class Solution:
         for key,val in favMap.items():
             ans += 2 + val
         
-        mp = defaultdict(int)
+       
         
         def dfsCycle(node, count, node_to_count, visited):
             if node in node_to_count:
@@ -75,7 +75,7 @@ class Solution:
             cycle_length = dfsCycle(favorite[node], count + 1, node_to_count, visited)
 
             # Once done, remove the node from the current path (but not from visited to avoid re-exploration).
-            del node_to_count[node]
+            #del node_to_count[node]
 
             return cycle_length
 
