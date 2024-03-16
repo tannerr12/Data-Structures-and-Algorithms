@@ -59,31 +59,40 @@ class Solution:
         
         mp = defaultdict(int)
         
-        @cache
-        def dfsCycle(node,count):
-            
-            if node in mp:
-                if node not in s:
-                    return float('-inf')
-                return -mp[node]
-            
-            s.add(node)
-            mp[node] = count
-            
-            res = float('-inf')
-            res = max(res, dfsCycle(favorite[node], count + 1) + 1)
-            
-           
-            return res
-            
+        def dfsCycle(node, count, node_to_count, visited):
+            if node in node_to_count:
+                # Cycle detected. Return the cycle length.
+                return count - node_to_count[node]
+            if node in visited:
+                # Node is already visited and not part of a cycle we're currently exploring.
+                return 0
+
+            # Mark the node as visited with its count.
+            node_to_count[node] = count
+            visited.add(node)
+
+            # Recursively visit the favorite node.
+            cycle_length = dfsCycle(favorite[node], count + 1, node_to_count, visited)
+
+            # Once done, remove the node from the current path (but not from visited to avoid re-exploration).
+            del node_to_count[node]
+
+            return cycle_length
+
+        max_cycle_length = 0
+        visited = set()
+
         for i in range(len(favorite)):
-            if i not in seen:
-                #check for largest cycle
-                s = set()
-                ans = max(ans, dfsCycle(i,0))
-                #mp = defaultdict(int)
-                
-        return ans
+            if i not in visited:
+                node_to_count = {}
+                cycle_length = dfsCycle(i, 0, node_to_count, visited)
+                max_cycle_length = max(max_cycle_length, cycle_length)
+
+        # The rest of your logic for handling pairs and paths leading to them would follow here.
+        # Return the maximum of max_cycle_length and the best sum of paths leading to two-person cycles.
+
+      
+        return max(ans,max_cycle_length) 
         
         
             
