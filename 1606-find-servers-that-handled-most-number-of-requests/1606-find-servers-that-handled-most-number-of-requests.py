@@ -20,24 +20,27 @@ class Solution:
             while heap and heap[0][0] <= at:
                 _,s = heappop(heap)
                 busy.add(s)        
-            
+                
+            #no servers are available
             if len(busy) == 0:
                 continue
-            
+                
+            #find the next best server to use
             find = i % k
             idxr = bisect_left(busy, find)
             
             #the server requested is available
             if idxr < len(busy) and busy[idxr] == find:
-                busy.pop(idxr)
                 heappush(heap, [at + ld, i % k])
                 score[i % k] += 1
-            
+                busy.pop(idxr)
+                
+            #a server to the right is available
             elif idxr < len(busy):
                 heappush(heap, [at + ld, busy[idxr]])  
                 score[busy[idxr]] += 1
                 busy.pop(idxr)
-            
+            #any server is available
             else:
                 heappush(heap, [at + ld, busy[0]])  
                 score[busy[0]] += 1
@@ -45,9 +48,8 @@ class Solution:
               
             
         
-        
-        #print(score)
-        
+
+        #gather best servers
         ans = []
         mx = max(score.values())
         for key,val in score.items():
