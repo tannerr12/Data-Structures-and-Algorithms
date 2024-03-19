@@ -9,9 +9,9 @@ class Solution:
             return 1
 
         
-        #10,000 * 2 * 26
+        #10,000 * 2 * 26 
         @cache
-        def dfs(i,used, mask):
+        def dfs(i,used,mask):
             
             if i == len(s):
                 return 1
@@ -21,12 +21,9 @@ class Solution:
             res = 0
             if not used:
                 for j in range(26):
-                    #ch = chr(ord('a') + j)
                     if mask & (1 << j) == 0 and j != cur:
-                        if total == k:
-                            res = max(res, dfs(i+1, 1, 0 | (1 << j)) + 1)
-                        else:
-                            res = max(res, dfs(i+1, 1, mask | (1 << j)))
+                        res = max(res, dfs(i+1, 1, (0 if total == k else mask) | (1 << j)) + (total == k))
+        
             
             
 
