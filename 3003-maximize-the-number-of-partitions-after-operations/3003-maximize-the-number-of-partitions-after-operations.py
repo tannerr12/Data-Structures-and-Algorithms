@@ -19,14 +19,14 @@ class Solution:
             total = mask.bit_count()
             cur = ord(s[i]) - ord('a')
             res = 0
+            #change to a new character (must be an unseen character)
             if not used:
                 for j in range(26):
                     if mask & (1 << j) == 0 and j != cur:
                         res = max(res, dfs(i+1, 1, (0 if total == k else mask) | (1 << j)) + (total == k))
         
             
-            
-
+            #keep the same character
             if total == k and mask & (1 << cur) == 0:
                 res = max(res, dfs(i+1, used, 0 | (1 << cur)) + 1)
             else:
