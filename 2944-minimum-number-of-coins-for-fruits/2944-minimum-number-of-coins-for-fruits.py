@@ -3,24 +3,22 @@ class Solution:
         
 
         @cache
-        def dfs(i,free):
+        def dfs(i):
             
-            if i + free >= len(prices):
+            if i >= len(prices):
                 return 0
-            elif i >= len(prices) // 2 and free == 0:
-                return prices[i+free]
+            elif i >= len(prices) // 2:
+                return prices[i]
             
             res = float('inf')
             
             #take 
-            res = min(res, dfs(i+1, i+1) + prices[i])
-            
-            #skip
-            if free > 0:
-                res = min(res, dfs(i+1, max(0, free - 1)))
+            for j in range(i+1, i*2+3):
+                res = min(res, dfs(j) + prices[i])
+
                 
             
             return res
         
         
-        return dfs(0,0)
+        return dfs(0)
