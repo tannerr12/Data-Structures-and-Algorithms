@@ -1,11 +1,14 @@
 class Solution:
     def minimumCoins(self, prices: List[int]) -> int:
         
+
         @cache
         def dfs(i,free):
             
             if i + free >= len(prices):
                 return 0
+            elif i >= len(prices) // 2 and free == 0:
+                return prices[i+free]
             
             res = float('inf')
             
