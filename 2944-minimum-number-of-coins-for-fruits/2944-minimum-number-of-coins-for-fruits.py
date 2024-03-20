@@ -4,7 +4,7 @@ class Solution:
         @cache
         def dfs(i,free):
             
-            if i == len(prices):
+            if i + free >= len(prices):
                 return 0
             
             res = float('inf')
