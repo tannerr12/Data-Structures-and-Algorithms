@@ -44,11 +44,11 @@ class Solution:
         
         
         for x,y in hits:
-            
             if grid[x][y] == 1:
                 grid[x][y] = 2
         
         directions = [[1,0],[0,1],[-1,0],[0,-1]]
+        
         def checkOOB(x,y):
             if x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0]) or grid[x][y] != 1:
                 return False
@@ -59,26 +59,30 @@ class Solution:
             for j in range(len(grid[0])):
                 if grid[i][j] != 1:
                     continue
+                    
                 if (i,j) not in parent:
                     parent[(i,j)] = (i,j)
                     groupSize[(i,j)] = 1
+                    
                 for x,y in directions[:2]:
                     nx,ny = i+x,j+y
                     if checkOOB(nx,ny): 
                         if (nx,ny) not in parent:
                             parent[(nx,ny)] = (nx,ny)
                             groupSize[(nx,ny)] = 1
+                            
                         union((nx,ny), (i,j))
         
         
-        #print(groupSize)
+        
         lastSize = 0
-        added = set()
+        sadded = set()
         #check the size of the top row
         for j in range(len(grid[0])):
-            if grid[0][j] == 1 and find((0,j)) not in added:
-                lastSize += groupSize[find((0,j))]
-                added.add((find((0,j))))
+            par = find((0,j))
+            if grid[0][j] == 1 and par not in sadded:
+                lastSize += groupSize[par]
+                sadded.add(par)
             
         
         ans = [0] * len(hits)
@@ -86,9 +90,14 @@ class Solution:
             x,y = hits[i]
             if grid[x][y] == 0:
                 continue
+            
+            if x == 0:
+                sadded.add((x,y))
+                
             grid[x][y] = 1
             parent[(x,y)] = (x,y)
             groupSize[(x,y)] = 1
+            
             for a,b in directions:
                 nx,ny = x + a, y + b
                 if checkOOB(nx,ny):
@@ -97,12 +106,13 @@ class Solution:
             size = 0
             added = set()
             #check the size of the top row
-            for j in range(len(grid[0])):
-                
-                if grid[0][j] == 1 and find((0,j)) not in added:
-                    size += groupSize[find((0,j))]
-                    added.add((parent[find((0,j))]))
-                    
+            for val in sadded:
+                par = find(val)
+                if par not in added:
+                    size += groupSize[par]
+                    added.add(par)
+            
+            sadded = added
             ts = size
             if find((x,y)) in added:
                 size -= 1
