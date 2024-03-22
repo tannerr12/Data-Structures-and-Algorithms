@@ -87,24 +87,16 @@ class Solution:
                             union((nx,ny), (i,j))
         
         
-        
-        lastSize = 0
-        sadded = set()
-       
+    
         par = find(0)
-        lastSize += groupSize[par]
-       
-            
-            
+        lastSize = groupSize[par]
         
         ans = [0] * len(hits)
         for i in range(len(hits)-1,-1,-1):
             x,y = hits[i]
             if grid[x][y] == 0:
                 continue
-            
 
-                
             grid[x][y] = 1
             parent[(x,y)] = (x,y)
             groupSize[(x,y)] = 1
@@ -120,23 +112,11 @@ class Solution:
                     else:    
                         union((x,y), (nx,ny))
             
-            size = 0
-            #added = set()
-            #check the size of the top row
-            #for val in sadded:
-            #    par = find(val)
-            #    if par not in added:
-            #        size += groupSize[par]
-            #        added.add(par)
-            size += groupSize[find(0)]    
             
-            ts = size
-            if find((x,y)) == find(0):
-                size -= 1
-        
-            ans[i] = size - lastSize
-            
-            lastSize = ts
+            size = groupSize[find(0)]    
+            same = (find((x,y)) == find(0))
+            ans[i] = size - lastSize - same
+            lastSize = size
         
         return ans
             
