@@ -36,10 +36,16 @@ class Solution:
                     groupSize[p2] += groupSize[p1]
                     groupSize[p1] = 0
                 else:
-                    parent[p2] = p1
-                    rank[p1] += 1
-                    groupSize[p1] += groupSize[p2]
-                    groupSize[p2] = 0
+                    if p2 == 0:
+                        parent[p1] = p2
+                        rank[p2] += 1
+                        groupSize[p2] += groupSize[p1]
+                        groupSize[p1] = 0
+                    else:
+                        parent[p2] = p1
+                        rank[p1] += 1
+                        groupSize[p1] += groupSize[p2]
+                        groupSize[p2] = 0
             
         
         
@@ -70,19 +76,25 @@ class Solution:
                         if (nx,ny) not in parent:
                             parent[(nx,ny)] = (nx,ny)
                             groupSize[(nx,ny)] = 1
+                        
+                        if nx == 0:
+                            union(0, (i,j))
+                        
+                        elif i == 0:
+                            union(0, (nx,ny))
                             
-                        union((nx,ny), (i,j))
+                        else:
+                            union((nx,ny), (i,j))
         
         
         
         lastSize = 0
         sadded = set()
-        #check the size of the top row
-        for j in range(len(grid[0])):
-            par = find((0,j))
-            if grid[0][j] == 1 and par not in sadded:
-                lastSize += groupSize[par]
-                sadded.add(par)
+       
+        par = find(0)
+        lastSize += groupSize[par]
+       
+            
             
         
         ans = [0] * len(hits)
@@ -91,31 +103,35 @@ class Solution:
             if grid[x][y] == 0:
                 continue
             
-            if x == 0:
-                sadded.add((x,y))
+
                 
             grid[x][y] = 1
             parent[(x,y)] = (x,y)
             groupSize[(x,y)] = 1
             
+            if x == 0:
+                union((x,y), 0)            
+            
             for a,b in directions:
                 nx,ny = x + a, y + b
                 if checkOOB(nx,ny):
-                    union((x,y), (nx,ny))
+                    if nx == 0:
+                        union((x,y), 0)
+                    else:    
+                        union((x,y), (nx,ny))
             
             size = 0
-            added = set()
+            #added = set()
             #check the size of the top row
-            for val in sadded:
-                par = find(val)
-                if par not in added:
-                    size += groupSize[par]
-                    added.add(par)
-                
+            #for val in sadded:
+            #    par = find(val)
+            #    if par not in added:
+            #        size += groupSize[par]
+            #        added.add(par)
+            size += groupSize[find(0)]    
             
-            sadded = added
             ts = size
-            if find((x,y)) in added:
+            if find((x,y)) == find(0):
                 size -= 1
         
             ans[i] = size - lastSize
