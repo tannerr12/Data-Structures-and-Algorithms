@@ -36,17 +36,11 @@ class Solution:
                     groupSize[p2] += groupSize[p1]
                     groupSize[p1] = 0
                 else:
-                    if p2 == 0:
-                        parent[p1] = p2
-                        rank[p2] += 1
-                        groupSize[p2] += groupSize[p1]
-                        groupSize[p1] = 0
-                    else:
-                        parent[p2] = p1
-                        rank[p1] += 1
-                        groupSize[p1] += groupSize[p2]
-                        groupSize[p2] = 0
-            
+                    parent[p2] = p1
+                    rank[p1] += 1
+                    groupSize[p1] += groupSize[p2]
+                    groupSize[p2] = 0
+
         
         
         for x,y in hits:
