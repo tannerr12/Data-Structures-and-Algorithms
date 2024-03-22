@@ -111,8 +111,9 @@ class Solution:
                 if par not in added:
                     size += groupSize[par]
                     added.add(par)
+                
             
-            sadded = added
+            #sadded = added
             ts = size
             if find((x,y)) in added:
                 size -= 1
