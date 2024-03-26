@@ -44,6 +44,7 @@ class Solution:
         #print(dp)
         #100
         #111
+        '''
         @cache
         def dfs(i,under,last):
             
@@ -60,15 +61,17 @@ class Solution:
             return res
         
         return dfs(mxDepth, False, False)
-    
+        '''
     
         
-        dp = [[1,1] for i in range(mxDepth+1)]
+        dp = [[0,1] for i in range(mxDepth+1)]
         
+        dpAns = [0 for i in range(mxDepth+1)]
+        dpAns[0] = 1
         for i in range(1, len(dp)):
             dp[i][0] = dp[i-1][1]
             dp[i][1] = dp[i-1][0] + dp[i-1][1]
-            
+            dpAns[i] = dp[i][0] + dp[i][1]
         
         last = 0
         ans = 0
@@ -80,8 +83,8 @@ class Solution:
                 ans += sum(dp[i])
                 if last:
                     return ans
-            else:
-                last = bit
+        
+            last = bit
         
         return ans + 1
                 
