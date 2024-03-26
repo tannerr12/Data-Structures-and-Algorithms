@@ -60,5 +60,29 @@ class Solution:
             return res
         
         return dfs(mxDepth, False, False)
+    
+    
+        
+        dp = [[1,1] for i in range(mxDepth+1)]
+        
+        for i in range(1, len(dp)):
+            dp[i][0] = dp[i-1][1]
+            dp[i][1] = dp[i-1][0] + dp[i-1][1]
             
         
+        last = 0
+        ans = 0
+        for i in range(len(dp)-1,-1,-1):
+            bit = n & (1 << i) > 0
+            
+            if bit:
+                
+                ans += sum(dp[i])
+                if last:
+                    return ans
+            else:
+                last = bit
+        
+        return ans + 1
+                
+                
