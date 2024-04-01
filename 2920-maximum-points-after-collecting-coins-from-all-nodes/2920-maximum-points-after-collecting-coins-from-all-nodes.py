@@ -7,12 +7,27 @@ class Solution:
             adj[x].append(y)
             adj[y].append(x)
         
+
+        best = {}
+        def dfs2(node,par):
+            
+            res = coins[node]
+            
+            for edge in adj[node]:
+                if edge == par:
+                    continue
+                res = max(res,coins[node], dfs2(edge, node))
+            
+            best[node] = res
+            return res
+        
+        dfs2(0,-1)
         
         @cache
         def dfs(node,par,mult):
             
             res = 0
-            if mult >= 14:
+            if mult >= 14 or best[node] >> mult == 0:
                 return res
             
             for edge in adj[node]:
@@ -20,6 +35,7 @@ class Solution:
                     continue
                 
                 cur = float('-inf')
+                
                 #Option 1
                 cur = max(cur,dfs(edge,node, mult) + (coins[edge] >> (mult)) - k)
                 
