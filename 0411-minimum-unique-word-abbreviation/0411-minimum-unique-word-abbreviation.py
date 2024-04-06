@@ -14,7 +14,7 @@ class Solution:
         
         self.t = Trie('')
         
-        @cache
+    
         def dfs(i,word,tri,last):
             if i >= len(word):
                 return
