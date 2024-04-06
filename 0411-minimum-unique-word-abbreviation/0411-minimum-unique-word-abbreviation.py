@@ -20,7 +20,7 @@ class Solution:
                 return
             
             
-            for j in range(1, len(word)-i+1):
+            for j in range(2, len(word)-i+1):
                 if last:
                     break
                 ttri = tri
@@ -58,7 +58,7 @@ class Solution:
                 return
 
             
-            for j in range(1, len(word)-i+1):
+            for j in range(2, len(word)-i+1):
                 if last:
                     break
                 ttri = tri
