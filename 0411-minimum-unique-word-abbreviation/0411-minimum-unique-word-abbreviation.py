@@ -37,6 +37,7 @@ class Solution:
             else:
                 tri.adj[word[i]] = Trie(word[i])
                 tri =tri.adj[word[i]]
+                
             dfs(i+1,word,tri,False)
 
         for word in dictionary:
@@ -49,7 +50,7 @@ class Solution:
         def dfs2(i,word,tri,last,new):
             nonlocal ans
             if new:
-                if len(ans) == 0 or len(ans) >= len(arr) + 1:
+                if len(ans) == 0 or len(ans) > len(arr) + (len(target) - i > 0):
                     ans = arr.copy()
                     if len(target) - i > 0:
                         ans.append(str(len(target) - i)) 
