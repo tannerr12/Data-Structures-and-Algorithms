@@ -7,6 +7,8 @@ class Solution:
         c = Counter(s)
         fl = defaultdict(lambda:[float('inf'),-1])
         prefix = [[0 for i in range(26)] for j in range(len(s) + 1)]
+        
+        #N * 26
         for i in range(len(s)):
             ch = s[i]
             chv = ord(ch) - ord('a')
@@ -17,17 +19,21 @@ class Solution:
             fl[ch][0] = min(fl[ch][0], i)
             fl[ch][1] = max(fl[ch][1], i)
             
-        #26 * 26 * 26
+        
         starts = []
         ends = []
+        
+        #26
         for key,val in fl.items():
             starts.append(val[0])
             ends.append(val[1])
             
-        
+        #(26 * log(26))
         starts.sort()
         ends.sort(reverse=True)
         res = 0
+        
+        #26 * 26 * 26
         for i in range(len(starts)):
             for j in range(len(ends)):
                 if starts[i] > ends[j]:
@@ -48,6 +54,7 @@ class Solution:
                     
                 if valid:
                     res = max(res, ends[j] - starts[i] + 1)
+                    break
                     
         
         
