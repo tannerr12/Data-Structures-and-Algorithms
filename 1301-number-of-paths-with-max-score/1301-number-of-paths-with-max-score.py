@@ -2,22 +2,10 @@ class Solution:
     def pathsWithMaxScore(self, oldboard: List[str]) -> List[int]:
         MOD = 10 ** 9+ 7
         n,m = len(oldboard), len(oldboard[0])
-        board = [[0 for j in range(m)] for i in range(n)]
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                if i == 0 and j == 0:
-                    board[i][j] = 'E'
-                    continue
-                elif i == len(board) - 1 and j == len(board[0]) - 1:
-                    board[i][j] = 'S'
-                    continue
-                elif oldboard[i][j] == 'X':
-                    board[i][j] = 'X'
-                    continue
-                    
-                board[i][j] = int(oldboard[i][j]) % MOD
+        board = [['E' if i == 0 and j == 0 else 'S' if i == n-1 and j == m-1 else 'X' if oldboard[i][j] == 'X' else int(oldboard[i][j]) for j in range(m)] for i in range(n)]
+
         
-        #print(board)
+        
         #find the maximum sum 
         ans = [0,0]
         
@@ -52,9 +40,7 @@ class Solution:
         v1 = findBest(n-1, m-1)
         ans[0] = v1 if v1 != float('-inf') else 0
         #using the maximum sum find the count
-        #print(ans)
-        #print(cache)
-        
+
         
         @cache
         def findPaths(i,j,score):
@@ -77,9 +63,7 @@ class Solution:
             #both
             if up == 0 and left == 0:
                 upleft = findPaths(i-1,j-1,score - val) % MOD
-            
-            
-            
+
             return (left + up + upleft) % MOD
         
         ans[1] = findPaths(len(board) - 1, len(board[0]) - 1, ans[0])
