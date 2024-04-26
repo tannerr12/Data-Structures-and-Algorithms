@@ -1,15 +1,15 @@
 class Solution:
     def minDeletionSize(self, strs: List[str]) -> int:
         #remove = [False] * len(strs[0])
-        strs.sort()
+
         
         @cache
-        def isGood(i, target, last):
+        def isGood(i, last):
             
             if i >= len(strs[0]):
-                return True
+                return 0
             
-            res = False
+            res = len(strs[0])
             canTake = True
             if last != -1:
                 
@@ -18,30 +18,16 @@ class Solution:
                         canTake = False
                         break
                 
-                if target > 0:
-                    res = res or isGood(i+1, target -1, last)
+                
+                res = min(res, isGood(i+1, last) + 1)
                     
             else:
-                if target > 0:
-                    res = res or isGood(i+1, target -1, last)
+                res = min(res, isGood(i+1, last) + 1)
             
             if canTake:
-                res = res or isGood(i+1, target, i)
+                res = min(res, isGood(i+1, i))
                 
             return res
             
-            
-        l,r = 0, len(strs[0])
         
-        while l < r:
-            
-            mid = (l+r) // 2
-            
-            if isGood(0, mid, -1):
-                r = mid 
-            else:
-                l = mid + 1
-        
-        
-        return l
-                
+        return isGood(0, -1)
