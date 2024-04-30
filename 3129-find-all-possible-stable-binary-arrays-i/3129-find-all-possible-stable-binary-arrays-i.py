@@ -11,10 +11,10 @@ class Solution:
             res = 0
             if turn:
                 for i in range(1, min(limit, z) + 1):
-                    res += dfs(z - i, o, not turn)
+                    res += dfs(z - i, o, not turn) % MOD
             else:
                 for i in range(1, min(limit, o) + 1):
-                    res += dfs(z, o - i, not turn)
+                    res += dfs(z, o - i, not turn) % MOD
             
             return res % MOD
         
