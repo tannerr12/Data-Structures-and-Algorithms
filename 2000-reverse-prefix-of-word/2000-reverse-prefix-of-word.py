@@ -3,7 +3,4 @@ class Solution:
         
         idx = word.find(ch)
         
-        
-        print(idx)
-        
         return word[:idx+1][::-1] + word[idx+1:]
