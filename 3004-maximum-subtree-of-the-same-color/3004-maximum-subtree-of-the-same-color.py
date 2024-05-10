@@ -28,7 +28,7 @@ class Solution:
                     same = False
                 res = max(res, best)
             
-            return [count + 1 if same else 0, max(res , count + 1 if same else 0), colors[node] if same else 100]
+            return [count + 1 if same else 0, max(res , count + 1 if same else 0), colors[node] if same else -1]
         
     
     
