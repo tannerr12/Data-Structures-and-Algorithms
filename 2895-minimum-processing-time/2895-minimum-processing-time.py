@@ -12,6 +12,8 @@ class Solution:
                 worst = max(worst, cur + val)
             
             res = max(res, worst)
+            if len(tasks) == 0:
+                break
             #heappush(processorTime, worst)
                 
             
