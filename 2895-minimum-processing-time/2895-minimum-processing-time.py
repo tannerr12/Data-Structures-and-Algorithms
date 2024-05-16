@@ -2,10 +2,10 @@ class Solution:
     def minProcessingTime(self, processorTime: List[int], tasks: List[int]) -> int:
         
         tasks.sort()
-        heapify(processorTime)
+        processorTime.sort()
         res = 0
-        while tasks:
-            cur = heappop(processorTime)
+        for i in range(len(processorTime)):
+            cur = processorTime[i]
             worst = 0
             for i in range(min(4,len(tasks))):
                 val = tasks.pop()
