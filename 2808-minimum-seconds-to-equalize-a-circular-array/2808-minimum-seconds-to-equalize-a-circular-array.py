@@ -2,9 +2,7 @@ class Solution:
     def minimumSeconds(self, nums: List[int]) -> int:
         
         new = nums + nums
-        
-        print(new)
-        
+
         dist = defaultdict(int)
         last = defaultdict(int)
         for i in range(len(new)):
