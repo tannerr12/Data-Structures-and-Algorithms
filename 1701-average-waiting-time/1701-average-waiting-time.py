@@ -8,7 +8,7 @@ class Solution:
             arr,t = customers[i]
             if time < arr:
                 time = arr
-            tcost = max(0, time - arr) + t
+            tcost = time - arr + t
             time += t
             cost += tcost
             
