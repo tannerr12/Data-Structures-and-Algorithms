@@ -3,7 +3,7 @@ class Solution:
         
         
         ans = [0] * len(nums)
-        #heap = []
+        heap = []
         #for val in set(nums):
         #    heappush(heap, (0, val))
         arr = [0] * len(nums)
@@ -13,13 +13,14 @@ class Solution:
         for i in range(len(nums)):
             num = nums[i]
             fr = freq[i]
-            idx = bisect_left(arr, apply[num])
-            arr.pop(idx)
             apply[num] += fr
-            insort(arr, apply[num])
+            heappush(heap, (-apply[num], num))
+            
+            while heap and -heap[0][0] != apply[heap[0][1]]:
+                heappop(heap)
             
             
-            ans[i] = arr[-1]
+            ans[i] = -heap[0][0]
             
             
         
