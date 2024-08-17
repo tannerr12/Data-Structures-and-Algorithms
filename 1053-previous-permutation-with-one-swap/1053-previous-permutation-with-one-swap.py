@@ -1,23 +1,17 @@
 class Solution:
     def prevPermOpt1(self, arr: List[int]) -> List[int]:
         mn = float('inf')
-        hasSmaller = [False] * len(arr)
+        pos = -1
         
         for i in range(len(arr)-1,-1,-1):
             if arr[i] > mn:
-                hasSmaller[i] = True
+                pos = i
+                break
             
             mn = min(mn,arr[i])
         
         
-        #print(hasSmaller)
-        
-        #furthest number to the right which is smaller 
-        pos = -1
-        for i in range(len(arr)-1,-1,-1):
-            if hasSmaller[i]:
-                pos = i
-                break
+
         
         
         if pos == -1:
