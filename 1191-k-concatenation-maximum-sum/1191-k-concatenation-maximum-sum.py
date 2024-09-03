@@ -14,6 +14,7 @@ class Solution:
         for i in range(len(narr)):
             curr += narr[i]
             curr = max(curr, 0)
+            #curr %= MOD
             best = max(best, curr)
         
         return max(best, best + (sum(arr) * (k -2) if k > 2 else 0)) % MOD
